@@ -1,4 +1,3 @@
-import Counter from '~/components/Counter';
 import { createClient } from 'contentful';
 import { createResource, For } from 'solid-js';
 
@@ -26,7 +25,6 @@ const MainModule = () => {
     return (
         <>
             <h1>Hello world!</h1>
-            <Counter />
             <p>
                 <a href="https://start.solidjs.com" target="_blank">
                     start.solidjs.com
@@ -42,7 +40,9 @@ const MainModule = () => {
 
                         return (
                             <div>
-                                <h1>{title as string}</h1>
+                                <h1 class="max-6-xs text-6xl text-sky-700 font-thin uppercase my-16">
+                                    {title as string}
+                                </h1>
                                 <div
                                     innerHTML={documentToHtmlString(
                                         text as Document
