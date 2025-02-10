@@ -1,12 +1,12 @@
-import { Title } from '@solidjs/meta';
-import MainModule from '~/modules/mainModule';
+import { Title } from "@solidjs/meta";
+import MainModule from "~/modules/mainModule";
+import Layout from "~/components/layout";
 
 const MainPage = () => {
     return (
-        <main>
-            <Title>Hello World</Title>
+        <Layout title={"Базовая страница"}>
             <MainModule />
-        </main>
+        </Layout>
     );
 };
 

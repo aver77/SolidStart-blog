@@ -1,53 +1,55 @@
-import { createClient } from 'contentful';
-import { createResource, For } from 'solid-js';
+import { createResource, For } from "solid-js";
 
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-import { Document } from '@contentful/rich-text-types';
+// import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
+import { withClient } from "~/shared/api";
 
-export const fetchPosts = async () => {
-    const client = createClient({
-        space: process.env.space!,
-        accessToken: process.env.accessToken!
-    });
+import About from "~/modules/mainModule/sections/about";
+import type { IContentfulResource, IPost } from "~/shared/types";
+import Chip from "~/shared/ui/chip";
 
-    const posts = await client
-        .getEntries({ content_type: 'post' })
+export const fetchPosts = withClient(async (client) => {
+    const posts = (await client
+        .getEntries({ content_type: "post" })
         .catch(() => ({
             items: []
-        }));
+        }))) as IContentfulResource<IPost>;
 
-    return posts!.items;
-};
+    console.log(posts?.items[0].fields);
+
+    return posts?.items;
+});
 
 const MainModule = () => {
-    const [posts] = createResource(fetchPosts);
+    const [posts] = createResource(() => fetchPosts);
 
     return (
         <>
+            <About />
             <h1>Hello world!</h1>
             <p>
                 <a href="https://start.solidjs.com" target="_blank">
                     start.solidjs.com
-                </a>{' '}
+                </a>{" "}
                 to learn how to build SolidStart apps.
             </p>
             {posts() && (
                 <For each={posts()}>
                     {(item, index) => {
                         const {
-                            fields: { title, text }
+                            fields: { title, subTitle, text, minutesRead, tags }
                         } = item;
 
                         return (
                             <div>
-                                <h1 class="max-6-xs text-6xl text-sky-700 font-thin uppercase my-16">
-                                    {title as string}
+                                <h1 class="text-sky-700 font-thin uppercase">
+                                    {title}
                                 </h1>
-                                <div
-                                    innerHTML={documentToHtmlString(
-                                        text as Document
-                                    )}
-                                />
+                                <h2>{subTitle}</h2>
+                                <div>{minutesRead}</div>
+                                <For each={tags}>
+                                    {(tag) => <Chip text={tag} />}
+                                </For>
+                                {/*<div innerHTML={documentToHtmlString(text)} />*/}
                             </div>
                         );
                     }}

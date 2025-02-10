@@ -1,14 +1,24 @@
 @import "tailwindcss";
+@import url("https://fonts.googleapis.com/css2?family=Birthstone&family=Montserrat:wght@300;400;700;900&display=swap");
 
 @theme {
     --color-*: initial;
-    --color-white: #fff;
-    --color-purple: #3f3cbb;
-    --color-midnight: #121063;
-    --color-tahiti: #3ab7bf;
-    --color-bermuda: #78dcca;
+    --color-black: #080808;
+    --color-dark: #111;
+    --color-gray: #232323;
+    --color-lightGray: #ebecf34d;
+    --color-gold: gold;
+    --color-white: #ebecf3;
+
+    --font-*:initial;
+    --font-base: "Montserrat";
+    --font-curve: "Birthstone";
+
+    --spacing-headerHeight: 80px;
 }
 
-body {
-    @apply bg-purple;
+html {
+    @apply bg-dark;
+    @apply text-white;
+    @apply font-base;
 }
