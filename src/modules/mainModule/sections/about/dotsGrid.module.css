@@ -1,0 +1,33 @@
+.dots {
+    @apply z-1;
+    @apply absolute;
+    @apply top-[var(--spacing-offset3x)];
+    @apply bottom-[var(--spacing-offset3x)];
+    @apply right-[96px];
+    @apply grid;
+    @apply grid-cols-[repeat(25,1fr)];
+}
+
+.dot-wrapper {
+    @apply p-[var(--spacing-offset2x)];
+    @apply cursor-crosshair;
+    @apply h-fit;
+    @apply transition duration-300;
+}
+
+.dot-wrapper:focus:hover:active {
+    @apply bg-[var(--color-lightGray)];
+}
+
+.dot {
+    @apply h-[var(--spacing-offset2x)];
+    @apply w-[var(--spacing-offset2x)];
+    @apply rounded-full;
+    @apply opacity-35;
+    @apply bg-[linear-gradient(180deg,var(--color-dark),var(--color-white))];
+}
+
+.dot:focus:hover:active {
+    @apply opacity-100;
+    @apply bg-[linear-gradient(180deg,var(--color-dark),var(--color-gold))];
+}

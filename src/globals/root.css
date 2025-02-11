@@ -15,10 +15,22 @@
     --font-curve: "Birthstone";
 
     --spacing-headerHeight: 80px;
+    --spacing-offsetx: 4px;
+    --spacing-offset2x: 8px;
+    --spacing-offset3x: 12px;
+    --spacing-offset4x: 16px;
+    --spacing-offset5x: 20px;
+    --spacing-offset6x: 24px;
+    --spacing-offset7x: 28px;
+    --spacing-offset8x: 32px;
 }
 
 html {
     @apply bg-dark;
     @apply text-white;
     @apply font-base;
+}
+
+*::selection {
+    @apply bg-gold;
 }

@@ -31,7 +31,8 @@ interface IAvatar {
 }
 
 export interface IAbout {
-    years: string;
+    title: string;
+    subTitle: string;
     aboutText: string;
     avatar: IContentfulResourceFields<IAvatar>;
 }

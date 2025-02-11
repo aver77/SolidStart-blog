@@ -3,7 +3,7 @@ import { createResource, For } from "solid-js";
 // import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import { withClient } from "~/shared/api";
 
-import About from "~/modules/mainModule/sections/about";
+import AboutSection from "~/modules/mainModule/sections/about";
 import type { IContentfulResource, IPost } from "~/shared/types";
 import Chip from "~/shared/ui/chip";
 
@@ -24,7 +24,7 @@ const MainModule = () => {
 
     return (
         <>
-            <About />
+            <AboutSection />
             <h1>Hello world!</h1>
             <p>
                 <a href="https://start.solidjs.com" target="_blank">
