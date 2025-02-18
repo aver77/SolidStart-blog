@@ -16,12 +16,47 @@ export const fetchAbout = withClient(async (client) => {
 const About = () => {
     const [information] = createResource(() => fetchAbout);
 
+    const getTitle = () => {
+        let title = information()?.title || "";
+
+        if (title.at(-1) === ".") {
+            title = title.slice(0, -1);
+        }
+
+        return (
+            <h1 class="text-max font-black">
+                {title}
+                <span class="text-gold">.</span>
+            </h1>
+        );
+    };
+
+    const getSubTitle = () => {
+        const subTitle = information()?.subTitle || "";
+        const sep = " ";
+
+        const splittedSubTitle = subTitle.split(sep);
+        const profession = splittedSubTitle.splice(-2);
+
+        return (
+            <p class="text-3xl font-black">
+                <span>{splittedSubTitle.join(sep) + sep}</span>
+                <span class="text-gold">{profession.join(sep)}</span>
+            </p>
+        );
+    };
+
     return (
         <section class="relative">
-            <div class="relative z-2">
-                <h1>{information()?.title}</h1>
-                <h2>{information()?.subTitle}</h2>
-                <p>{information()?.aboutText}</p>
+            <div class="relative z-2 flex">
+                <div class="flex flex-col gap-offset8x">
+                    <div>
+                        {getTitle()}
+                        {getSubTitle()}
+                    </div>
+                    <p>{information()?.aboutText}</p>
+                    <button>Let's go!</button>
+                </div>
                 <img
                     width={"290px"}
                     height={"290px"}

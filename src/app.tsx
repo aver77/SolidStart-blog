@@ -12,12 +12,13 @@ export default function App() {
     return (
         <Router
             root={(props) => {
-                console.log(props);
                 return (
                     <MetaProvider>
                         <Header />
-                        <main>
-                            <Suspense>{props.children}</Suspense>
+                        <main class="main-layout">
+                            <div class="main-container">
+                                <Suspense>{props.children}</Suspense>
+                            </div>
                         </main>
                         <Footer />
                     </MetaProvider>

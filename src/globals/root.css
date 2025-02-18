@@ -23,14 +23,47 @@
     --spacing-offset6x: 24px;
     --spacing-offset7x: 28px;
     --spacing-offset8x: 32px;
+
+    --text-*:initial;
+    --text-xs: 14px;
+    --text-sm: 16px;
+    --text-base: 18px;
+    --text-lg: 20px;
+    --text-xl: 24px;
+    --text-2xl: 28px;
+    --text-3xl: 32px;
+    --text-4xl: 36px;
+    --text-5xl: 40px;
+    --text-6xl: 44px;
+    --text-7xl: 48px;
+    --text-max: 52px;
+
+    --breakpoint-*:initial;
+    --breakpoint-ipadLg: 1000px;
+    --breakpoint-ipadSm: 700px;
+    --breakpoint-phones: 500px;
 }
 
 html {
     @apply bg-dark;
     @apply text-white;
     @apply font-base;
+    @apply text-lg;
 }
 
 *::selection {
     @apply bg-gold;
+}
+
+* {
+    @apply leading-[1.2];
+}
+
+.main-layout {
+    @apply px-offset8x;
+}
+
+.main-container {
+    @apply max-w-[1150px];
+    @apply mx-auto;
 }
