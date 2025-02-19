@@ -5,7 +5,7 @@ import { withClient } from "~/shared/api";
 
 import AboutSection from "~/modules/mainModule/sections/about";
 import type { IContentfulResource, IPost } from "~/shared/types";
-import Chip from "~/shared/ui/chip";
+import BlogPosts from "~/modules/mainModule/sections/blogPosts";
 
 export const fetchPosts = withClient(async (client) => {
     const posts = (await client
@@ -25,36 +25,7 @@ const MainModule = () => {
     return (
         <>
             <AboutSection />
-            <h1>Hello world!</h1>
-            <p>
-                <a href="https://start.solidjs.com" target="_blank">
-                    start.solidjs.com
-                </a>{" "}
-                to learn how to build SolidStart apps.
-            </p>
-            {posts() && (
-                <For each={posts()}>
-                    {(item, index) => {
-                        const {
-                            fields: { title, subTitle, text, minutesRead, tags }
-                        } = item;
-
-                        return (
-                            <div>
-                                <h1 class="text-sky-700 font-thin uppercase">
-                                    {title}
-                                </h1>
-                                <h2>{subTitle}</h2>
-                                <div>{minutesRead}</div>
-                                <For each={tags}>
-                                    {(tag) => <Chip text={tag} />}
-                                </For>
-                                {/*<div innerHTML={documentToHtmlString(text)} />*/}
-                            </div>
-                        );
-                    }}
-                </For>
-            )}
+            <BlogPosts />
         </>
     );
 };
