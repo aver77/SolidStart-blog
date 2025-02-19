@@ -1,8 +1,10 @@
+import { Component } from "solid-js";
+
 interface IChip {
     text: string;
 }
 
-const Chip = ({ text }: IChip) => {
+const Chip: Component<IChip> = ({ text }) => {
     return <span>{text}</span>;
 };
 

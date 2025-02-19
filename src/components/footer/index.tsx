@@ -1,8 +1,8 @@
 const Footer = () => {
     return (
-        <div class="p-offset6x flex justify-center align-center text-lightGray">
+        <footer class="p-offset6x flex justify-center align-center text-lightGray text-xs">
             All rights reserved copyright © {new Date().getFullYear()}
-        </div>
+        </footer>
     );
 };
 

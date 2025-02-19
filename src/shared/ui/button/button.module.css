@@ -1,0 +1,54 @@
+.btnShared {
+  @apply cursor-pointer;
+  @apply px-[var(--spacing-offset4x)];
+  @apply py-[var(--spacing-offset3x)];
+  @apply text-[var(--text-base)];
+  @apply rounded-[var(--radius-base)];
+  @apply border;
+  @apply border-solid;
+  @apply ease-in;
+  @apply duration-300
+}
+
+/*@media screen(iphones) {*/
+/*  .btnShared {*/
+/*    @apply px-[var(--spacing-offset3x)];*/
+/*    @apply py-[var(--spacing-offset2x)];*/
+/*    @apply text-[var(--text-sm)];*/
+/*  }*/
+/*}*/
+
+.disabled {
+  @apply bg-[var(--color-disabled)];
+  @apply border-[var(--color-disabled)];
+}
+
+.filled {
+  @apply border-[var(--color-gold)];
+  @apply text-[var(--color-dark)];
+  @apply bg-[var(--color-gold)];
+  background-image: linear-gradient(var(--color-dark), var(--color-dark));
+  background-size: 0 100%;
+  @apply bg-no-repeat;
+}
+
+.unfilled {
+  @apply border-[var(--color-gold)];
+  @apply text-[var(--color-gold)];
+  @apply bg-[var(--color-dark)];
+  background-image: linear-gradient(var(--color-gold), var(--color-gold));
+  background-size: 0 100%;
+  @apply bg-no-repeat;
+}
+
+.filled:hover:active:focus {
+  @apply bg-transparent;
+  @apply text-[var(--color-dark)];
+  background-size: 100% 100%;
+}
+
+.unfilled:hover:active:focus {
+  @apply bg-transparent;
+  @apply text-[var(--color-gold)];
+  background-size: 100% 100%;
+}

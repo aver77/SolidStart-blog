@@ -9,6 +9,7 @@
     --color-lightGray: #ebecf34d;
     --color-gold: gold;
     --color-white: #ebecf3;
+    --color-disabled: #ebebe4;
 
     --font-*:initial;
     --font-base: "Montserrat";
@@ -42,6 +43,10 @@
     --breakpoint-ipadLg: 1000px;
     --breakpoint-ipadSm: 700px;
     --breakpoint-phones: 500px;
+
+    --radius-*: initial;
+    --radius-base: 6px;
+    --radius-md: 8px;
 }
 
 html {

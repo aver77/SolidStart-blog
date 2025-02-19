@@ -3,6 +3,8 @@ import { createResource } from "solid-js";
 import type { IAbout, IContentfulResource } from "~/shared/types";
 import DotsGrid from "~/modules/mainModule/sections/about/dotsGrid";
 
+import Button from "~/shared/ui/button";
+
 export const fetchAbout = withClient(async (client) => {
     const about = (await client
         .getEntries({ content_type: "information" })
@@ -55,7 +57,9 @@ const About = () => {
                         {getSubTitle()}
                     </div>
                     <p>{information()?.aboutText}</p>
-                    <button>Let's go!</button>
+                    <div class="h-fit w-fit">
+                        <Button>Let's go!</Button>
+                    </div>
                 </div>
                 <img
                     width={"290px"}
