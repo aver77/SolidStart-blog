@@ -6,8 +6,7 @@
   @apply rounded-[var(--radius-base)];
   @apply border;
   @apply border-solid;
-  @apply ease-in;
-  @apply duration-300
+  transition: 0.3s ease;
 }
 
 /*@media screen(iphones) {*/
@@ -41,13 +40,13 @@
   @apply bg-no-repeat;
 }
 
-.filled:hover:active:focus {
+.filled:hover, .filled:active, .filled:focus {
   @apply bg-transparent;
   @apply text-[var(--color-dark)];
   background-size: 100% 100%;
 }
 
-.unfilled:hover:active:focus {
+.unfilled:hover, .unfilled:active, .unfilled:focus {
   @apply bg-transparent;
   @apply text-[var(--color-gold)];
   background-size: 100% 100%;
