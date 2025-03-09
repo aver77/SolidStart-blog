@@ -15,10 +15,8 @@ export default function App() {
                 return (
                     <MetaProvider>
                         <Header />
-                        <main class="main-layout">
-                            <div class="main-container">
-                                <Suspense>{props.children}</Suspense>
-                            </div>
+                        <main class="main-container">
+                            <Suspense>{props.children}</Suspense>
                         </main>
                         <Footer />
                     </MetaProvider>

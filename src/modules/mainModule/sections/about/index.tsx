@@ -4,6 +4,7 @@ import type { IAbout, IContentfulResource } from "~/shared/types";
 import DotsGrid from "~/modules/mainModule/sections/about/dotsGrid";
 
 import Button from "~/shared/ui/button";
+import DottedText from "~/shared/ui/dottedText";
 
 export const fetchAbout = withClient(async (client) => {
     const about = (await client
@@ -27,8 +28,7 @@ const About = () => {
 
         return (
             <h1 class="text-max font-black">
-                {title}
-                <span class="text-gold">.</span>
+                <DottedText>{title}</DottedText>
             </h1>
         );
     };
@@ -49,8 +49,8 @@ const About = () => {
     };
 
     return (
-        <section class="relative">
-            <div class="relative z-2 flex">
+        <section class="relative p-highest">
+            <div class="relative z-2 flex gap-offset8x">
                 <div class="flex flex-col gap-offset8x">
                     <div>
                         {getTitle()}

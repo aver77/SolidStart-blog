@@ -15,7 +15,6 @@
     --font-base: "Montserrat";
     --font-curve: "Birthstone";
 
-    --spacing-headerHeight: 80px;
     --spacing-offsetx: 4px;
     --spacing-offset2x: 8px;
     --spacing-offset3x: 12px;
@@ -24,6 +23,10 @@
     --spacing-offset6x: 24px;
     --spacing-offset7x: 28px;
     --spacing-offset8x: 32px;
+    --spacing-offset9x: 36px;
+    --spacing-offset10x: 40px;
+    --spacing-headerHeight: 80px;
+    --spacing-highest: 96px;
 
     --text-*:initial;
     --text-xs: 14px;
