@@ -28,7 +28,7 @@ const Input: Component<IInput> = ({
                 value={value}
                 onchange={(e) => valueSetter(e.target.value)}
             />
-            {value && (
+            {true && (
                 <Cancel
                     className={classes.cancel}
                     width={"20px"}

@@ -29,7 +29,7 @@ const BlogPosts = () => {
             </Line>
             <div>
                 <Filters />
-                <div class="flex flex-wrap gap-[20px] mt-offset6x">
+                <div class="flex flex-wrap gap-[20px] mt-offset8x">
                     {posts() && (
                         <For each={posts()}>
                             {(item, index) => {

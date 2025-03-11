@@ -32,12 +32,11 @@ const Line: Component<ILine> = ({
 }) => {
     const line = (
         <div
-            class={cx(
-                className,
-                `border-b-[${stroke || 1}px]`,
-                "border-solid border-lightGray w-full"
-            )}
-            style={color ? { "border-color": color } : {}}
+            class={cx(className, "border-solid border-lightGray w-full")}
+            style={{
+                "border-color": color,
+                "border-bottom-width": `${stroke || 1}px`
+            }}
         />
     );
 
