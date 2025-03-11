@@ -1,4 +1,4 @@
-import SvgWrapper, { ISvg } from "~/shared/assets/svg/svgWrapper";
+import SvgWrapper, { type ISvg } from "~/shared/assets/svg/svgWrapper";
 
 const GitHub = (params: ISvg) => {
     return (

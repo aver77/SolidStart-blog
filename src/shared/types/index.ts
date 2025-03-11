@@ -8,14 +8,6 @@ export interface IContentfulResource<T> {
     items: IContentfulResourceFields<T>[];
 }
 
-export interface IPost {
-    title: string;
-    subTitle: string;
-    text: Document;
-    minutesRead: string;
-    tags: string[];
-}
-
 interface IFile {
     url: string;
     fileName: string;
@@ -25,14 +17,23 @@ interface IFile {
     };
 }
 
-interface IAvatar {
+interface IContentfulMetadata {
     title: string;
     file: IFile;
+}
+
+export interface IPost {
+    title: string;
+    subTitle: string;
+    text: Document;
+    image: IContentfulResourceFields<IContentfulMetadata>;
+    minutesRead: string;
+    tags: string[];
 }
 
 export interface IAbout {
     title: string;
     subTitle: string;
     aboutText: string;
-    avatar: IContentfulResourceFields<IAvatar>;
+    avatar: IContentfulResourceFields<IContentfulMetadata>;
 }

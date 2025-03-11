@@ -5,8 +5,7 @@ import { IContentfulResource, IPost } from "~/shared/types";
 import Post from "./post";
 import Line from "~/shared/ui/line";
 import DottedText from "~/shared/ui/dottedText";
-import Input from "~/shared/ui/input";
-import FilterIcon from "~/shared/assets/svg/components/filter";
+import Filters from "./filters";
 
 export const fetchPosts = withClient(async (client) => {
     const posts = (await client
@@ -29,13 +28,7 @@ const BlogPosts = () => {
                 </h2>
             </Line>
             <div>
-                <div class="mt-offset6x">
-                    <Input />
-                    <button>
-                        <FilterIcon />
-                        Filter
-                    </button>
-                </div>
+                <Filters />
                 <div class="flex flex-wrap gap-[20px] mt-offset6x">
                     {posts() && (
                         <For each={posts()}>

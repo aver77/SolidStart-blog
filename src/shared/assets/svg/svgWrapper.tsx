@@ -1,11 +1,12 @@
-import { Component, JSX } from "solid-js";
+import type { Component, JSX } from "solid-js";
 
-export interface ISvg {
+export interface ISvg extends JSX.HTMLAttributes<SVGSVGElement> {
     height?: `${string}px`;
     width?: `${string}px`;
     style?: string;
     className?: string;
     viewBox?: string;
+    fill?: string;
 }
 
 const SvgWrapper: Component<ISvg & { children: JSX.Element }> = ({
@@ -14,10 +15,12 @@ const SvgWrapper: Component<ISvg & { children: JSX.Element }> = ({
     viewBox = "0 0 1024 1024",
     className = "fill-white hover:fill-gold focus:fill-gold active:fill-gold",
     style,
-    children
+    children,
+    ...restParams
 }) => {
     return (
         <svg
+            {...restParams}
             width={width}
             height={height}
             viewBox={viewBox}
