@@ -1,6 +1,6 @@
 import { Document } from "@contentful/rich-text-types";
 
-interface IContentfulResourceFields<T> {
+export interface IContentfulResourceFields<T> {
     fields: T;
 }
 
