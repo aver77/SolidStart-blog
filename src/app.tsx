@@ -16,7 +16,9 @@ export default function App() {
                     <MetaProvider>
                         <Header />
                         <main class="main-container">
-                            <Suspense>{props.children}</Suspense>
+                            <Suspense fallback={<div class="h-screen" />}>
+                                {props.children}
+                            </Suspense>
                         </main>
                         <Footer />
                     </MetaProvider>
