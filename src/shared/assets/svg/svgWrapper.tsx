@@ -1,4 +1,4 @@
-import type { Component, JSX } from "solid-js";
+import { type Component, type JSX, splitProps } from "solid-js";
 
 export interface ISvg extends JSX.HTMLAttributes<SVGSVGElement> {
     height?: `${string}px`;
@@ -10,27 +10,29 @@ export interface ISvg extends JSX.HTMLAttributes<SVGSVGElement> {
 }
 
 const SvgWrapper: Component<ISvg & { children: JSX.Element }> = (props) => {
-    const {
-        width = "28px",
-        height = "28px",
-        viewBox = "0 0 1024 1024",
-        className = "fill-white hover:fill-gold focus:fill-gold active:fill-gold",
-        style,
-        children,
-        ...restParams
-    } = props;
+    const [localProps, restProps] = splitProps(props, [
+        "width",
+        "height",
+        "viewBox",
+        "className",
+        "style",
+        "children"
+    ]);
 
     return (
         <svg
-            {...restParams}
-            width={width}
-            height={height}
-            viewBox={viewBox}
-            class={className}
-            style={style}
+            {...restProps}
+            width={localProps.width || "28px"}
+            height={localProps.height || "28px"}
+            viewBox={localProps.viewBox || "0 0 1024 1024"}
+            class={
+                localProps.className ??
+                "fill-white hover:fill-gold focus:fill-gold active:fill-gold"
+            }
+            style={localProps.style}
             xmlns="http://www.w3.org/2000/svg"
         >
-            {children}
+            {localProps.children}
         </svg>
     );
 };

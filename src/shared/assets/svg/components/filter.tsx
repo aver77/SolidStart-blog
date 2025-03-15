@@ -1,13 +1,14 @@
 import SvgWrapper, { type ISvg } from "~/shared/assets/svg/svgWrapper";
+import { splitProps } from "solid-js";
 
 const Filter = (props: ISvg) => {
-    const { width, height, ...restParams } = props;
+    const [localProps, restProps] = splitProps(props, ["width", "height"]);
 
     return (
         <SvgWrapper
-            {...restParams}
-            width={width || "29px"}
-            height={height || "19px"}
+            {...restProps}
+            width={localProps.width || "29px"}
+            height={localProps.height || "19px"}
             viewBox="0 0 29 19"
         >
             <path

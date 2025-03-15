@@ -1,4 +1,4 @@
-import { Component, JSX } from "solid-js";
+import { type Component, type JSX, splitProps } from "solid-js";
 import cx from "classnames";
 
 interface IChip extends JSX.HTMLAttributes<HTMLSpanElement> {
@@ -6,17 +6,17 @@ interface IChip extends JSX.HTMLAttributes<HTMLSpanElement> {
 }
 
 const Chip: Component<IChip> = (props) => {
-    const { text, class: className, ...restProps } = props;
+    const [localProps, restProps] = splitProps(props, ["text", "class"]);
 
     return (
         <span
             class={cx(
                 "rounded-full bg-gray py-offset2x px-offset3x text-sm whitespace-nowrap overflow-hidden text-ellipsis",
-                className
+                localProps.class
             )}
             {...restProps}
         >
-            {text}
+            {localProps.text}
         </span>
     );
 };

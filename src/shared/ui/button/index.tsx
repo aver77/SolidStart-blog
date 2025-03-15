@@ -1,4 +1,4 @@
-import { Component, JSX } from "solid-js";
+import { type Component, type JSX, splitProps } from "solid-js";
 import cn from "classnames";
 
 import classes from "./button.module.css";
@@ -14,13 +14,12 @@ interface IButton extends JSX.HTMLAttributes<HTMLButtonElement> {
     disabled?: boolean;
 }
 const Index: Component<IButton> = (props) => {
-    const {
-        children,
-        type = ButtonTypes.FILLED,
-        disabled = false,
-        ...restProps
-    } = props;
-    const { class: restClass, ...extractedRestProps } = restProps;
+    const [localProps, restProps] = splitProps(props, [
+        "children",
+        "type",
+        "disabled",
+        "class"
+    ]);
 
     const typeClass = ButtonTypes.FILLED ? classes.filled : classes.unfilled;
 
@@ -28,13 +27,13 @@ const Index: Component<IButton> = (props) => {
         <button
             class={cn(
                 classes.btnShared,
-                disabled && classes.disabled,
+                localProps.disabled && classes.disabled,
                 typeClass,
-                restClass
+                localProps.class
             )}
-            {...extractedRestProps}
+            {...restProps}
         >
-            {children}
+            {localProps.children}
         </button>
     );
 };

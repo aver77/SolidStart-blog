@@ -7,12 +7,10 @@ interface ILayout {
 }
 
 const Layout: Component<ILayout> = (props) => {
-    const { title, children } = props;
-
     return (
         <>
-            <Title>{title}</Title>
-            {children}
+            <Title>{props.title}</Title>
+            {props.children}
         </>
     );
 };

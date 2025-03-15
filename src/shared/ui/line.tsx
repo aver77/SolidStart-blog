@@ -1,6 +1,5 @@
-import { Component, JSX } from "solid-js";
+import type { Component, JSX } from "solid-js";
 import cx from "classnames";
-import content from "*.scss";
 
 export enum LineAligns {
     LEFT = "left",
@@ -23,15 +22,13 @@ type ILine = { stroke?: number; color?: string; className?: string } & (
     | ILineWithoutContent
 );
 
-const Line: Component<ILine> = (props) => {
-    const {
-        stroke,
-        color,
-        className,
-        children,
-        align = LineAligns.LEFT
-    } = props;
-
+const Line: Component<ILine> = ({
+    stroke,
+    color,
+    className,
+    children,
+    align = LineAligns.LEFT
+}) => {
     const line = (
         <div
             class={cx(className, "border-solid border-lightGray w-full")}

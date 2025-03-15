@@ -1,13 +1,13 @@
-import { Component, JSX } from "solid-js";
+import type { Component, JSX } from "solid-js";
 
 interface IDottedText {
     children: JSX.Element;
 }
 
-const DottedText: Component<IDottedText> = (props) => {
+const DottedText: Component<IDottedText> = ({ children }) => {
     return (
         <>
-            {props.children}
+            {children}
             <span class="text-gold">.</span>
         </>
     );

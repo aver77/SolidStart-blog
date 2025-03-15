@@ -1,4 +1,4 @@
-import { type Component, createSignal, For } from "solid-js";
+import { type Component, For } from "solid-js";
 import type { IPost } from "~/shared/types";
 import Chip from "~/shared/ui/chip";
 import cx from "classnames";
@@ -9,8 +9,7 @@ export interface IPostCard extends IPost {
     wrapperClass?: string;
 }
 
-const PostCard: Component<IPostCard> = (postCard) => {
-    const { wrapperClass, ...post } = postCard;
+const PostCard: Component<IPostCard> = ({ wrapperClass, ...post }) => {
     const { id, title, subTitle, text, image, minutesRead, tags } = post;
 
     const navigate = useNavigate();
@@ -18,10 +17,7 @@ const PostCard: Component<IPostCard> = (postCard) => {
     return (
         <div
             class={cx("cursor-pointer", wrapperClass)}
-            onClick={() => {
-                navigate(`/blog/${id}`, { state: post });
-                console.log("NAGIVATE!!!");
-            }}
+            onClick={() => navigate(`/blog/${id}`, { state: post })}
         >
             <div class="aspect-[16/9]">
                 <img
