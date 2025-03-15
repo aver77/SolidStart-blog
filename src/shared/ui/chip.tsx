@@ -5,8 +5,8 @@ interface IChip extends JSX.HTMLAttributes<HTMLSpanElement> {
     text: string;
 }
 
-const Chip: Component<IChip> = ({ text, ...props }) => {
-    const { class: className, ...restProps } = props;
+const Chip: Component<IChip> = (props) => {
+    const { text, class: className, ...restProps } = props;
 
     return (
         <span

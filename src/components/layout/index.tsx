@@ -1,14 +1,14 @@
-import { JSX } from "solid-js";
+import type { Component, JSX } from "solid-js";
 import { Title } from "@solidjs/meta";
-
-import Header from "~/components/header";
 
 interface ILayout {
     title: string;
     children: JSX.Element;
 }
 
-const Layout = ({ title, children }: ILayout) => {
+const Layout: Component<ILayout> = (props) => {
+    const { title, children } = props;
+
     return (
         <>
             <Title>{title}</Title>

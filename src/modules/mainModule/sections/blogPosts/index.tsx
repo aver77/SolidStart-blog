@@ -1,5 +1,5 @@
 import { createResource, For } from "solid-js";
-import { withClient } from "~/shared/api";
+import { getClient } from "~/shared/api";
 import { IContentfulResource, IPost } from "~/shared/types";
 
 import PostCard from "./postCard";
@@ -7,18 +7,18 @@ import Line from "~/shared/ui/line";
 import DottedText from "~/shared/ui/dottedText";
 import Filters from "./filters";
 
-export const fetchPosts = withClient(async (client) => {
-    const posts = (await client
+export const fetchPosts = async () => {
+    const posts = (await getClient()
         .getEntries({ content_type: "post" })
         .catch(() => ({
             items: []
         }))) as IContentfulResource<IPost>;
 
     return posts?.items;
-});
+};
 
 const BlogPosts = () => {
-    const [posts] = createResource(() => fetchPosts);
+    const [posts] = createResource(fetchPosts);
 
     return (
         <div class="p-highest">

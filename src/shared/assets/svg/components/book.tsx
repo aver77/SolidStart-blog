@@ -1,11 +1,11 @@
 import SvgWrapper, { type ISvg } from "~/shared/assets/svg/svgWrapper";
 
-const Book = (params: ISvg) => {
-    const { width, height, fill, ...restParams } = params;
+const Book = (props: ISvg) => {
+    const { width, height, fill, ...restParams } = props;
 
     return (
         <SvgWrapper
-            {...params}
+            {...props}
             width="20px"
             height="16px"
             viewBox="0 0 20 16"

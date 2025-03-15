@@ -13,12 +13,13 @@ interface IButton extends JSX.HTMLAttributes<HTMLButtonElement> {
     type?: ButtonTypes;
     disabled?: boolean;
 }
-const Index: Component<IButton> = ({
-    children,
-    type = ButtonTypes.FILLED,
-    disabled = false,
-    ...restProps
-}) => {
+const Index: Component<IButton> = (props) => {
+    const {
+        children,
+        type = ButtonTypes.FILLED,
+        disabled = false,
+        ...restProps
+    } = props;
     const { class: restClass, ...extractedRestProps } = restProps;
 
     const typeClass = ButtonTypes.FILLED ? classes.filled : classes.unfilled;

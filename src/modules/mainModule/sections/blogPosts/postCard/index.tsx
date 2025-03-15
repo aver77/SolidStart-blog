@@ -1,7 +1,6 @@
-import { Component, For } from "solid-js";
-import { IPost } from "~/shared/types";
+import { type Component, createSignal, For } from "solid-js";
+import type { IPost } from "~/shared/types";
 import Chip from "~/shared/ui/chip";
-
 import cx from "classnames";
 import Book from "~/shared/assets/svg/components/book";
 import { useNavigate } from "@solidjs/router";

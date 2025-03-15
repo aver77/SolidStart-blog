@@ -1,23 +1,20 @@
 import LoopIcon from "~/shared/assets/svg/components/loop";
-import type { Component, JSX } from "solid-js";
+import type { Accessor, Component, JSX } from "solid-js";
 import Cancel from "~/shared/assets/svg/components/cancel";
 import cx from "classnames";
 
 import classes from "./input.module.css";
 
-interface IInput extends JSX.HTMLAttributes<HTMLInputElement> {
-    value: string;
-    valueSetter: (newValue: string) => void;
+interface IInput
+    extends Omit<JSX.HTMLAttributes<HTMLInputElement>, "onChange"> {
+    value: Accessor<string>;
+    handleChange: (v: string) => void;
     wrapperClass?: string;
 }
 
-const Input: Component<IInput> = ({
-    value,
-    valueSetter,
-    wrapperClass,
-    ...params
-}) => {
-    const { class: className, ...restParams } = params;
+const Input: Component<IInput> = (props) => {
+    const { value, handleChange, wrapperClass, ...restProps } = props;
+    const { class: className, ...restParams } = restProps;
 
     return (
         <div class={cx(classes.container, wrapperClass)}>
@@ -25,15 +22,15 @@ const Input: Component<IInput> = ({
             <input
                 {...restParams}
                 class={cx(classes.input, className)}
-                value={value}
-                onChange={(e) => valueSetter(e.target.value)}
+                value={value()}
+                onInput={(e) => handleChange(e.target.value)}
             />
-            {true && (
+            {value().length > 0 && (
                 <Cancel
                     className={classes.cancel}
                     width={"20px"}
                     height={"20px"}
-                    onClick={() => valueSetter("")}
+                    onClick={() => handleChange("")}
                 />
             )}
         </div>

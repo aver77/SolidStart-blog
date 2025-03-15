@@ -1,7 +1,7 @@
 import SvgWrapper, { type ISvg } from "~/shared/assets/svg/svgWrapper";
 
-const Cancel = (params: ISvg) => {
-    const { width, height, fill, ...restParams } = params;
+const Cancel = (props: ISvg) => {
+    const { width, height, fill, ...restParams } = props;
 
     return (
         <div>

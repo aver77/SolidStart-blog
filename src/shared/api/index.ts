@@ -1,12 +1,8 @@
-import { ContentfulClientApi, createClient } from "contentful";
+import { createClient } from "contentful";
 
-export const withClient = <T>(
-    fn: (client: ContentfulClientApi<undefined>) => T
-) => {
-    const client = createClient({
+export const getClient = () => {
+    return createClient({
         space: process.env.space!,
         accessToken: process.env.accessToken!
     });
-
-    return fn(client);
 };

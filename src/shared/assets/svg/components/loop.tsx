@@ -1,7 +1,7 @@
 import SvgWrapper, { type ISvg } from "~/shared/assets/svg/svgWrapper";
 
-const Loop = (params: ISvg) => {
-    const { width, height, fill, ...restParams } = params;
+const Loop = (props: ISvg) => {
+    const { width, height, fill, ...restParams } = props;
 
     return (
         <SvgWrapper

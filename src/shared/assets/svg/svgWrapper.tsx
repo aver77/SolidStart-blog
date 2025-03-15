@@ -9,15 +9,17 @@ export interface ISvg extends JSX.HTMLAttributes<SVGSVGElement> {
     fill?: string;
 }
 
-const SvgWrapper: Component<ISvg & { children: JSX.Element }> = ({
-    width = "28px",
-    height = "28px",
-    viewBox = "0 0 1024 1024",
-    className = "fill-white hover:fill-gold focus:fill-gold active:fill-gold",
-    style,
-    children,
-    ...restParams
-}) => {
+const SvgWrapper: Component<ISvg & { children: JSX.Element }> = (props) => {
+    const {
+        width = "28px",
+        height = "28px",
+        viewBox = "0 0 1024 1024",
+        className = "fill-white hover:fill-gold focus:fill-gold active:fill-gold",
+        style,
+        children,
+        ...restParams
+    } = props;
+
     return (
         <svg
             {...restParams}

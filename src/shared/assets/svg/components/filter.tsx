@@ -1,7 +1,7 @@
 import SvgWrapper, { type ISvg } from "~/shared/assets/svg/svgWrapper";
 
-const Filter = (params: ISvg) => {
-    const { width, height, ...restParams } = params;
+const Filter = (props: ISvg) => {
+    const { width, height, ...restParams } = props;
 
     return (
         <SvgWrapper

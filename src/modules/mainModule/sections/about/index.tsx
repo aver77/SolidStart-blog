@@ -1,4 +1,4 @@
-import { withClient } from "~/shared/api";
+import { getClient } from "~/shared/api";
 import { createResource } from "solid-js";
 import type { IAbout, IContentfulResource } from "~/shared/types";
 import DotsGrid from "~/modules/mainModule/sections/about/dotsGrid";
@@ -6,18 +6,18 @@ import DotsGrid from "~/modules/mainModule/sections/about/dotsGrid";
 import Button from "~/shared/ui/button";
 import DottedText from "~/shared/ui/dottedText";
 
-export const fetchAbout = withClient(async (client) => {
-    const about = (await client
+export const fetchAbout = async () => {
+    const about = (await getClient()
         .getEntries({ content_type: "information" })
         .catch(() => ({
             items: []
         }))) as IContentfulResource<IAbout>;
 
     return about?.items?.[0]?.fields || {};
-});
+};
 
 const About = () => {
-    const [information] = createResource(() => fetchAbout);
+    const [information] = createResource(fetchAbout);
 
     const getTitle = () => {
         let title = information()?.title || "";

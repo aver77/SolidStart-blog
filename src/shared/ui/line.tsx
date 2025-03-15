@@ -23,13 +23,15 @@ type ILine = { stroke?: number; color?: string; className?: string } & (
     | ILineWithoutContent
 );
 
-const Line: Component<ILine> = ({
-    stroke,
-    color,
-    className,
-    children,
-    align = LineAligns.LEFT
-}) => {
+const Line: Component<ILine> = (props) => {
+    const {
+        stroke,
+        color,
+        className,
+        children,
+        align = LineAligns.LEFT
+    } = props;
+
     const line = (
         <div
             class={cx(className, "border-solid border-lightGray w-full")}
