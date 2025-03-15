@@ -11,7 +11,7 @@ const Chip: Component<IChip> = ({ text, ...props }) => {
     return (
         <span
             class={cx(
-                "rounded-full bg-gray py-offset2x px-offset3x text-sm",
+                "rounded-full bg-gray py-offset2x px-offset3x text-sm whitespace-nowrap overflow-hidden text-ellipsis",
                 className
             )}
             {...restProps}

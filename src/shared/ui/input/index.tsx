@@ -26,7 +26,7 @@ const Input: Component<IInput> = ({
                 {...restParams}
                 class={cx(classes.input, className)}
                 value={value}
-                onchange={(e) => valueSetter(e.target.value)}
+                onChange={(e) => valueSetter(e.target.value)}
             />
             {true && (
                 <Cancel

@@ -2,6 +2,11 @@ import { Document } from "@contentful/rich-text-types";
 
 export interface IContentfulResourceFields<T> {
     fields: T;
+    sys: {
+        id: string;
+        createdAt: string;
+        updatedAt: string;
+    };
 }
 
 export interface IContentfulResource<T> {
@@ -23,6 +28,7 @@ interface IContentfulMetadata {
 }
 
 export interface IPost {
+    id: string;
     title: string;
     subTitle: string;
     text: Document;

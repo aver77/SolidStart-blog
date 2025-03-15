@@ -5,7 +5,7 @@ import Codewars from "~/shared/assets/svg/components/codewars";
 
 const Header = () => {
     return (
-        <header class="h-headerHeight px-offset8x flex justify-between bg-black">
+        <header class="h-headerHeight px-offset8x flex justify-between bg-black sticky top-0 z-10">
             <div class="flex justify-between gap-offset8x">
                 <div class="h-full flex justify-center items-center cursor-pointer">
                     <div class="bg-gray size-[40px] font-curve text-2xl rounded-md flex justify-center items-center">
