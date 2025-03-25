@@ -1,10 +1,10 @@
 import Layout from "~/components/layout";
-import BlogModule from "~/modules/blogModule";
+import BlogPostModuleModule from "../../modules/blogPostModule";
 
 const BlogPage = () => {
     return (
         <Layout title={"Блог"}>
-            <BlogModule />
+            <BlogPostModuleModule />
         </Layout>
     );
 };

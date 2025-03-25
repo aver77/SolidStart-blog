@@ -5,7 +5,7 @@ import cx from "classnames";
 import Book from "~/shared/assets/svg/components/book";
 import { useNavigate } from "@solidjs/router";
 
-export interface IPostCard extends IPost {
+interface IPostCard extends IPost {
     wrapperClass?: string;
 }
 
@@ -17,7 +17,7 @@ const PostCard: Component<IPostCard> = ({ wrapperClass, ...post }) => {
     return (
         <div
             class={cx("cursor-pointer", wrapperClass)}
-            onClick={() => navigate(`/blog/${id}`, { state: post })}
+            onClick={() => navigate(`/blog-post/${id}`)}
         >
             <div class="aspect-[16/9]">
                 <img
@@ -35,7 +35,6 @@ const PostCard: Component<IPostCard> = ({ wrapperClass, ...post }) => {
                 <Book />
                 <span>{minutesRead} min. read</span>
             </span>
-            {/*<div innerHTML={documentToHtmlString(text)} />*/}
         </div>
     );
 };
