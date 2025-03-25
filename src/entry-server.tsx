@@ -1,11 +1,5 @@
 // @refresh reload
-import { createHandler, StartServer } from '@solidjs/start/server';
-import { createClient } from 'contentful';
-
-const client = createClient({
-    space: process.env.space!,
-    accessToken: process.env.accessToken!
-});
+import { createHandler, StartServer } from "@solidjs/start/server";
 
 export default createHandler(() => (
     <StartServer
