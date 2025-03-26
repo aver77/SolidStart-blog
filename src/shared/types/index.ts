@@ -42,4 +42,5 @@ export interface IAbout {
     subTitle: string;
     aboutText: string;
     avatar: IContentfulResourceFields<IContentfulMetadata>;
+    name: string;
 }

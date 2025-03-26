@@ -23,7 +23,7 @@ const PostCard: Component<IPostCard> = ({ wrapperClass, ...post }) => {
                 <img
                     class="w-full h-full rounded-md"
                     src={image.fields.file.url}
-                    alt={image.fields.title}
+                    alt={image.fields.file.fileName}
                 />
             </div>
             <div class="flex flex-wrap gap-offset2x my-offset4x">

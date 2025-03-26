@@ -1,11 +1,12 @@
-import { createResource, For } from "solid-js";
+import { For } from "solid-js";
 import { getClient } from "~/shared/api";
-import { IContentfulResource, IPost } from "~/shared/types";
+import type { IContentfulResource, IPost } from "~/shared/types";
 
 import PostCard from "./postCard";
 import Line from "~/shared/ui/line";
 import DottedText from "~/shared/ui/dottedText";
 import Filters from "./filters";
+import { createQuery } from "@tanstack/solid-query";
 
 export const fetchPosts = async () => {
     const posts = (await getClient()
@@ -18,7 +19,12 @@ export const fetchPosts = async () => {
 };
 
 const BlogPosts = () => {
-    const [posts] = createResource(fetchPosts);
+    const posts = createQuery(() => ({
+        queryKey: ["posts"],
+        queryFn: fetchPosts,
+        staleTime: 1000 * 60 * 60,
+        ssr: true
+    }));
 
     return (
         <div class="p-highest">
@@ -30,7 +36,7 @@ const BlogPosts = () => {
             <div>
                 <Filters />
                 <div class="mt-offset8x grid grid-cols-3 gap-y-offset8x gap-x-offset4x">
-                    <For each={posts()}>
+                    <For each={posts?.data}>
                         {(post) => {
                             return (
                                 <PostCard {...post.fields} id={post.sys.id} />

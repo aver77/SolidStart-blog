@@ -1,33 +1,86 @@
-import { getClient } from "~/shared/api";
-import type { IContentfulResourceFields, IPost } from "~/shared/types";
-import { createResource } from "solid-js";
+import { fetchAbout, fetchBlogPost } from "~/shared/api";
 import { useLocation } from "@solidjs/router";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import type { Document } from "@contentful/rich-text-types";
-
-export const fetchBlogPost = async (blogId: string) => {
-    console.log(blogId);
-
-    const blogPost = (await getClient()
-        .getEntry(blogId)
-        .catch(() => ({
-            fields: {}
-        }))) as IContentfulResourceFields<IPost>;
-
-    return blogPost?.fields || {};
-};
+import { createQuery } from "@tanstack/solid-query";
+import Book from "~/shared/assets/svg/components/book";
+import { For } from "solid-js";
+import Chip from "~/shared/ui/chip";
 
 const BlogPostModule = () => {
     const location = useLocation();
     const blogPostId = location.pathname.split("/").at(-1);
-    const [post] = createResource(blogPostId, fetchBlogPost);
+
+    const post = createQuery(() => ({
+        queryKey: ["post", blogPostId],
+        queryFn: () => fetchBlogPost(blogPostId!),
+        staleTime: 1000 * 60 * 120,
+        ssr: true
+    }));
+
+    const about = createQuery(() => ({
+        queryKey: ["about"],
+        queryFn: fetchAbout,
+        staleTime: 1000 * 60 * 120,
+        ssr: true
+    }));
+
+    const getDot = () => <div class="h-full mx-offset3x">&bull;</div>;
 
     return (
-        <div>
-            Hello world!
-            {post()?.title}
-            {post()?.subTitle}
-            <div innerHTML={documentToHtmlString(post()?.text as Document)} />
+        <div class="px-highest">
+            {post?.data?.fields?.image && (
+                <div class="aspect-[16/9]">
+                    <img
+                        class="w-full h-full rounded-b-md"
+                        src={post.data.fields.image.fields.file.url}
+                        alt={post.data.fields.image.fields.file.fileName}
+                    />
+                </div>
+            )}
+            <div class="flex justify-center my-offset9x text-5xl font-bold">
+                <h1>{post?.data?.fields?.title}</h1>
+            </div>
+            <div class="flex justify-center items-center mb-offset9x">
+                {about?.data?.avatar && (
+                    <img
+                        width={"48px"}
+                        height={"48px"}
+                        class="mr-offset3x"
+                        src={about.data.avatar.fields.file.url}
+                        alt={about.data.avatar.fields.file.fileName}
+                    />
+                )}
+                <span class="font-semibold">{about?.data?.name}</span>
+                <div class="flex items-center text-lightestGray">
+                    {getDot()}
+                    <span>
+                        {new Date(
+                            post?.data?.sys?.createdAt!
+                        ).toLocaleDateString("en-US", {
+                            month: "short",
+                            day: "2-digit",
+                            year: "numeric"
+                        })}
+                    </span>
+                    {getDot()}
+                    <span class="flex items-center gap-offset2x">
+                        <Book />
+                        <span>{post?.data?.fields?.minutesRead} min. read</span>
+                    </span>
+                </div>
+            </div>
+            {post?.data?.fields?.subTitle}
+            <div
+                innerHTML={documentToHtmlString(
+                    post?.data?.fields?.text as Document
+                )}
+            />
+            <div class="flex flex-wrap justify-center gap-offset2x my-offset9x">
+                <For each={post?.data?.fields?.tags}>
+                    {(tag) => <Chip text={tag} />}
+                </For>
+            </div>
         </div>
     );
 };

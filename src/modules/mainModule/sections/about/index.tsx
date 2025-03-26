@@ -1,26 +1,20 @@
-import { getClient } from "~/shared/api";
-import { createResource } from "solid-js";
-import type { IAbout, IContentfulResource } from "~/shared/types";
+import { fetchAbout } from "~/shared/api";
 import DotsGrid from "~/modules/mainModule/sections/about/dotsGrid";
 
 import Button from "~/shared/ui/button";
 import DottedText from "~/shared/ui/dottedText";
-
-export const fetchAbout = async () => {
-    const about = (await getClient()
-        .getEntries({ content_type: "information" })
-        .catch(() => ({
-            items: []
-        }))) as IContentfulResource<IAbout>;
-
-    return about?.items?.[0]?.fields || {};
-};
+import { createQuery } from "@tanstack/solid-query";
 
 const About = () => {
-    const [information] = createResource(fetchAbout);
+    const about = createQuery(() => ({
+        queryKey: ["about"],
+        queryFn: fetchAbout,
+        staleTime: 1000 * 60 * 120,
+        ssr: true
+    }));
 
     const getTitle = () => {
-        let title = information()?.title || "";
+        let title = about?.data?.title || "";
 
         if (title.at(-1) === ".") {
             title = title.slice(0, -1);
@@ -34,7 +28,7 @@ const About = () => {
     };
 
     const getSubTitle = () => {
-        const subTitle = information()?.subTitle || "";
+        const subTitle = about?.data?.subTitle || "";
         const sep = " ";
 
         const splittedSubTitle = subTitle.split(sep);
@@ -56,17 +50,19 @@ const About = () => {
                         {getTitle()}
                         {getSubTitle()}
                     </div>
-                    <p>{information()?.aboutText}</p>
+                    <p>{about?.data?.aboutText}</p>
                     <div class="h-fit w-fit">
                         <Button>Let's go!</Button>
                     </div>
                 </div>
-                <img
-                    width={"290px"}
-                    height={"290px"}
-                    src={information()?.avatar.fields.file.url}
-                    alt={information()?.avatar.fields.title}
-                />
+                {about?.data?.avatar && (
+                    <img
+                        width={"290px"}
+                        height={"290px"}
+                        src={about.data.avatar.fields.file.url}
+                        alt={about.data.avatar.fields.file.fileName}
+                    />
+                )}
             </div>
             <DotsGrid />
         </section>
