@@ -1,4 +1,4 @@
-import { For } from "solid-js";
+import { createMemo, createSignal, For } from "solid-js";
 import { getClient } from "~/shared/api";
 import type { IContentfulResource, IPost } from "~/shared/types";
 
@@ -26,6 +26,19 @@ const BlogPosts = () => {
         ssr: true
     }));
 
+    const [searchValue, setSearchValue] = createSignal("");
+    const [filtersValues, setFiltersValues] = createSignal([]);
+
+    const searchedPosts = createMemo(() => {
+        return posts?.data?.filter((post) => {
+            const { text, title, subTitle, minutesRead } = post.fields;
+
+            return (text + title + subTitle + minutesRead).includes(
+                searchValue()
+            );
+        });
+    });
+
     return (
         <div class="p-highest">
             <Line>
@@ -34,9 +47,14 @@ const BlogPosts = () => {
                 </h2>
             </Line>
             <div>
-                <Filters />
-                <div class="mt-offset8x grid grid-cols-3 gap-y-offset8x gap-x-offset4x">
-                    <For each={posts?.data}>
+                <Filters
+                    searchValue={searchValue()}
+                    setSearchValue={setSearchValue}
+                    filtersValue={filtersValues()}
+                    setFiltersValue={setFiltersValues}
+                />
+                <div class="mt-offset8x grid grid-cols-3 gap-y-offset8x gap-x-offset4x min-h-[400px]">
+                    <For each={searchedPosts()}>
                         {(post) => {
                             return (
                                 <PostCard {...post.fields} id={post.sys.id} />

@@ -16,7 +16,10 @@ const PostCard: Component<IPostCard> = ({ wrapperClass, ...post }) => {
 
     return (
         <div
-            class={cx("cursor-pointer", wrapperClass)}
+            class={cx(
+                "cursor-pointer min-w-[200px] min-h-[300px]",
+                wrapperClass
+            )}
             onClick={() => navigate(`/blog-post/${id}`)}
         >
             <div class="aspect-[16/9]">
