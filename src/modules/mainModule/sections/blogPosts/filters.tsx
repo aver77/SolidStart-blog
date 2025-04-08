@@ -1,6 +1,7 @@
 import Input from "~/shared/ui/input";
 import FilterIcon from "~/shared/assets/svg/components/filter";
-import type { Component } from "solid-js";
+import { Component, createSignal } from "solid-js";
+import Dropdown from "~/components/dropdown";
 
 interface IFilters {
     searchValue: string;
@@ -10,16 +11,27 @@ interface IFilters {
 }
 
 const Filters: Component<IFilters> = (props) => {
+    const [filterDropdownOpened, setFilterDropdownOpened] = createSignal(false);
+
     return (
         <div class="flex mt-offset6x gap-offset6x items-center">
             <Input
                 value={props.searchValue}
                 handleChange={props.setSearchValue}
             />
-            <button class="flex items-center gap-offsetx cursor-pointer">
-                <FilterIcon />
-                Filter
-            </button>
+            <div>
+                <button
+                    onClick={() => {
+                        console.log("click", filterDropdownOpened());
+                        setFilterDropdownOpened(prev => !prev)
+                    }}
+                    class="flex items-center gap-offsetx cursor-pointer"
+                >
+                    <FilterIcon />
+                    Filter
+                </button>
+                <Dropdown items={[]} handleChange={() => {}} opened={filterDropdownOpened()} />
+            </div>
         </div>
     );
 };

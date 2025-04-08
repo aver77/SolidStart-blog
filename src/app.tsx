@@ -3,12 +3,17 @@ import { Router } from "@solidjs/router";
 import { FileRoutes } from "@solidjs/start/router";
 import { Suspense } from "solid-js";
 import {
-    createQuery,
     QueryClient,
-    QueryClientProvider
+    QueryClientProvider,
 } from "@tanstack/solid-query";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+    defaultOptions: {
+        queries: {
+            experimental_prefetchInRender: true
+        }
+    }
+});
 
 import Header from "~/components/header";
 import Footer from "~/components/footer";

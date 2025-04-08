@@ -4,8 +4,13 @@ import DotsGrid from "~/modules/mainModule/sections/about/dotsGrid";
 import Button from "~/shared/ui/button";
 import DottedText from "~/shared/ui/dottedText";
 import { createQuery } from "@tanstack/solid-query";
+import { Component } from "solid-js";
 
-const About = () => {
+interface IAbout {
+    postsRef: () => HTMLElement;
+}
+
+const About: Component<IAbout> = (props) => {
     const about = createQuery(() => ({
         queryKey: ["about"],
         queryFn: fetchAbout,
@@ -52,7 +57,15 @@ const About = () => {
                     </div>
                     <p>{about?.data?.aboutText}</p>
                     <div class="h-fit w-fit">
-                        <Button>Let's go!</Button>
+                        <Button
+                            onClick={() =>
+                                props.postsRef().scrollIntoView({
+                                    behavior: "smooth"
+                                })
+                            }
+                        >
+                            Let's go!
+                        </Button>
                     </div>
                 </div>
                 {about?.data?.avatar && (
