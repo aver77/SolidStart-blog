@@ -1,0 +1,9 @@
+.chip {
+    @apply rounded-full;
+    @apply bg-[var(--color-gray)];
+    @apply py-[var(--spacing-offset2x)] px-[var(--spacing-offset3x)];
+    @apply text-[var(--text-sm)];
+    @apply whitespace-nowrap;
+    @apply overflow-hidden;
+    @apply text-ellipsis;
+}

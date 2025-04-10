@@ -1,5 +1,6 @@
-import Checkbox from "~/shared/ui/checkbox";
-import { Component, Index, type JSX } from "solid-js";
+import { Component, For, Index, type JSX, onCleanup, onMount } from "solid-js";
+import cx from "classnames";
+import OutlinedChip from "~/shared/ui/chip/outlinedChip";
 
 export interface IDropdownItem {
     name: string;
@@ -7,36 +8,65 @@ export interface IDropdownItem {
 }
 
 interface IDropdown extends JSX.HTMLAttributes<HTMLDivElement> {
+    dropdownContainerRef: () => HTMLDivElement;
     items: IDropdownItem[];
-    handleChange: (v: IDropdownItem[]) => void;
+    onChangeItems: (v: IDropdownItem[]) => void;
     opened: boolean;
+    setOpened: (v: boolean) => void;
+    wrapperClass?: string;
 }
 
 const Dropdown: Component<IDropdown> = (props) => {
+    onMount(() => {
+        const clickAwayListener = (event: MouseEvent | TouchEvent) => {
+            if (
+                !props.opened ||
+                !props ||
+                props.dropdownContainerRef().contains(event.target as Node)
+            ) {
+                return;
+            }
+
+            props.setOpened(false);
+        };
+
+        document.addEventListener("mousedown", clickAwayListener);
+
+        onCleanup(() => {
+            document.removeEventListener("mousedown", clickAwayListener);
+        });
+    });
+
+    const onChipClick = (index: number) => {
+        const newItems = [...props.items];
+        newItems[index] = {
+            ...newItems[index],
+            selected: !newItems[index].selected
+        };
+
+        props.onChangeItems(newItems);
+    };
+
     return (
         <>
             {props.opened && (
                 <div
-                    id="dropdownBgHover"
-                    class="z-10 hidden w-48 bg-white rounded-lg shadow-sm dark:bg-gray-700"
+                    class={cx(
+                        "z-2 rounded-md w-[500px] max-h-[200px] flex flex-wrap overflow-y-auto bg-gray p-offset5x gap-offset5x shadow-lg",
+                        props.wrapperClass
+                    )}
                 >
-                    <ul
-                        class="p-3 space-y-1 text-sm text-gray-700 dark:text-gray-200"
-                        aria-labelledby="dropdownBgHoverButton"
-                    >
-                        <Index each={props.items}>
-                            {(item, index) => {
-                                return (
-                                    <li>
-                                        <Checkbox
-                                            label={item.name}
-                                            idx={index}
-                                        />
-                                    </li>
-                                );
-                            }}
-                        </Index>
-                    </ul>
+                    <Index each={props.items}>
+                        {(item, index) => {
+                            return (
+                                <OutlinedChip
+                                    selected={item().selected}
+                                    text={item().name}
+                                    onClick={() => onChipClick(index)}
+                                />
+                            );
+                        }}
+                    </Index>
                 </div>
             )}
         </>

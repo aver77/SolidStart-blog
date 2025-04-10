@@ -1,0 +1,17 @@
+.base {
+    @apply cursor-pointer;
+    @apply rounded-[var(--radius-md)];
+    @apply border border-solid border-[var(--color-lightestGray)];
+    @apply transition duration-300;
+}
+
+.base:hover:not(.selected), .base:active:not(.selected), .base:focus:not(.selected) {
+    @apply text-[var(--color-black)];
+    @apply bg-[var(--color-lightestGray)];
+}
+
+.selected {
+    @apply bg-[var(--color-gold)];
+    @apply border-[var(--color-gray)];
+    @apply text-[var(--color-black)];
+}

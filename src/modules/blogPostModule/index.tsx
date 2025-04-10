@@ -5,7 +5,7 @@ import type { Document } from "@contentful/rich-text-types";
 import { createQuery } from "@tanstack/solid-query";
 import Book from "~/shared/assets/svg/components/book";
 import { For } from "solid-js";
-import Chip from "~/shared/ui/chip";
+import Chip from "~/shared/ui/chip/chip";
 
 const BlogPostModule = () => {
     const location = useLocation();

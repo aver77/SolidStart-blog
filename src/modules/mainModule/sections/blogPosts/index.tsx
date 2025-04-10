@@ -27,11 +27,10 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
         queryKey: ["posts"],
         queryFn: fetchPosts,
         staleTime: 1000 * 60 * 60,
-        ssr: true,
+        ssr: true
     }));
 
     const [searchValue, setSearchValue] = createSignal("");
-    const [filtersValues, setFiltersValues] = createSignal([]);
 
     const searchedPosts = createMemo(() => {
         return posts?.data?.filter((post) => {
@@ -44,15 +43,33 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
     });
 
     const allPostsTags = [
-        ...new Set(posts?.data?.flatMap(post => post.fields.tags))
+        ...new Set(posts?.data?.flatMap((post) => post.fields.tags))
     ];
 
-    const [selectedPostTags, setSelectedPostTags] = createSignal(
-        allPostsTags.map(tag => ({ tag, selected: false }))
+    const [filterByTagsValues, setFilterByTagsValues] = createSignal(
+        allPostsTags.map((tag) => ({ name: tag, selected: false }))
     );
 
-    const headingPosts = createMemo(() => searchedPosts()?.slice(0, 3));
-    const usualPosts = createMemo(() => searchedPosts()?.slice(3));
+    const searchedAndFilteredPosts = createMemo(() => {
+        if (!filterByTagsValues().some((tag) => tag.selected)) {
+            return searchedPosts();
+        }
+
+        const selectedTags = filterByTagsValues()
+            .filter((tag) => tag.selected)
+            .map((tag) => tag.name);
+
+        return searchedPosts()?.filter((post) => {
+            const tags = post.fields.tags;
+
+            return tags.some((tag) => selectedTags.includes(tag));
+        });
+    });
+
+    const headingPosts = createMemo(() => {
+        return searchedAndFilteredPosts()?.slice(0, 3);
+    });
+    const usualPosts = createMemo(() => searchedAndFilteredPosts()?.slice(3));
 
     return (
         <div class="p-highest">
@@ -65,30 +82,41 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                 <Filters
                     searchValue={searchValue()}
                     setSearchValue={setSearchValue}
-                    filtersValue={filtersValues()}
-                    setFiltersValue={setFiltersValues}
+                    filtersValue={filterByTagsValues()}
+                    setFiltersValue={setFilterByTagsValues}
                 />
-                <div class="mt-offset8x">
+                <div class="mt-offset8x min-h-[400px]">
                     <div class="grid grid-cols-[2fr_1fr] grid-rows-[repeat(2,1fr)] gap-y-offset8x gap-x-offset4x mb-offset8x">
-                        <Index each={headingPosts()}>
+                        <For each={headingPosts()}>
                             {(post, index) => {
-                                if (!index) {
-                                    return (
-                                        <div class="row-span-2 flex items-center">
-                                            <HeadingPostCard {...post().fields} id={post().sys.id} />
-                                        </div>
-                                    )
-                                }
-
-                                return <PostCard {...post().fields} id={post().sys.id} />
+                                return (
+                                    <>
+                                        {!index() ? (
+                                            <div class="row-span-2 flex items-center">
+                                                <HeadingPostCard
+                                                    {...post.fields}
+                                                    id={post.sys.id}
+                                                />
+                                            </div>
+                                        ) : (
+                                            <PostCard
+                                                {...post.fields}
+                                                id={post.sys.id}
+                                            />
+                                        )}
+                                    </>
+                                );
                             }}
-                        </Index>
+                        </For>
                     </div>
-                    <div class="grid grid-cols-3 gap-y-offset8x gap-x-offset4x min-h-[400px]">
+                    <div class="grid grid-cols-3 gap-y-offset8x gap-x-offset4x">
                         <For each={usualPosts()}>
                             {(post) => {
                                 return (
-                                    <PostCard {...post.fields} id={post.sys.id} />
+                                    <PostCard
+                                        {...post.fields}
+                                        id={post.sys.id}
+                                    />
                                 );
                             }}
                         </For>

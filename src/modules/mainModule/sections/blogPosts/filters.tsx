@@ -1,16 +1,18 @@
 import Input from "~/shared/ui/input";
 import FilterIcon from "~/shared/assets/svg/components/filter";
 import { Component, createSignal } from "solid-js";
-import Dropdown from "~/components/dropdown";
+import Dropdown, { type IDropdownItem } from "~/components/dropdown";
 
 interface IFilters {
     searchValue: string;
     setSearchValue: (v: string) => void;
-    filtersValue: string[];
-    setFiltersValue: (v: string[]) => void;
+    filtersValue: IDropdownItem[];
+    setFiltersValue: (v: IDropdownItem[]) => void;
 }
 
 const Filters: Component<IFilters> = (props) => {
+    let dropdownContainerRef: HTMLDivElement | undefined;
+
     const [filterDropdownOpened, setFilterDropdownOpened] = createSignal(false);
 
     return (
@@ -19,18 +21,24 @@ const Filters: Component<IFilters> = (props) => {
                 value={props.searchValue}
                 handleChange={props.setSearchValue}
             />
-            <div>
+            <div ref={dropdownContainerRef} class="relative">
                 <button
                     onClick={() => {
-                        console.log("click", filterDropdownOpened());
-                        setFilterDropdownOpened(prev => !prev)
+                        setFilterDropdownOpened((prev) => !prev);
                     }}
                     class="flex items-center gap-offsetx cursor-pointer"
                 >
                     <FilterIcon />
                     Filter
                 </button>
-                <Dropdown items={[]} handleChange={() => {}} opened={filterDropdownOpened()} />
+                <Dropdown
+                    dropdownContainerRef={() => dropdownContainerRef!}
+                    items={props.filtersValue}
+                    onChangeItems={props.setFiltersValue}
+                    opened={filterDropdownOpened()}
+                    setOpened={setFilterDropdownOpened}
+                    wrapperClass={"absolute right-0 top-[56px]"}
+                />
             </div>
         </div>
     );

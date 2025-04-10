@@ -1,18 +1,15 @@
 .btnShared {
   @apply cursor-pointer;
-  @apply px-[var(--spacing-offset4x)];
-  @apply py-[var(--spacing-offset3x)];
+  @apply px-[var(--spacing-offset4x)] py-[var(--spacing-offset3x)];
   @apply text-[var(--text-base)];
   @apply rounded-[var(--radius-base)];
-  @apply border;
-  @apply border-solid;
-  transition: 0.3s ease;
+  @apply border border-solid;
+  @apply transition ease-in duration-300;
 }
 
 @media screen and (max-width: 500px), (max-height: 500px) {
   .btnShared {
-    @apply px-[var(--spacing-offset3x)];
-    @apply py-[var(--spacing-offset2x)];
+    @apply px-[var(--spacing-offset3x)] py-[var(--spacing-offset2x)];
     @apply text-[var(--text-sm)];
   }
 }
