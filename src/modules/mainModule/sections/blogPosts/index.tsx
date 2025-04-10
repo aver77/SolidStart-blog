@@ -34,11 +34,14 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
 
     const searchedPosts = createMemo(() => {
         return posts?.data?.filter((post) => {
-            const { text, title, subTitle, minutesRead } = post.fields;
+            const { title, subTitle, minutesRead } = post.fields;
 
-            return (text + title + subTitle + minutesRead).includes(
-                searchValue()
-            );
+            const targetStr = (title + subTitle + minutesRead)
+                .trim()
+                .toLowerCase();
+            const searchStr = searchValue().trim().toLowerCase();
+
+            return targetStr.includes(searchStr);
         });
     });
 
