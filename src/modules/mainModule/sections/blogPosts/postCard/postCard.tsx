@@ -27,13 +27,15 @@ export const PostCard: Component<IPostCardWithSubtitleClass> = ({
             class={cx("cursor-pointer", wrapperClass)}
             onClick={() => navigate(`/blog-post/${id}`)}
         >
-            <div class="aspect-[16/9]">
-                <img
-                    class="w-full h-full rounded-md"
-                    src={image.fields.file.url}
-                    alt={image.fields.file.fileName}
-                />
-            </div>
+            {image && (
+                <div class="aspect-[16/9]">
+                    <img
+                        class="w-full h-full rounded-md"
+                        src={image.fields.file.url}
+                        alt={image.fields.file.fileName}
+                    />
+                </div>
+            )}
             <div class="flex flex-wrap gap-offset2x my-offset4x">
                 <For each={tags}>{(tag) => <Chip text={tag} />}</For>
             </div>
