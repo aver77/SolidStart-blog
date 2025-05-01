@@ -1,4 +1,4 @@
-import { Component, createMemo, createSignal, For } from "solid-js";
+import { Component, createMemo, createSignal, For, Show } from "solid-js";
 import { getClient } from "~/shared/api";
 import type { IContentfulResource, IPost } from "~/shared/types";
 
@@ -8,6 +8,9 @@ import DottedText from "~/shared/ui/dottedText";
 import Filters from "./filters";
 import { createInfiniteQuery } from "@tanstack/solid-query";
 import InfiniteScroll from "~/components/infiniteScroll";
+import LoopSad from "~/shared/assets/svg/components/loopSad";
+
+import cx from "classnames";
 
 const POSTS_LIMIT = 3;
 
@@ -100,46 +103,73 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                     filtersValue={filterByTagsValues()}
                     setFiltersValue={setFilterByTagsValues}
                 />
-                <div class="mt-offset8x min-h-[400px]">
+                <div
+                    class={cx(
+                        "mt-offset8x min-h-[400px]",
+                        !searchedAndFilteredPosts().length &&
+                            "flex flex-col justify-center items-center"
+                    )}
+                >
                     <InfiniteScroll
                         onLoadMore={infinitePostsQuery.fetchNextPage}
                         hasMore={!!infinitePostsQuery.hasNextPage}
                     >
-                        <div class="grid grid-cols-[2fr_1fr] grid-rows-[repeat(2,1fr)] gap-y-offset8x gap-x-offset4x mb-offset8x">
-                            <For each={headingPosts()}>
-                                {(post, index) => {
-                                    return (
-                                        <>
-                                            {!index() ? (
-                                                <div class="row-span-2 flex items-center">
-                                                    <HeadingPostCard
+                        <Show when={!searchedAndFilteredPosts().length}>
+                            <div class="flex flex-col justify-center items-center">
+                                <div>
+                                    <LoopSad />
+                                </div>
+                                <h3 class="text-2xl font-bold mt-offset8x">
+                                    No Results in{" "}
+                                    <span class="text-gold">Posts</span>
+                                </h3>
+                                <p class="mt-offset2x text-center">
+                                    No Results for the term{" "}
+                                    <span class="text-gold">
+                                        "{searchValue()}"
+                                    </span>
+                                    . You can try another search term similar to
+                                    this one.
+                                </p>
+                            </div>
+                        </Show>
+                        <Show when={searchedAndFilteredPosts().length}>
+                            <div class="grid grid-cols-[2fr_1fr] grid-rows-[repeat(2,1fr)] gap-y-offset8x gap-x-offset4x mb-offset8x">
+                                <For each={headingPosts()}>
+                                    {(post, index) => {
+                                        return (
+                                            <>
+                                                {!index() ? (
+                                                    <div class="row-span-2 flex items-center">
+                                                        <HeadingPostCard
+                                                            {...post.fields}
+                                                            id={post.sys.id}
+                                                        />
+                                                    </div>
+                                                ) : (
+                                                    <PostCard
                                                         {...post.fields}
                                                         id={post.sys.id}
                                                     />
-                                                </div>
-                                            ) : (
-                                                <PostCard
-                                                    {...post.fields}
-                                                    id={post.sys.id}
-                                                />
-                                            )}
-                                        </>
-                                    );
-                                }}
-                            </For>
-                        </div>
-                        <div class="grid grid-cols-3 gap-y-offset8x gap-x-offset4x">
-                            <For each={usualPosts()}>
-                                {(post) => {
-                                    return (
-                                        <PostCard
-                                            {...post.fields}
-                                            id={post.sys.id}
-                                        />
-                                    );
-                                }}
-                            </For>
-                        </div>
+                                                )}
+                                            </>
+                                        );
+                                    }}
+                                </For>
+                            </div>
+                            <div class="grid grid-cols-3 gap-y-offset8x gap-x-offset4x">
+                                <For each={usualPosts()}>
+                                    {(post) => {
+                                        return (
+                                            <PostCard
+                                                {...post.fields}
+                                                id={post.sys.id}
+                                            />
+                                        );
+                                    }}
+                                </For>
+                            </div>
+                        </Show>
                         {/*<Show when={infinitePostsQuery.isFetching}>*/}
                         {/*    <div class="grid grid-cols-3 gap-y-offset8x gap-x-offset4x">*/}
                         {/*        <For each={Array(3).fill(undefined)}>*/}
