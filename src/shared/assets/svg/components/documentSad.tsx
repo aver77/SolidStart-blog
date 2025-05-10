@@ -6,7 +6,8 @@ const DocumentSad = (props: ISvg) => {
     const [localProps, restProps] = splitProps(props, [
         "width",
         "height",
-        "fill"
+        "fill",
+        "viewBox"
     ]);
 
     const stroke = useCssVarInComponent("--color-white");
@@ -17,7 +18,7 @@ const DocumentSad = (props: ISvg) => {
             {...restProps}
             width={localProps.width || "120px"}
             height={localProps.height || "120px"}
-            viewBox="0 0 32 32"
+            viewBox={localProps.viewBox || "4 0 32 32"}
         >
             <g>
                 <g>
