@@ -33,7 +33,7 @@ const Line: Component<ILine> = ({
         <div
             class={cx(className, "border-solid border-lightGray w-full")}
             style={{
-                "border-color": color,
+                ...(color ? { "border-color": color } : {}),
                 "border-bottom-width": `${stroke || 1}px`
             }}
         />

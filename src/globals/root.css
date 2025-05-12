@@ -1,14 +1,18 @@
 @import "tailwindcss";
 @import url("https://fonts.googleapis.com/css2?family=Birthstone&family=Montserrat:wght@300;400;700;900&display=swap");
 
+@custom-variant light (&:where(.light, .light *));
+
 @theme {
     --color-*: initial;
     --color-black: #080808;
     --color-dark: #111;
     --color-gray: #232323;
-    --color-lightGray: #ebecf34d;
-    --color-lightestGray: #a1a1aa;
+    --color-graphite: #58595c;
+    --color-lightGray: #999a9d;
+    --color-lightestGray: #D0D0D0;
     --color-gold: gold;
+    --color-dimmedGold: #d4af37;
     --color-white: #ebecf3;
     --color-disabled: #ebebe4;
 
@@ -59,6 +63,11 @@ html {
     @apply text-white;
     @apply font-base;
     @apply text-lg;
+
+    @variant light {
+        @apply bg-white;
+        @apply text-graphite;
+    }
 }
 
 *::selection {

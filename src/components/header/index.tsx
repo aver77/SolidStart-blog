@@ -5,16 +5,18 @@ import GitHub from "~/shared/assets/svg/components/gitHub";
 import LinkedIn from "~/shared/assets/svg/components/linkedIn";
 import CodeWars from "~/shared/assets/svg/components/codewars";
 
+import { toggleTheme } from "~/shared/providers/withTheme";
+
 const Header = () => {
     const navigate = useNavigate();
 
     return (
-        <header class="h-headerHeight px-offset8x flex justify-between bg-black sticky top-0 z-10">
+        <header class="h-headerHeight px-offset8x flex justify-between bg-black light:bg-white light:border-b-1 light:border-lightGray sticky top-0 z-10">
             <div class="flex justify-between gap-offset8x">
                 <div class="h-full flex justify-center items-center cursor-pointer">
                     <div
                         onClick={() => navigate("/")}
-                        class="bg-gray size-[40px] font-curve text-2xl rounded-md flex justify-center items-center"
+                        class="bg-gray light:bg-lightestGray light:text-gray size-[40px] font-curve text-2xl rounded-md flex justify-center items-center"
                     >
                         NW
                     </div>
@@ -26,7 +28,7 @@ const Header = () => {
                 </div>
             </div>
             <div class="flex justify-center items-center cursor-pointer">
-                <ThemeSun />
+                <ThemeSun onClick={toggleTheme} />
             </div>
         </header>
     );

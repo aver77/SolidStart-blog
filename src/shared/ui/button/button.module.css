@@ -1,3 +1,5 @@
+@import "tailwindcss";
+
 .btnShared {
   @apply cursor-pointer;
   @apply px-[var(--spacing-offset4x)] py-[var(--spacing-offset3x)];
@@ -28,6 +30,13 @@
   @apply bg-no-repeat;
 }
 
+:global(.light) .filled {
+  @apply border-[var(--color-dimmedGold)];
+  @apply text-[var(--color-gray)];
+  @apply bg-[var(--color-dimmedGold)];
+  background-image: linear-gradient(var(--color-white), var(--color-white));
+}
+
 .unfilled {
   @apply border-[var(--color-gold)];
   @apply text-[var(--color-gold)];
@@ -41,6 +50,10 @@
   @apply bg-transparent;
   @apply text-[var(--color-gold)];
   background-size: 100% 100%;
+}
+
+:global(.light) .filled:hover, .filled:active, .filled:focus {
+  @apply text-[var(--color-dimmedGold)];
 }
 
 .unfilled:hover, .unfilled:active, .unfilled:focus {

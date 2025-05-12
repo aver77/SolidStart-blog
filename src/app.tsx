@@ -2,10 +2,7 @@ import { MetaProvider } from "@solidjs/meta";
 import { Router } from "@solidjs/router";
 import { FileRoutes } from "@solidjs/start/router";
 import { Suspense } from "solid-js";
-import {
-    QueryClient,
-    QueryClientProvider,
-} from "@tanstack/solid-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/solid-query";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -15,6 +12,7 @@ const queryClient = new QueryClient({
     }
 });
 
+import WithTheme from "~/shared/providers/withTheme";
 import Header from "~/components/header";
 import Footer from "~/components/footer";
 
@@ -27,13 +25,17 @@ export default function App() {
                 root={(props) => {
                     return (
                         <MetaProvider>
-                            <Header />
-                            <main class="main-container">
-                                <Suspense fallback={<div class="h-screen" />}>
-                                    {props.children}
-                                </Suspense>
-                            </main>
-                            <Footer />
+                            <WithTheme>
+                                <Header />
+                                <main class="main-container">
+                                    <Suspense
+                                        fallback={<div class="h-screen" />}
+                                    >
+                                        {props.children}
+                                    </Suspense>
+                                </main>
+                                <Footer />
+                            </WithTheme>
                         </MetaProvider>
                     );
                 }}

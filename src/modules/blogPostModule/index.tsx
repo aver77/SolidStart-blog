@@ -52,7 +52,7 @@ const BlogPostModule = () => {
                     />
                 )}
                 <span class="font-semibold">{about?.data?.name}</span>
-                <div class="flex items-center text-lightestGray">
+                <div class="flex items-center text-lightGray">
                     {getDot()}
                     <span>
                         {new Date(

@@ -42,7 +42,9 @@ const About: Component<IAbout> = (props) => {
         return (
             <p class="text-3xl font-black">
                 <span>{splittedSubTitle.join(sep) + sep}</span>
-                <span class="text-gold">{profession.join(sep)}</span>
+                <span class="text-gold light:text-dimmedGold">
+                    {profession.join(sep)}
+                </span>
             </p>
         );
     };

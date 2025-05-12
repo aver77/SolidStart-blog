@@ -121,11 +121,13 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                                 </div>
                                 <h3 class="text-2xl font-bold mt-offset8x">
                                     No Results in{" "}
-                                    <span class="text-gold">Posts</span>
+                                    <span class="text-gold light:text-dimmedGold">
+                                        Posts
+                                    </span>
                                 </h3>
                                 <p class="mt-offset2x text-center">
                                     No Results for the term{" "}
-                                    <span class="text-gold">
+                                    <span class="text-gold light:text-dimmedGold">
                                         "{searchValue()}"
                                     </span>
                                     . You can try another search term similar to

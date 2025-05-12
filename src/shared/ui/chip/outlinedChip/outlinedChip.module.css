@@ -10,8 +10,19 @@
     @apply bg-[var(--color-lightestGray)];
 }
 
+:global(.light) .base:hover:not(.selected), .base:active:not(.selected), .base:focus:not(.selected) {
+    @apply text-[var(--color-white)];
+    @apply border-[var(--color-graphite)];
+    @apply bg-[var(--color-graphite)];
+}
+
 .selected {
     @apply bg-[var(--color-gold)];
     @apply border-[var(--color-gray)];
-    @apply text-[var(--color-black)];
+    @apply text-[var(--color-gray)];
+}
+
+:global(.light) .selected {
+    @apply bg-[var(--color-dimmedGold)];
+    @apply border-[var(--color-dimmedGold)];
 }

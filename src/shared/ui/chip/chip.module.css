@@ -7,3 +7,8 @@
     @apply overflow-hidden;
     @apply text-ellipsis;
 }
+
+:global(.light) .chip {
+    @apply text-[var(--color-gray)];
+    @apply bg-[var(--color-lightestGray)];
+}
