@@ -1,4 +1,4 @@
-.base, :global(.light) .base {
+.base {
     @apply cursor-pointer;
     @apply rounded-[var(--radius-md)];
     @apply border border-solid border-[var(--color-lightestGray)];
