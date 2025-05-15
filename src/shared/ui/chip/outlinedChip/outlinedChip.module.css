@@ -1,11 +1,4 @@
-.base {
-    @apply cursor-pointer;
-    @apply rounded-[var(--radius-md)];
-    @apply border border-solid border-[var(--color-lightestGray)];
-    @apply transition duration-300;
-}
-
-:global(.light) .base {
+.base, :global(.light) .base {
     @apply cursor-pointer;
     @apply rounded-[var(--radius-md)];
     @apply border border-solid border-[var(--color-lightestGray)];
