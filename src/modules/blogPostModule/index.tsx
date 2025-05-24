@@ -6,8 +6,10 @@ import { createQuery } from "@tanstack/solid-query";
 import Book from "~/shared/assets/svg/components/book";
 import { For } from "solid-js";
 import Chip from "~/shared/ui/chip/chip";
+import { useTheme } from "~/shared/hooks/useTheme";
 
 const BlogPostModule = () => {
+    const { isLightTheme } = useTheme(false);
     const location = useLocation();
     const blogPostId = location.pathname.split("/").at(-1);
 
@@ -42,7 +44,7 @@ const BlogPostModule = () => {
                 <h1>{post?.data?.fields?.title}</h1>
             </div>
             <div class="flex justify-center items-center mb-offset9x">
-                {about?.data?.avatar && (
+                {!isLightTheme() && about?.data?.avatar && (
                     <img
                         width={"48px"}
                         height={"48px"}
@@ -51,8 +53,17 @@ const BlogPostModule = () => {
                         alt={about.data.avatar.fields.file.fileName}
                     />
                 )}
+                {isLightTheme() && about?.data?.lightAvatar && (
+                    <img
+                        width={"48px"}
+                        height={"48px"}
+                        class="mr-offset3x"
+                        src={about.data.lightAvatar.fields.file.url}
+                        alt={about.data.lightAvatar.fields.file.fileName}
+                    />
+                )}
                 <span class="font-semibold">{about?.data?.name}</span>
-                <div class="flex items-center text-lightGray">
+                <div class="flex items-center text-lightGray light:text-warmBrown">
                     {getDot()}
                     <span>
                         {new Date(
@@ -64,7 +75,7 @@ const BlogPostModule = () => {
                         })}
                     </span>
                     {getDot()}
-                    <span class="flex items-center gap-offset2x">
+                    <span class="flex items-center gap-offset2x light:text-warmBrown">
                         <Book />
                         <span>{post?.data?.fields?.minutesRead} min. read</span>
                     </span>

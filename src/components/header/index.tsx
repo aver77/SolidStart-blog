@@ -5,30 +5,13 @@ import GitHub from "~/shared/assets/svg/components/gitHub";
 import LinkedIn from "~/shared/assets/svg/components/linkedIn";
 import CodeWars from "~/shared/assets/svg/components/codewars";
 
-import { checkIsLightTheme, toggleTheme } from "~/shared/providers/withTheme";
+import { toggleTheme } from "~/shared/providers/withTheme";
 import ThemeMoon from "~/shared/assets/svg/components/themeMoon";
-import { createSignal, onCleanup, onMount } from "solid-js";
+import { useTheme } from "~/shared/hooks/useTheme";
 
 const Header = () => {
     const navigate = useNavigate();
-    const [isLightTheme, setIsLightTheme] = createSignal(false);
-
-    onMount(() => {
-        setIsLightTheme(checkIsLightTheme());
-    });
-
-    onMount(() => {
-        const observer = new MutationObserver(() => {
-            setIsLightTheme(checkIsLightTheme());
-        });
-
-        observer.observe(document.documentElement, {
-            attributes: true,
-            attributeFilter: ["class"]
-        });
-
-        onCleanup(() => observer.disconnect());
-    });
+    const { isLightTheme } = useTheme(false);
 
     return (
         <header class="h-headerHeight px-offset8x flex justify-between bg-black light:bg-warmWhite sticky top-0 z-10">

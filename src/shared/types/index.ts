@@ -42,5 +42,6 @@ export interface IAbout {
     subTitle: string;
     aboutText: string;
     avatar: IContentfulResourceFields<IContentfulMetadata>;
+    lightAvatar?: IContentfulResourceFields<IContentfulMetadata>;
     name: string;
 }

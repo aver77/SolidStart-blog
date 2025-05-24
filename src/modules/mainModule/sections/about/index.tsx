@@ -5,12 +5,15 @@ import Button from "~/shared/ui/button";
 import DottedText from "~/shared/ui/dottedText";
 import { createQuery } from "@tanstack/solid-query";
 import { Component } from "solid-js";
+import { useTheme } from "~/shared/hooks/useTheme";
 
 interface IAbout {
     postsRef: () => HTMLElement;
 }
 
 const About: Component<IAbout> = (props) => {
+    const { isLightTheme } = useTheme(false);
+
     const about = createQuery(() => ({
         queryKey: ["about"],
         queryFn: fetchAbout,
@@ -70,12 +73,20 @@ const About: Component<IAbout> = (props) => {
                         </Button>
                     </div>
                 </div>
-                {about?.data?.avatar && (
+                {!isLightTheme() && about?.data?.avatar && (
                     <img
                         width={"290px"}
                         height={"290px"}
                         src={about.data.avatar.fields.file.url}
                         alt={about.data.avatar.fields.file.fileName}
+                    />
+                )}
+                {isLightTheme() && about?.data?.lightAvatar && (
+                    <img
+                        width={"290px"}
+                        height={"290px"}
+                        src={about.data.lightAvatar.fields.file.url}
+                        alt={about.data.lightAvatar.fields.file.fileName}
                     />
                 )}
             </div>
