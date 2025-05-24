@@ -31,7 +31,10 @@ const Line: Component<ILine> = ({
 }) => {
     const line = (
         <div
-            class={cx(className, "border-solid border-lightGray w-full")}
+            class={cx(
+                className,
+                "border-solid border-lightGray light:border-warmBrown w-full"
+            )}
             style={{
                 ...(color ? { "border-color": color } : {}),
                 "border-bottom-width": `${stroke || 1}px`
@@ -72,7 +75,7 @@ const Line: Component<ILine> = ({
         };
 
         return (
-            <div class="flex flex-nowrap gap-offset3x items-center">
+            <div class="flex flex-nowrap gap-offset3x items-center duration-300">
                 {getContent()}
             </div>
         );

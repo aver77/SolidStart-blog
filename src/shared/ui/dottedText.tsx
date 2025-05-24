@@ -8,7 +8,7 @@ const DottedText: Component<IDottedText> = ({ children }) => {
     return (
         <>
             {children}
-            <span class="text-gold light:text-dimmedGold">.</span>
+            <span class="text-gold light:text-warmGold">.</span>
         </>
     );
 };

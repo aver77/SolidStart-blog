@@ -1,10 +1,12 @@
 export const getColorClass = (
     colorProperty: "fill" | "stroke",
-    baseColor: string | undefined
+    baseColor: string | undefined,
+    customDarkThemeColor?: string,
+    customLightThemeColor?: string
 ) => {
     if (baseColor) {
         return `${colorProperty}-${baseColor}`;
     }
 
-    return `${colorProperty}-white light:${colorProperty}-graphite`;
+    return `${colorProperty}-${customDarkThemeColor ?? "white"} light:${colorProperty}-${customLightThemeColor ?? "warmBrown"}`;
 };

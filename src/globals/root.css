@@ -9,11 +9,16 @@
     --color-dark: #111;
     --color-gray: #232323;
     --color-graphite: #58595c;
+    --color-warmBrown: #774e34;
+    --color-warmGray: #d4c0a8;
     --color-lightGray: #999a9d;
     --color-lightestGray: #D0D0D0;
     --color-gold: gold;
     --color-dimmedGold: #d4af37;
+    --color-warmGold: #f7a816;
     --color-white: #ebecf3;
+    --color-warmWhite: #f3e6cf;
+    --color-warmDWhite: #dac8b0;
     --color-disabled: #ebebe4;
 
     --font-*:initial;
@@ -65,8 +70,8 @@ html {
     @apply text-lg;
 
     @variant light {
-        @apply bg-white;
-        @apply text-graphite;
+        @apply bg-warmWhite;
+        @apply text-warmBrown;
     }
 }
 

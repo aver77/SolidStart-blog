@@ -6,10 +6,14 @@ export enum Themes {
     DARK = "dark"
 }
 
+export const checkIsLightTheme = () => {
+    return document.documentElement.classList.contains(Themes.LIGHT);
+};
+
 export const toggleTheme = () => {
     document.documentElement.classList.toggle(Themes.LIGHT);
 
-    if (document.documentElement.classList.contains(Themes.LIGHT)) {
+    if (checkIsLightTheme()) {
         localStorage.setItem(Themes.LS_KEY, Themes.LIGHT);
     } else {
         localStorage.setItem(Themes.LS_KEY, Themes.DARK);
@@ -25,7 +29,7 @@ const WithTheme: Component<{ children: JSX.Element }> = (props) => {
                     .matches);
 
         document.documentElement.classList.toggle(
-            "light",
+            Themes.LIGHT,
             shouldInitiallySetLightTheme
         );
     });

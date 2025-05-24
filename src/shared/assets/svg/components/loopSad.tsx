@@ -10,9 +10,6 @@ const LoopSad = (props: ISvg) => {
         "fill"
     ]);
 
-    const stroke = useCssVarInComponent("--color-white");
-    const color = createMemo(() => localProps.fill ?? stroke());
-
     return (
         <SvgWrapper
             {...restProps}

@@ -24,7 +24,7 @@ export const PostCard: Component<IPostCardWithSubtitleClass> = ({
 
     return (
         <div
-            class={cx("cursor-pointer", wrapperClass)}
+            class={cx("cursor-pointer duration-300", wrapperClass)}
             onClick={() => navigate(`/blog-post/${id}`)}
         >
             {image && (
@@ -48,7 +48,7 @@ export const PostCard: Component<IPostCardWithSubtitleClass> = ({
             >
                 {subTitle}
             </h2>
-            <span class="flex items-center gap-offset2x text-xs text-lightGray">
+            <span class="flex items-center gap-offset2x text-xs text-lightGray light:text-warmBrown">
                 <Book />
                 <span>{minutesRead} min. read</span>
             </span>

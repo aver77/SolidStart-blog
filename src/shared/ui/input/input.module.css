@@ -18,11 +18,20 @@
 }
 
 :global(.light) .input {
-    @apply bg-[var(--color-white)];
+    @apply border-[var(--color-warmDWhite)];
+    @apply bg-[var(--color-warmDWhite)];
 }
 
-input:focus, input:hover, input:active {
+.input:focus,
+.input:hover,
+.input:active {
     @apply border-[var(--color-lightGray)];
+}
+
+:global(.light) .input:focus,
+:global(.light) .input:hover,
+:global(.light) .input:active {
+    @apply border-[var(--color-warmBrown)];
 }
 
 .loop {

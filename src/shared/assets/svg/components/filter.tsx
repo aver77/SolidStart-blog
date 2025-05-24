@@ -13,7 +13,7 @@ const Filter = (props: ISvg) => {
         >
             <path
                 d="M2.3125 1.78125H26.6875M7.00063 9.5H21.9994M11.6888 17.2188H17.3112"
-                class="stroke-white light:stroke-graphite"
+                class="stroke-white light:stroke-warmBrown"
                 stroke-width="3"
                 stroke-linecap="round"
                 stroke-linejoin="round"

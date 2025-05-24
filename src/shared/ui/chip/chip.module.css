@@ -6,9 +6,10 @@
     @apply whitespace-nowrap;
     @apply overflow-hidden;
     @apply text-ellipsis;
+    @apply transition duration-300;
 }
 
 :global(.light) .chip {
-    @apply text-[var(--color-gray)];
-    @apply bg-[var(--color-lightestGray)];
+    @apply text-[var(--color-warmBrown)];
+    @apply bg-[var(--color-warmDWhite)];
 }

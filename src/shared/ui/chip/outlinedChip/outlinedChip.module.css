@@ -5,15 +5,23 @@
     @apply transition duration-300;
 }
 
-.base:hover:not(.selected), .base:active:not(.selected), .base:focus:not(.selected) {
+:global(.light) .base {
+    @apply border-[var(--color-warmBrown)];
+}
+
+.base:hover:not(.selected),
+.base:active:not(.selected),
+.base:focus:not(.selected) {
     @apply text-[var(--color-black)];
     @apply bg-[var(--color-lightestGray)];
 }
 
-:global(.light) .base:hover:not(.selected), .base:active:not(.selected), .base:focus:not(.selected) {
-    @apply text-[var(--color-white)];
-    @apply border-[var(--color-graphite)];
-    @apply bg-[var(--color-graphite)];
+:global(.light) .base:hover:not(.selected),
+:global(.light) .base:active:not(.selected),
+:global(.light) .base:focus:not(.selected) {
+    @apply text-[var(--color-warmGold)];
+    @apply border-[var(--color-warmGold)];
+    @apply bg-[var(--color-warmDWhite)];
 }
 
 span.selected {
@@ -23,6 +31,7 @@ span.selected {
 }
 
 :global(.light) span.selected {
-    @apply bg-[var(--color-dimmedGold)];
-    @apply border-[var(--color-dimmedGold)];
+    @apply bg-[var(--color-warmGold)];
+    @apply border-[var(--color-warmGold)];
+    @apply text-[var(--color-white)];
 }

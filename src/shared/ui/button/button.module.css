@@ -6,7 +6,7 @@
   @apply text-[var(--text-base)];
   @apply rounded-[var(--radius-base)];
   @apply border border-solid;
-  @apply transition duration-300;
+  transition: background-size 0.3s ease;
 }
 
 @media screen and (max-width: 500px), (max-height: 500px) {
@@ -30,11 +30,24 @@
   @apply bg-no-repeat;
 }
 
+.filled:hover,
+.filled:active,
+.filled:focus {
+  @apply text-[var(--color-gold)];
+  background-size: 100% 100%;
+}
+
 :global(.light) .filled {
-  @apply border-[var(--color-dimmedGold)];
-  @apply text-[var(--color-gray)];
-  @apply bg-[var(--color-dimmedGold)];
-  background-image: linear-gradient(var(--color-white), var(--color-white));
+  @apply border-[var(--color-warmGold)];
+  @apply text-[var(--color-white)];
+  @apply bg-[var(--color-warmGold)];
+  background-image: linear-gradient(var(--color-warmWhite), var(--color-warmWhite));
+}
+
+:global(.light) .filled:hover,
+:global(.light) .filled:active,
+:global(.light) .filled:focus {
+  @apply text-[var(--color-warmGold)];
 }
 
 .unfilled {
@@ -46,18 +59,23 @@
   @apply bg-no-repeat;
 }
 
-.filled:hover, .filled:active, .filled:focus {
-  @apply bg-transparent;
-  @apply text-[var(--color-gold)];
-  background-size: 100% 100%;
-}
-
-:global(.light) .filled:hover, .filled:active, .filled:focus {
-  @apply text-[var(--color-dimmedGold)];
-}
-
-.unfilled:hover, .unfilled:active, .unfilled:focus {
-  @apply bg-transparent;
+.unfilled:hover,
+.unfilled:active,
+.unfilled:focus {
   @apply text-[var(--color-dark)];
   background-size: 100% 100%;
+}
+
+:global(.light) .unfilled {
+  @apply border-[var(--color-warmBrown)];
+  @apply text-[var(--color-warmBrown)];
+  @apply bg-[var(--color-warmWhite)];
+  background-image: linear-gradient(var(--color-warmGold), var(--color-warmGold));
+}
+
+:global(.light) .unfilled:hover,
+:global(.light) .unfilled:active,
+:global(.light) .unfilled:focus {
+  @apply text-[var(--color-white)];
+  @apply border-[var(--color-warmGold)];
 }

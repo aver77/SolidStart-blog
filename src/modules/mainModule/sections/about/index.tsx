@@ -40,9 +40,9 @@ const About: Component<IAbout> = (props) => {
         const profession = splittedSubTitle.splice(-2);
 
         return (
-            <p class="text-3xl font-black">
+            <p class="text-3xl font-black duration-300">
                 <span>{splittedSubTitle.join(sep) + sep}</span>
-                <span class="text-gold light:text-dimmedGold">
+                <span class="text-gold light:text-warmGold">
                     {profession.join(sep)}
                 </span>
             </p>
@@ -52,7 +52,7 @@ const About: Component<IAbout> = (props) => {
     return (
         <section class="relative p-highest">
             <div class="relative z-2 flex gap-offset8x">
-                <div class="flex flex-col gap-offset8x">
+                <div class="flex flex-col gap-offset8x duration-300">
                     <div>
                         {getTitle()}
                         {getSubTitle()}
