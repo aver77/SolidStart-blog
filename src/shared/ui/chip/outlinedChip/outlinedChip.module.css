@@ -16,13 +16,13 @@
     @apply bg-[var(--color-graphite)];
 }
 
-.selected {
+span.selected {
     @apply bg-[var(--color-gold)];
     @apply border-[var(--color-gray)];
     @apply text-[var(--color-gray)];
 }
 
-:global(.light) .selected {
+:global(.light) span.selected {
     @apply bg-[var(--color-dimmedGold)];
     @apply border-[var(--color-dimmedGold)];
 }
