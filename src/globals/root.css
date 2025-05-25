@@ -11,7 +11,7 @@
     --color-warmBrown: #774e34;
     --color-warmGray: #d4c0a8;
     --color-lightGray: #999a9d;
-    --color-lightestGray: #D0D0D0;
+    --color-lightestGray: #d0d0d0;
     --color-gold: gold;
     --color-warmGold: #f7a816;
     --color-white: #ebecf3;
@@ -19,7 +19,7 @@
     --color-warmDWhite: #dac8b0;
     --color-disabled: #ebebe4;
 
-    --font-*:initial;
+    --font-*: initial;
     --font-base: "Montserrat";
     --font-curve: "Birthstone";
 
@@ -37,7 +37,7 @@
     --spacing-footerHeight: 60px;
     --spacing-highest: 96px;
 
-    --text-*:initial;
+    --text-*: initial;
     --text-xs: 14px;
     --text-sm: 16px;
     --text-base: 18px;
@@ -51,7 +51,7 @@
     --text-7xl: 48px;
     --text-max: 52px;
 
-    --breakpoint-*:initial;
+    --breakpoint-*: initial;
     --breakpoint-ipadLg: 1000px;
     --breakpoint-ipadSm: 700px;
     --breakpoint-phones: 500px;
