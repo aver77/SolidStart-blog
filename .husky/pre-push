@@ -1,1 +1,2 @@
+prettier --check ./src --write
 npm run lint
