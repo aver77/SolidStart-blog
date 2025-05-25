@@ -1,11 +1,13 @@
 {
-  "name": "example-basic",
+  "name": "SolidStartBlog",
   "type": "module",
   "scripts": {
     "dev": "vinxi dev",
     "build": "vinxi build",
     "start": "vinxi start",
-    "version": "vinxi version"
+    "version": "vinxi version",
+    "lint": "npx eslint eslint.config.js",
+    "lint-fix": "npx eslint --fix eslint.config.js"
   },
   "dependencies": {
     "@contentful/rich-text-html-renderer": "17.0.0",
@@ -29,6 +31,10 @@
     "@contentful/rich-text-types": "17.0.0",
     "classnames": "2.5.1",
     "dotenv": "16.4.7",
-    "prettier": "3.4.2"
+    "eslint": "9.27.0",
+    "eslint-plugin-solid": "0.14.5",
+    "prettier": "3.4.2",
+    "typescript": "5.8.3",
+    "typescript-eslint": "8.32.1"
   }
 }
