@@ -5,9 +5,7 @@
     "dev": "vinxi dev",
     "build": "vinxi build",
     "start": "vinxi start",
-    "version": "vinxi version",
-    "lint": "npx eslint eslint.config.js",
-    "lint-fix": "npx eslint --fix eslint.config.js"
+    "version": "vinxi version"
   },
   "dependencies": {
     "@contentful/rich-text-html-renderer": "17.0.0",
@@ -18,7 +16,7 @@
     "@tanstack/solid-query": "5.69.0",
     "contentful": "11.4.4",
     "postcss": "8.5.1",
-    "solid-js": "1.9.5",
+    "solid-js": "^1.9.5",
     "tailwindcss": "4.0.3"
   },
   "overrides": {
@@ -31,10 +29,6 @@
     "@contentful/rich-text-types": "17.0.0",
     "classnames": "2.5.1",
     "dotenv": "16.4.7",
-    "eslint": "9.27.0",
-    "eslint-plugin-solid": "0.14.5",
-    "prettier": "3.4.2",
-    "typescript": "5.8.3",
-    "typescript-eslint": "8.32.1"
+    "prettier": "3.4.2"
   }
 }
