@@ -21,7 +21,8 @@ const Filters: Component<IFilters> = (props) => {
                 value={props.searchValue}
                 handleChange={props.setSearchValue}
             />
-            <div ref={dropdownContainerRef} class="relative">
+            <div ref={dropdownContainerRef}
+                class="relative">
                 <button
                     onClick={() => {
                         setFilterDropdownOpened((prev) => !prev);

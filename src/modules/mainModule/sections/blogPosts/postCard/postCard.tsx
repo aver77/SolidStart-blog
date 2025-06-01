@@ -1,4 +1,4 @@
-import { type Component, For, JSX, Show } from "solid-js";
+import { type Component, For, splitProps, Show } from "solid-js";
 import type { IPost } from "~/shared/types";
 import Chip from "~/shared/ui/chip/chip";
 import cx from "classnames";
@@ -15,8 +15,8 @@ interface IPostCardWithSubtitleClass extends IPostCard {
 }
 
 export const PostCard: Component<IPostCardWithSubtitleClass> = (_props) => {
-      const [props, post] = splitProps(_props, ["wrapperClass", "subtitleClass"]);
-const { id, title, subTitle, text, image, tags } = post;
+    const [props, post] = splitProps(_props, ["wrapperClass", "subtitleClass"]);
+    const { id, title, subTitle, text, image, tags } = post;
 
     const navigate = useNavigate();
 
@@ -25,13 +25,15 @@ const { id, title, subTitle, text, image, tags } = post;
             class={cx("cursor-pointer duration-300", props.wrapperClass)}
             onClick={() => navigate(`/blog-post/${id}`)}
         >
-            <Show when={image}><div class="aspect-[16/9]">
+            <Show when={image}>
+                <div class="aspect-[16/9]">
                     <img
                         class="w-full h-full rounded-md"
                         src={image.fields.file.url}
                         alt={image.fields.file.fileName}
                     />
-                </div></Show>
+                </div>
+            </Show>
             <div class="flex flex-wrap gap-offset2x my-offset4x">
                 <For each={tags}>{(tag) => <Chip text={tag} />}</For>
             </div>

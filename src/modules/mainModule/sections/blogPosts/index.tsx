@@ -22,7 +22,7 @@ export const fetchPosts = async (page: number) => {
     const posts = (await getClient()
         .getEntries({
             content_type: "post",
-            skip: page * POSTS_LIMIT, //how much posts we skip from the start
+            skip: page * POSTS_LIMIT, // how much posts we skip from the start
             limit: POSTS_LIMIT // how many posts max fetch
         })
         .catch(() => ({
@@ -38,7 +38,9 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
         queryFn: ({ pageParam = 0 }) => fetchPosts(pageParam),
         initialPageParam: 0,
         getNextPageParam: (lastPage, allPages) =>
-            lastPage.length < POSTS_LIMIT ? undefined : allPages.length,
+            lastPage.length < POSTS_LIMIT
+                ? undefined
+                : allPages.length,
         staleTime: 1000 * 60 * 60,
         ssr: true
     }));
@@ -92,7 +94,8 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
     return (
         <div class="p-highest">
             <Line>
-                <h2 class="text-max font-black" ref={props.postsRef}>
+                <h2 class="text-max font-black"
+                    ref={props.postsRef}>
                     <DottedText>Posts</DottedText>
                 </h2>
             </Line>
@@ -107,7 +110,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                     class={cx(
                         "mt-offset8x min-h-[400px]",
                         !searchedAndFilteredPosts().length &&
-                            "flex flex-col justify-center items-center"
+                        "flex flex-col justify-center items-center"
                     )}
                 >
                     <InfiniteScroll
@@ -141,7 +144,8 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                                     {(post, index) => {
                                         return (
                                             <>
-                                                <Show when={!index()} fallback={<PostCard
+                                                <Show when={!index()}
+                                                    fallback={<PostCard
                                                         {...post.fields}
                                                         id={post.sys.id}
                                                     />}><div class="row-span-2 flex items-center">
@@ -168,7 +172,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                                 </For>
                             </div>
                         </Show>
-                        {/*<Show when={infinitePostsQuery.isFetching}>*/}
+                        {/* <Show when={infinitePostsQuery.isFetching}>*/}
                         {/*    <div class="grid grid-cols-3 gap-y-offset8x gap-x-offset4x">*/}
                         {/*        <For each={Array(3).fill(undefined)}>*/}
                         {/*            {(_, index) => {*/}
@@ -183,7 +187,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                         {/*            }}*/}
                         {/*        </For>*/}
                         {/*    </div>*/}
-                        {/*</Show>*/}
+                        {/* </Show>*/}
                     </InfiniteScroll>
                 </div>
             </div>

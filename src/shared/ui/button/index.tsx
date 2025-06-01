@@ -21,7 +21,9 @@ const Index: Component<IButton> = (props) => {
         "class"
     ]);
 
-    const typeClass = ButtonTypes.FILLED ? classes.filled : classes.unfilled;
+    const typeClass = ButtonTypes.FILLED
+        ? classes.filled
+        : classes.unfilled;
 
     return (
         <button

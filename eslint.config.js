@@ -79,8 +79,11 @@ export default defineConfig([
              * }
              * */
             "@stylistic/curly-newline": ["error", "always"],
-            /** '.' on the same line with object */
-            "@stylistic/dot-location": ["error", "object"],
+            /** '.' on the same line with property like
+             * promise
+             *   .then(() => {...})
+             * */
+            "@stylistic/dot-location": ["error", "property"],
             "@stylistic/jsx-max-props-per-line": [1, { when: "always" }],
             /** JsxComponentNaming like this */
             "@stylistic/jsx-pascal-case": ["error"],
@@ -102,8 +105,15 @@ export default defineConfig([
             "@stylistic/rest-spread-spacing": ["error", "never"],
             /** Space before every {} */
             "@stylistic/space-before-blocks": ["error"],
-            /** No space before functions like: function() {} */
-            "@stylistic/space-before-function-paren": ["error", "never"],
+            /** No space before functions like: function() {} except const foo = async () => {...} */
+            "@stylistic/space-before-function-paren": [
+                "error",
+                {
+                    anonymous: "never",
+                    named: "never",
+                    asyncArrow: "always"
+                }
+            ],
             /** Comments with spaces like in this file :) */
             "@stylistic/spaced-comment": ["error", "always"],
             /** No spaces inside template literals like `Hey, ${123}` */

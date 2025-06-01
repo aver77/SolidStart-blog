@@ -30,11 +30,11 @@ const Input: Component<IInput> = (props) => {
                 onInput={(e) => localProps.handleChange(e.target.value)}
             />
             <Show when={localProps.value.length > 0}><Cancel
-                    class={classes.cancel}
-                    width={"20px"}
-                    height={"20px"}
-                    onClick={() => localProps.handleChange("")}
-                /></Show>
+                class={classes.cancel}
+                width={"20px"}
+                height={"20px"}
+                onClick={() => localProps.handleChange("")}
+            /></Show>
         </div>
     );
 };

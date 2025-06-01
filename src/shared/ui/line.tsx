@@ -1,4 +1,4 @@
-import type { Component, JSX } from "solid-js";
+import { mergeProps, type Component, type JSX } from "solid-js";
 import cx from "classnames";
 
 export enum LineAligns {
@@ -23,20 +23,21 @@ type ILine = { stroke?: number; color?: string; className?: string } & (
 );
 
 const Line: Component<ILine> = (_props) => {
-      const props = mergeProps({ align: LineAligns.LEFT }, _props);
-const line = (
+    const props = mergeProps({ align: LineAligns.LEFT }, _props);
+    const line = 
         <div
             class={cx(
                 props.className,
                 "border-solid border-lightGray light:border-warmBrown w-full"
             )}
             style={{
-                ...(props.color ? { "border-color": props.color } : {}),
+                ...props.color
+                    ? { "border-color": props.color }
+                    : {},
                 "border-bottom-width": `${props.stroke || 1}px`
             }}
         />
-    );
-
+    ;
     if (props.children) {
         const getContent = () => {
             switch (props.align) {

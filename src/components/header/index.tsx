@@ -32,7 +32,8 @@ const Header = () => {
                 </div>
             </div>
             <div class="flex justify-center items-center cursor-pointer">
-                <Show when={isLightTheme()} fallback={<ThemeSun onClick={toggleTheme} />}><ThemeMoon onClick={toggleTheme} /></Show>
+                <Show when={isLightTheme()}
+                    fallback={<ThemeSun onClick={toggleTheme} />}><ThemeMoon onClick={toggleTheme} /></Show>
             </div>
         </header>
     );

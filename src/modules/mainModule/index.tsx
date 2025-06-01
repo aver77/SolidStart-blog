@@ -7,7 +7,7 @@ const MainModule = () => {
     return (
         <>
             <AboutSection postsRef={() => postsRef} />
-            <BlogPosts postsRef={(el) => (postsRef = el)} />
+            <BlogPosts postsRef={(el) => postsRef = el} />
         </>
     );
 };

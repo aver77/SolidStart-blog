@@ -24,9 +24,9 @@ const WithTheme: Component<{ children: JSX.Element }> = (props) => {
     onMount(() => {
         const shouldInitiallySetLightTheme =
             localStorage.getItem(Themes.LS_KEY) === Themes.LIGHT ||
-            (!localStorage.getItem(Themes.LS_KEY) &&
-                window.matchMedia(`(prefers-color-scheme: ${Themes.LIGHT})`)
-                    .matches);
+            !localStorage.getItem(Themes.LS_KEY) &&
+            window.matchMedia(`(prefers-color-scheme: ${Themes.LIGHT})`)
+                .matches;
 
         document.documentElement.classList.toggle(
             Themes.LIGHT,
