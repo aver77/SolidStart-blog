@@ -1,4 +1,4 @@
-import { Component, For, Index, type JSX, onCleanup, onMount } from "solid-js";
+import { Component, Index, type JSX, onCleanup, onMount, Show } from "solid-js";
 import cx from "classnames";
 import OutlinedChip from "~/shared/ui/chip/outlinedChip";
 
@@ -49,7 +49,7 @@ const Dropdown: Component<IDropdown> = (props) => {
 
     return (
         <>
-            {props.opened && (
+            <Show when={props.opened}>
                 <div
                     class={cx(
                         "z-2 rounded-md w-[500px] max-h-[200px] flex flex-wrap overflow-y-auto bg-gray light:bg-warmDWhite p-offset5x gap-offset5x shadow-lg",
@@ -68,7 +68,7 @@ const Dropdown: Component<IDropdown> = (props) => {
                         }}
                     </Index>
                 </div>
-            )}
+            </Show>
         </>
     );
 };

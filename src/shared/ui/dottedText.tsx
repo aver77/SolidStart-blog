@@ -4,10 +4,10 @@ interface IDottedText {
     children: JSX.Element;
 }
 
-const DottedText: Component<IDottedText> = ({ children }) => {
+const DottedText: Component<IDottedText> = (props) => {
     return (
         <>
-            {children}
+            {props.children}
             <span class="text-gold light:text-warmGold">.</span>
         </>
     );

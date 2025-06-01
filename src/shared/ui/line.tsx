@@ -22,34 +22,29 @@ type ILine = { stroke?: number; color?: string; className?: string } & (
     | ILineWithoutContent
 );
 
-const Line: Component<ILine> = ({
-    stroke,
-    color,
-    className,
-    children,
-    align = LineAligns.LEFT
-}) => {
-    const line = (
+const Line: Component<ILine> = (_props) => {
+      const props = mergeProps({ align: LineAligns.LEFT }, _props);
+const line = (
         <div
             class={cx(
-                className,
+                props.className,
                 "border-solid border-lightGray light:border-warmBrown w-full"
             )}
             style={{
-                ...(color ? { "border-color": color } : {}),
-                "border-bottom-width": `${stroke || 1}px`
+                ...(props.color ? { "border-color": props.color } : {}),
+                "border-bottom-width": `${props.stroke || 1}px`
             }}
         />
     );
 
-    if (children) {
+    if (props.children) {
         const getContent = () => {
-            switch (align) {
+            switch (props.align) {
                 case LineAligns.RIGHT: {
                     return (
                         <>
                             {line}
-                            {children}
+                            {props.children}
                         </>
                     );
                 }
@@ -57,7 +52,7 @@ const Line: Component<ILine> = ({
                     return (
                         <>
                             {line}
-                            {children}
+                            {props.children}
                             {line}
                         </>
                     );
@@ -66,7 +61,7 @@ const Line: Component<ILine> = ({
                 default: {
                     return (
                         <>
-                            {children}
+                            {props.children}
                             {line}
                         </>
                     );

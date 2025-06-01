@@ -141,19 +141,15 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                                     {(post, index) => {
                                         return (
                                             <>
-                                                {!index() ? (
-                                                    <div class="row-span-2 flex items-center">
+                                                <Show when={!index()} fallback={<PostCard
+                                                        {...post.fields}
+                                                        id={post.sys.id}
+                                                    />}><div class="row-span-2 flex items-center">
                                                         <HeadingPostCard
                                                             {...post.fields}
                                                             id={post.sys.id}
                                                         />
-                                                    </div>
-                                                ) : (
-                                                    <PostCard
-                                                        {...post.fields}
-                                                        id={post.sys.id}
-                                                    />
-                                                )}
+                                                    </div></Show>
                                             </>
                                         );
                                     }}

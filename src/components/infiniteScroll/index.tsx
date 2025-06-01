@@ -1,4 +1,4 @@
-import { JSX, createEffect, onCleanup } from "solid-js";
+import { JSX, createEffect, onCleanup, Show } from "solid-js";
 
 type InfiniteScrollProps = {
     onLoadMore: () => void;
@@ -47,7 +47,7 @@ const InfiniteScroll = (props: InfiniteScrollProps) => {
     return (
         <>
             {props.children}
-            {props.hasMore && <div ref={ref} />}
+            <Show when={props.hasMore}><div ref={ref} /></Show>
         </>
     );
 };

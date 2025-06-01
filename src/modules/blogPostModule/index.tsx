@@ -1,12 +1,12 @@
 import { fetchAbout, fetchBlogPost } from "~/shared/api";
 import { useLocation } from "@solidjs/router";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
-import type { Document } from "@contentful/rich-text-types";
 import { createQuery } from "@tanstack/solid-query";
 import Book from "~/shared/assets/svg/components/book";
-import { For } from "solid-js";
+import { For, Show } from "solid-js";
 import Chip from "~/shared/ui/chip/chip";
 import { useTheme } from "~/shared/hooks/useTheme";
+import { getReadingTime } from "~/shared/utils/getReadingTime";
 
 const BlogPostModule = () => {
     const { isLightTheme } = useTheme(false);
@@ -31,37 +31,31 @@ const BlogPostModule = () => {
 
     return (
         <div class="px-highest">
-            {post?.data?.fields?.image && (
-                <div class="aspect-[16/9]">
+            <Show when={post?.data?.fields?.image}><div class="aspect-[16/9]">
                     <img
                         class="w-full h-full rounded-b-md"
                         src={post.data.fields.image.fields.file.url}
                         alt={post.data.fields.image.fields.file.fileName}
                     />
-                </div>
-            )}
+                </div></Show>
             <div class="flex justify-center my-offset9x text-5xl font-bold">
                 <h1>{post?.data?.fields?.title}</h1>
             </div>
             <div class="flex justify-center items-center mb-offset9x">
-                {!isLightTheme() && about?.data?.avatar && (
-                    <img
+                <Show when={!isLightTheme() && about?.data?.avatar}><img
                         width={"48px"}
                         height={"48px"}
                         class="mr-offset3x"
                         src={about.data.avatar.fields.file.url}
                         alt={about.data.avatar.fields.file.fileName}
-                    />
-                )}
-                {isLightTheme() && about?.data?.lightAvatar && (
-                    <img
+                    /></Show>
+                <Show when={isLightTheme() && about?.data?.lightAvatar}><img
                         width={"48px"}
                         height={"48px"}
                         class="mr-offset3x"
                         src={about.data.lightAvatar.fields.file.url}
                         alt={about.data.lightAvatar.fields.file.fileName}
-                    />
-                )}
+                    /></Show>
                 <span class="font-semibold">{about?.data?.name}</span>
                 <div class="flex items-center text-lightGray light:text-warmBrown">
                     {getDot()}
@@ -77,16 +71,15 @@ const BlogPostModule = () => {
                     {getDot()}
                     <span class="flex items-center gap-offset2x light:text-warmBrown">
                         <Book />
-                        <span>{post?.data?.fields?.minutesRead} min. read</span>
+                        <span>
+                            {getReadingTime(post?.data?.fields?.text!)} min.
+                            read
+                        </span>
                     </span>
                 </div>
             </div>
             {post?.data?.fields?.subTitle}
-            <div
-                innerHTML={documentToHtmlString(
-                    post?.data?.fields?.text as Document
-                )}
-            />
+            <div innerHTML={documentToHtmlString(post?.data?.fields?.text!)} />
             <div class="flex flex-wrap justify-center gap-offset2x my-offset9x">
                 <For each={post?.data?.fields?.tags}>
                     {(tag) => <Chip text={tag} />}

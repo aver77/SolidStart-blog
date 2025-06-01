@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    /** Базовые настройки */
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "node",
@@ -7,13 +8,19 @@
     "esModuleInterop": true,
     "jsx": "preserve",
     "jsxImportSource": "solid-js",
+    "skipLibCheck": true,
     "allowJs": true,
-    "strict": true,
-    "noEmit": true,
-    "types": ["vinxi/types/client"],
+    "checkJs": false,
+    /** Совместимость со сборщиком vinxi */
+    "noEmit": true, // Для проверки типов tsc, без выходных .js файлов
     "isolatedModules": true,
+    "types": ["vinxi/types/client"],
     "paths": {
       "~/*": ["./src/*"]
-    }
-  }
+    },
+    /** Строгость */
+    "strict": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist", ".output", ".vinxi"]
 }

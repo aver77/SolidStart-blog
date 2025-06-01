@@ -1,33 +1,151 @@
 import { defineConfig } from "eslint/config";
 import solid from "eslint-plugin-solid";
 import tsParser from "@typescript-eslint/parser";
+import stylistic from "@stylistic/eslint-plugin";
 
 /**
  * TODO:
- * 1. Вначале - правильно линтить ts - чтобы все было строго и тд
+ * 1. Вначале - правильно линтить ts - чтобы все было строго и тд ✅
  * 2. Линтить solid (контролировать чтобы пропсы не деструктурировались,
- * чтобы реактивность сохранялась и тд)
- * 3. Линтить codestyle - import order, отступы и тд
+ * чтобы реактивность сохранялась и тд) ✅
+ * 3. Линтить codestyle ✅
+ * 4. Линтить import-order
+ * 5. Линтить css
  */
 
 export default defineConfig([
     {
+        files: ["src/**/*.js", "src/**/*.ts", "src/**/*.tsx"],
         plugins: {
-            solid
+            solid,
+            "@stylistic": stylistic
         },
         languageOptions: {
             parser: tsParser,
             parserOptions: {
-                project: "tsconfig.json",
+                project: "./tsconfig.json",
                 ecmaFeatures: {
                     jsx: true
                 }
             }
         },
         rules: {
-            "solid/reactivity": "warn",
-            "solid/no-destructure": "warn",
-            "solid/jsx-no-undef": "error"
+            /** Codestyle: */
+            "@stylistic/max-len": [
+                "error",
+                {
+                    code: 100, // Max. code line length
+                    comments: 120, // Max. comment code line length
+                    tabWidth: 4, // Indents
+                    ignoreTemplateLiterals: true, // Ignore line length for literals
+                    ignoreStrings: true, // Ignore line length for string
+                    ignoreComments: true // Ignore line length for comments
+                }
+            ],
+            /** Extra indents check */
+            "@stylistic/indent": ["error", 4],
+            "@stylistic/indent-binary-ops": ["error", 4],
+            /** ";" in the end */
+            "@stylistic/semi": ["error", "always"],
+            /** Always double quotes */
+            "@stylistic/quotes": ["error", "double"],
+            /** Array like [1, 2] not like [ 1, 2 ] */
+            "@stylistic/array-bracket-spacing": ["error", "never"],
+            /** Callback param inside () */
+            "@stylistic/arrow-parens": ["error", "always"],
+            /** () => {} - force spacings before and after => */
+            "@stylistic/arrow-spacing": [
+                "error",
+                { before: true, after: true }
+            ],
+            /** Force spacings like: { this.bar = 0; } */
+            "@stylistic/block-spacing": ["error", "always"],
+            /**
+             * try {
+             *   somethingRisky();
+             * } catch(e) {
+             *   handleError();
+             * }
+             * */
+            "@stylistic/brace-style": ["error"],
+            /** [1, 2, 3] - spacing only after ',' */
+            "@stylistic/comma-spacing": [
+                "error",
+                { before: false, after: true }
+            ],
+            /** Force if (bool) { foo() } to be like
+             * if (bool) {
+             *   foo()
+             * }
+             * */
+            "@stylistic/curly-newline": ["error", "always"],
+            /** '.' on the same line with object */
+            "@stylistic/dot-location": ["error", "object"],
+            "@stylistic/jsx-max-props-per-line": [1, { when: "always" }],
+            /** JsxComponentNaming like this */
+            "@stylistic/jsx-pascal-case": ["error"],
+            "@stylistic/jsx-quotes": ["error", "prefer-double"],
+            /** ';' in the end of ts interface fields */
+            "@stylistic/member-delimiter-style": ["error"],
+            "@stylistic/multiline-ternary": ["error"],
+            /** Removes unnesessary wrap to () */
+            "@stylistic/no-extra-parens": ["error", "all"],
+            /** No more than 1 ',' in a row */
+            "@stylistic/no-extra-semi": ["error"],
+            /** No more than 1 space in a row */
+            "@stylistic/no-multi-spaces": ["error"],
+            /** Spaces in object like: var obj = { 'foo': 'bar' }; */
+            "@stylistic/object-curly-spacing": ["error", "always"],
+            /** Only obj properties like '0-12x' should be in commas */
+            "@stylistic/quote-props": ["error", "as-needed"],
+            /** No space after spread, like [...arr] */
+            "@stylistic/rest-spread-spacing": ["error", "never"],
+            /** Space before every {} */
+            "@stylistic/space-before-blocks": ["error"],
+            /** No space before functions like: function() {} */
+            "@stylistic/space-before-function-paren": ["error", "never"],
+            /** Comments with spaces like in this file :) */
+            "@stylistic/spaced-comment": ["error", "always"],
+            /** No spaces inside template literals like `Hey, ${123}` */
+            "@stylistic/template-curly-spacing": "error",
+            /** Type annotation like: const a: number = 1 */
+            "@stylistic/type-annotation-spacing": "error",
+            /** Generics like type Foo<T, K> = T */
+            "@stylistic/type-generic-spacing": ["error"],
+
+            /** Solid-js: */
+            /** Only 1 return in Solid component, otherwise it can lose reactivity */
+            "solid/components-return-once": "error",
+            /** Imports only from 'solid-js' lib */
+            "solid/imports": "error",
+            /** No URLs like <a href="javascript:alert('hacked!')" /> */
+            "solid/jsx-no-script-url": "error",
+            /** No destructure props, or Solid can lose reactivity */
+            "solid/no-destructure": "error",
+            /** No empty variables in jsx */
+            "solid/jsx-no-undef": "error",
+            /** Don't use array of deps [] in createEffect, like in useEffect'e */
+            "solid/no-react-deps": "error",
+            /** 'className' abd 'htmlFor' don't maintain in solid-js */
+            "solid/no-react-specific-props": "error",
+            /** Use <For/>, instead of <div>{props.arr.map(p => p)}</div> like in React */
+            "solid/prefer-for": "error",
+            /** Use <Show when={props.bool}/> instead of {props.bool && <div>...</div>} */
+            "solid/prefer-show": "error",
+            /** Self-closing empty tag */
+            "solid/self-closing-comp": "error",
+            /** General reactivity check */
+            "solid/reactivity": "error",
+
+            "solid/no-innerhtml": "warn",
+            /** Don't create proxy manually, use signals, effects etc. */
+            "solid/no-proxy-apis": "warn",
+            /** Consistent names of event handlers */
+            "solid/event-handlers": "warn",
+            /** Event handlers should be named like in solid-js like on:click, but not onClick like in React */
+            "solid/no-unknown-namespaces": "warn",
+            /** In solid that is valid to write style attribute in kebab-case, not only in camelCase like in React */
+            "solid/style-prop": "warn"
         }
     }
 ]);

@@ -4,7 +4,7 @@ import DotsGrid from "~/modules/mainModule/sections/about/dotsGrid";
 import Button from "~/shared/ui/button";
 import DottedText from "~/shared/ui/dottedText";
 import { createQuery } from "@tanstack/solid-query";
-import { Component } from "solid-js";
+import { Component, Show } from "solid-js";
 import { useTheme } from "~/shared/hooks/useTheme";
 
 interface IAbout {
@@ -73,22 +73,18 @@ const About: Component<IAbout> = (props) => {
                         </Button>
                     </div>
                 </div>
-                {!isLightTheme() && about?.data?.avatar && (
-                    <img
+                <Show when={!isLightTheme() && about?.data?.avatar}><img
                         width={"290px"}
                         height={"290px"}
                         src={about.data.avatar.fields.file.url}
                         alt={about.data.avatar.fields.file.fileName}
-                    />
-                )}
-                {isLightTheme() && about?.data?.lightAvatar && (
-                    <img
+                    /></Show>
+                <Show when={isLightTheme() && about?.data?.lightAvatar}><img
                         width={"290px"}
                         height={"290px"}
                         src={about.data.lightAvatar.fields.file.url}
                         alt={about.data.lightAvatar.fields.file.fileName}
-                    />
-                )}
+                    /></Show>
             </div>
             <DotsGrid />
         </section>

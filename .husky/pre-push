@@ -1,2 +1,2 @@
 prettier --check ./src --write
-npm run lint
+npm run check

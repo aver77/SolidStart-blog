@@ -1,3 +1,4 @@
+import { Show } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 
 import ThemeSun from "~/shared/assets/svg/components/themeSun";
@@ -31,11 +32,7 @@ const Header = () => {
                 </div>
             </div>
             <div class="flex justify-center items-center cursor-pointer">
-                {isLightTheme() ? (
-                    <ThemeMoon onClick={toggleTheme} />
-                ) : (
-                    <ThemeSun onClick={toggleTheme} />
-                )}
+                <Show when={isLightTheme()} fallback={<ThemeSun onClick={toggleTheme} />}><ThemeMoon onClick={toggleTheme} /></Show>
             </div>
         </header>
     );
