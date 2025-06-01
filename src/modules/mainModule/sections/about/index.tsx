@@ -76,14 +76,14 @@ const About: Component<IAbout> = (props) => {
                 <Show when={!isLightTheme() && about?.data?.avatar}><img
                     width={"290px"}
                     height={"290px"}
-                    src={about.data.avatar.fields.file.url}
-                    alt={about.data.avatar.fields.file.fileName}
+                    src={about.data?.avatar.fields.file.url}
+                    alt={about.data?.avatar.fields.file.fileName}
                 /></Show>
                 <Show when={isLightTheme() && about?.data?.lightAvatar}><img
                     width={"290px"}
                     height={"290px"}
-                    src={about.data.lightAvatar.fields.file.url}
-                    alt={about.data.lightAvatar.fields.file.fileName}
+                    src={about.data?.lightAvatar?.fields.file.url}
+                    alt={about.data?.lightAvatar?.fields.file.fileName}
                 /></Show>
             </div>
             <DotsGrid />

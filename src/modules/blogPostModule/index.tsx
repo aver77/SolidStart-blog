@@ -35,8 +35,8 @@ const BlogPostModule = () => {
                 <div class="aspect-[16/9]">
                     <img
                         class="w-full h-full rounded-b-md"
-                        src={post.data.fields.image.fields.file.url}
-                        alt={post.data.fields.image.fields.file.fileName}
+                        src={post.data?.fields.image.fields.file.url}
+                        alt={post.data?.fields.image.fields.file.fileName}
                     />
                 </div>
             </Show>
@@ -49,8 +49,8 @@ const BlogPostModule = () => {
                         width={"48px"}
                         height={"48px"}
                         class="mr-offset3x"
-                        src={about.data.avatar.fields.file.url}
-                        alt={about.data.avatar.fields.file.fileName}
+                        src={about.data?.avatar.fields.file.url}
+                        alt={about.data?.avatar.fields.file.fileName}
                     />
                 </Show>
                 <Show when={isLightTheme() && about?.data?.lightAvatar}>
@@ -58,8 +58,8 @@ const BlogPostModule = () => {
                         width={"48px"}
                         height={"48px"}
                         class="mr-offset3x"
-                        src={about.data.lightAvatar.fields.file.url}
-                        alt={about.data.lightAvatar.fields.file.fileName}
+                        src={about.data?.lightAvatar?.fields.file.url}
+                        alt={about.data?.lightAvatar?.fields.file.fileName}
                     />
                 </Show>
                 <span class="font-semibold">{about?.data?.name}</span>
