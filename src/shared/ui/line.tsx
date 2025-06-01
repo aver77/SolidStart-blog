@@ -1,4 +1,4 @@
-import { mergeProps, type Component, type JSX } from "solid-js";
+import { mergeProps, type Component, type JSX, Show } from "solid-js";
 import cx from "classnames";
 
 export enum LineAligns {
@@ -36,48 +36,47 @@ const Line: Component<ILine> = (_props) => {
                     : {},
                 "border-bottom-width": `${props.stroke || 1}px`
             }}
-        />
-    ;
-    if (props.children) {
-        const getContent = () => {
-            switch (props.align) {
-                case LineAligns.RIGHT: {
-                    return (
-                        <>
-                            {line}
-                            {props.children}
-                        </>
-                    );
-                }
-                case LineAligns.CENTER: {
-                    return (
-                        <>
-                            {line}
-                            {props.children}
-                            {line}
-                        </>
-                    );
-                }
-                case LineAligns.LEFT:
-                default: {
-                    return (
-                        <>
-                            {props.children}
-                            {line}
-                        </>
-                    );
-                }
-            }
-        };
+        />;
 
-        return (
+    const getContent = () => {
+        switch (props.align) {
+            case LineAligns.RIGHT: {
+                return (
+                    <>
+                        {line}
+                        {props.children}
+                    </>
+                );
+            }
+            case LineAligns.CENTER: {
+                return (
+                    <>
+                        {line}
+                        {props.children}
+                        {line}
+                    </>
+                );
+            }
+            case LineAligns.LEFT:
+            default: {
+                return (
+                    <>
+                        {props.children}
+                        {line}
+                    </>
+                );
+            }
+        }
+    };
+
+    return (
+        <Show when={props.children}
+            fallback={line}>
             <div class="flex flex-nowrap gap-offset3x items-center duration-300">
                 {getContent()}
             </div>
-        );
-    }
-
-    return line;
+        </Show>
+    );
 };
 
 export default Line;

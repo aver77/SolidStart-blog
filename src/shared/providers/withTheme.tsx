@@ -34,7 +34,7 @@ const WithTheme: Component<{ children: JSX.Element }> = (props) => {
         );
     });
 
-    return props.children;
+    return <>{props.children}</>;
 };
 
 export default WithTheme;

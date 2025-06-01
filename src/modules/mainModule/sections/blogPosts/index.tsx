@@ -61,6 +61,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
     });
 
     const allPostsTags = [
+        // eslint-disable-next-line solid/reactivity
         ...new Set(posts()?.flatMap((post) => post.fields.tags))
     ];
     const [filterByTagsValues, setFilterByTagsValues] = createSignal(
