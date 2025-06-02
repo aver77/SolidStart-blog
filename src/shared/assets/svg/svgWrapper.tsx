@@ -4,7 +4,6 @@ export interface ISvg extends JSX.HTMLAttributes<SVGSVGElement> {
     height?: `${string}px`;
     width?: `${string}px`;
     style?: string;
-    className?: string;
     viewBox?: string;
     fill?: string;
 }
@@ -14,7 +13,7 @@ const SvgWrapper: Component<ISvg & { children: JSX.Element }> = (props) => {
         "width",
         "height",
         "viewBox",
-        "className",
+        "class",
         "style",
         "children"
     ]);
@@ -26,7 +25,7 @@ const SvgWrapper: Component<ISvg & { children: JSX.Element }> = (props) => {
             height={localProps.height || "28px"}
             viewBox={localProps.viewBox || "0 0 1024 1024"}
             class={
-                localProps.className ??
+                localProps.class ??
                 "fill-white light:fill-warmBrown hover:fill-gold focus:fill-gold active:fill-gold cursor-pointer duration-300"
             }
             style={localProps.style}

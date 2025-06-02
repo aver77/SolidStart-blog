@@ -84,7 +84,7 @@ export default defineConfig([
              *   .then(() => {...})
              * */
             "@stylistic/dot-location": ["error", "property"],
-            "@stylistic/jsx-max-props-per-line": [1, { when: "always" }],
+            "@stylistic/jsx-max-props-per-line": [1, { when: "multiline" }],
             /** JsxComponentNaming like this */
             "@stylistic/jsx-pascal-case": ["error"],
             "@stylistic/jsx-quotes": ["error", "prefer-double"],

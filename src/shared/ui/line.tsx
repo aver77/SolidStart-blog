@@ -1,4 +1,4 @@
-import { mergeProps, type Component, type JSX, Show } from "solid-js";
+import { mergeProps, type Component, type JSX, Show, children } from "solid-js";
 import cx from "classnames";
 
 export enum LineAligns {
@@ -24,7 +24,10 @@ type ILine = { stroke?: number; color?: string; className?: string } & (
 
 const Line: Component<ILine> = (_props) => {
     const props = mergeProps({ align: LineAligns.LEFT }, _props);
-    const line = 
+    /** Necessary when children is used multiple times */
+    const child = children(() => props.children);
+
+    const line =
         <div
             class={cx(
                 props.className,
@@ -44,7 +47,7 @@ const Line: Component<ILine> = (_props) => {
                 return (
                     <>
                         {line}
-                        {props.children}
+                        {child()}
                     </>
                 );
             }
@@ -52,7 +55,7 @@ const Line: Component<ILine> = (_props) => {
                 return (
                     <>
                         {line}
-                        {props.children}
+                        {child()}
                         {line}
                     </>
                 );
@@ -61,7 +64,7 @@ const Line: Component<ILine> = (_props) => {
             default: {
                 return (
                     <>
-                        {props.children}
+                        {child()}
                         {line}
                     </>
                 );
@@ -70,8 +73,10 @@ const Line: Component<ILine> = (_props) => {
     };
 
     return (
-        <Show when={props.children}
-            fallback={line}>
+        <Show
+            when={child()}
+            fallback={line}
+        >
             <div class="flex flex-nowrap gap-offset3x items-center duration-300">
                 {getContent()}
             </div>
