@@ -35,17 +35,17 @@ export default defineConfig([
             /** Import sort */
             'simple-import-sort/imports': ['error', {
                 groups: [
-                    // 1. Imports from solid-js
+                    /** 1. Imports from solid-js */
                     ['^solid-js', '^@solidjs'],
-                    // 2. Rest external libs
+                    /** 2. Imports from rest external libs (including @tanstack-query) */
                     ['^\\w','^@\\w'],
-                    // 3. Absolute project imports (~/) and relative import
+                    /** 3. Absolute project imports (~/) and relative import */
                     ['^~/', '^\\.'],
-                    // 4. type-импорты (группируются по префиксу `type:`)
+                    /** 4. Type-imports */
                     ['^type:'],
-                    // 5. Media-files (images, fonts etc.)
+                    /** 5. Media-files (images, fonts etc.) */
                     ['\\.(png|jpe?g|gif|svg|webp|avif|mp4|mp3|woff2?|eot|ttf|otf)$'],
-                    // 6. Styles
+                    /** 6. Styles */
                     ['\\.css$', '\\.scss$', '\\.sass$', '\\.less$'],
                 ],
             }],
