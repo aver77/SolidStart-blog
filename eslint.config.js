@@ -10,7 +10,7 @@ import simpleImportSort from "eslint-plugin-simple-import-sort";
  * 2. Линтить solid (контролировать чтобы пропсы не деструктурировались,
  * чтобы реактивность сохранялась и тд) ✅
  * 3. Линтить codestyle ✅
- * 4. Линтить import-order
+ * 4. Линтить import-order ✅
  * 5. Линтить css
  */
 
