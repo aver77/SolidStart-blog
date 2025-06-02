@@ -1,7 +1,9 @@
-import LoopIcon from "~/shared/assets/svg/components/loop";
-import { type Component, type JSX, splitProps, Show } from "solid-js";
-import Cancel from "~/shared/assets/svg/components/cancel";
+import { type Component, type JSX, Show, splitProps } from "solid-js";
+
 import cx from "classnames";
+
+import Cancel from "~/shared/assets/svg/components/cancel";
+import LoopIcon from "~/shared/assets/svg/components/loop";
 
 import classes from "./input.module.css";
 

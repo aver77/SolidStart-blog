@@ -1,4 +1,4 @@
-import { JSX, createEffect, onCleanup, Show } from "solid-js";
+import { createEffect, JSX, onCleanup, Show } from "solid-js";
 
 type InfiniteScrollProps = {
     onLoadMore: () => void;

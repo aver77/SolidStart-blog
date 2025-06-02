@@ -1,5 +1,7 @@
 import { Component, Index, type JSX, onCleanup, onMount, Show } from "solid-js";
+
 import cx from "classnames";
+
 import OutlinedChip from "~/shared/ui/chip/outlinedChip";
 
 export interface IDropdownItem {

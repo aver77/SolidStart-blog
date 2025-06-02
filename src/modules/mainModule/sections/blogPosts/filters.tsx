@@ -1,7 +1,8 @@
-import Input from "~/shared/ui/input";
-import FilterIcon from "~/shared/assets/svg/components/filter";
 import { Component, createSignal } from "solid-js";
+
 import Dropdown, { type IDropdownItem } from "~/components/dropdown";
+import FilterIcon from "~/shared/assets/svg/components/filter";
+import Input from "~/shared/ui/input";
 
 interface IFilters {
     searchValue: string;

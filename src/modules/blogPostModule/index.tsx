@@ -1,11 +1,13 @@
-import { fetchAbout, fetchBlogPost } from "~/shared/api";
+import { For, Show } from "solid-js";
 import { useLocation } from "@solidjs/router";
+
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import { createQuery } from "@tanstack/solid-query";
+
+import { fetchAbout, fetchBlogPost } from "~/shared/api";
 import Book from "~/shared/assets/svg/components/book";
-import { For, Show } from "solid-js";
-import Chip from "~/shared/ui/chip/chip";
 import { useTheme } from "~/shared/hooks/useTheme";
+import Chip from "~/shared/ui/chip/chip";
 import { getReadingTime } from "~/shared/utils/getReadingTime";
 
 const BlogPostModule = () => {

@@ -1,5 +1,6 @@
-import SvgWrapper, { type ISvg } from "~/shared/assets/svg/svgWrapper";
 import { splitProps } from "solid-js";
+
+import SvgWrapper, { type ISvg } from "~/shared/assets/svg/svgWrapper";
 import { getColorClass } from "~/shared/assets/svg/utils";
 
 const LoopSad = (props: ISvg) => {

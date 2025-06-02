@@ -1,4 +1,5 @@
 import { type Component, type JSX, splitProps } from "solid-js";
+
 import cn from "classnames";
 
 import classes from "./button.module.css";

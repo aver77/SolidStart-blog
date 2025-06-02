@@ -1,4 +1,5 @@
-import { mergeProps, type Component, type JSX, Show, children } from "solid-js";
+import { children, type Component, type JSX, mergeProps, Show } from "solid-js";
+
 import cx from "classnames";
 
 export enum LineAligns {

@@ -1,11 +1,12 @@
-import { fetchAbout } from "~/shared/api";
-import DotsGrid from "~/modules/mainModule/sections/about/dotsGrid";
+import { Component, Show } from "solid-js";
 
+import { createQuery } from "@tanstack/solid-query";
+
+import DotsGrid from "~/modules/mainModule/sections/about/dotsGrid";
+import { fetchAbout } from "~/shared/api";
+import { useTheme } from "~/shared/hooks/useTheme";
 import Button from "~/shared/ui/button";
 import DottedText from "~/shared/ui/dottedText";
-import { createQuery } from "@tanstack/solid-query";
-import { Component, Show } from "solid-js";
-import { useTheme } from "~/shared/hooks/useTheme";
 
 interface IAbout {
     postsRef: () => HTMLElement;

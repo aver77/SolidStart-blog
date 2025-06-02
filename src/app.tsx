@@ -1,8 +1,15 @@
+import { Suspense } from "solid-js";
 import { MetaProvider } from "@solidjs/meta";
 import { Router } from "@solidjs/router";
 import { FileRoutes } from "@solidjs/start/router";
-import { Suspense } from "solid-js";
+
 import { QueryClient, QueryClientProvider } from "@tanstack/solid-query";
+
+import Footer from "~/components/footer";
+import Header from "~/components/header";
+import WithTheme from "~/shared/providers/withTheme";
+
+import "./globals/root.css";
 
 const queryClient = new QueryClient({
     defaultOptions: {
@@ -11,12 +18,6 @@ const queryClient = new QueryClient({
         },
     },
 });
-
-import WithTheme from "~/shared/providers/withTheme";
-import Header from "~/components/header";
-import Footer from "~/components/footer";
-
-import "./globals/root.css";
 
 export default function App() {
     return (

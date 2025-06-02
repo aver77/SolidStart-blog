@@ -1,9 +1,11 @@
-import { type Component, For, splitProps, Show } from "solid-js";
+import { type Component, For, Show, splitProps } from "solid-js";
+import { useNavigate } from "@solidjs/router";
+
+import cx from "classnames";
+
+import Book from "~/shared/assets/svg/components/book";
 import type { IPost } from "~/shared/types";
 import Chip from "~/shared/ui/chip/chip";
-import cx from "classnames";
-import Book from "~/shared/assets/svg/components/book";
-import { useNavigate } from "@solidjs/router";
 import { getReadingTime } from "~/shared/utils/getReadingTime";
 
 export interface IPostCard extends IPost {

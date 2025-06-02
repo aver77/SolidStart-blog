@@ -1,5 +1,6 @@
-import SvgWrapper, { type ISvg } from "~/shared/assets/svg/svgWrapper";
 import { splitProps } from "solid-js";
+
+import SvgWrapper, { type ISvg } from "~/shared/assets/svg/svgWrapper";
 
 const ThemeSun = (props: ISvg) => {
     const [localProps, restProps] = splitProps(props, ["width", "height"]);

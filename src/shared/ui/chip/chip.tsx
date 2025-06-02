@@ -1,4 +1,5 @@
 import { type Component, type JSX, splitProps } from "solid-js";
+
 import cx from "classnames";
 
 import classes from "./chip.module.css";

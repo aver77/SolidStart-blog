@@ -1,6 +1,8 @@
-import { PostCard, IPostCard } from "./postCard";
 import { Component, splitProps } from "solid-js";
+
 import cx from "classnames";
+
+import { IPostCard, PostCard } from "./postCard";
 
 import classes from "./postCard.module.css";
 

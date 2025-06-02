@@ -1,6 +1,7 @@
+import { splitProps } from "solid-js";
+
 import SvgWrapper, { type ISvg } from "~/shared/assets/svg/svgWrapper";
 import { getColorClass } from "~/shared/assets/svg/utils";
-import { splitProps } from "solid-js";
 
 const DocumentSad = (props: ISvg) => {
     const [localProps, restProps] = splitProps(props, [

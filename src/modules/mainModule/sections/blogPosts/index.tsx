@@ -1,16 +1,16 @@
 import { Component, createMemo, createSignal, For, Show } from "solid-js";
-import { getClient } from "~/shared/api";
-import type { IContentfulResource, IPost } from "~/shared/types";
-
-import { PostCard, HeadingPostCard } from "./postCard";
-import Line from "~/shared/ui/line";
-import DottedText from "~/shared/ui/dottedText";
-import Filters from "./filters";
-import { createInfiniteQuery } from "@tanstack/solid-query";
-import InfiniteScroll from "~/components/infiniteScroll";
-import LoopSad from "~/shared/assets/svg/components/loopSad";
 
 import cx from "classnames";
+import { createInfiniteQuery } from "@tanstack/solid-query";
+
+import InfiniteScroll from "~/components/infiniteScroll";
+import { getClient } from "~/shared/api";
+import LoopSad from "~/shared/assets/svg/components/loopSad";
+import type { IContentfulResource, IPost } from "~/shared/types";
+import DottedText from "~/shared/ui/dottedText";
+import Line from "~/shared/ui/line";
+import Filters from "./filters";
+import { HeadingPostCard, PostCard } from "./postCard";
 
 const POSTS_LIMIT = 3;
 

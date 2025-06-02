@@ -1,6 +1,8 @@
-import Chip, { IChip } from "~/shared/ui/chip/chip";
 import { Component, splitProps } from "solid-js";
+
 import cx from "classnames";
+
+import Chip, { IChip } from "~/shared/ui/chip/chip";
 
 import classes from "./outlinedChip.module.css";
 

@@ -1,6 +1,6 @@
-import SvgWrapper, { type ISvg } from "~/shared/assets/svg/svgWrapper";
 import { splitProps } from "solid-js";
-import { getColorClass } from "~/shared/assets/svg/utils";
+
+import SvgWrapper, { type ISvg } from "~/shared/assets/svg/svgWrapper";
 
 const ThemeMoon = (props: ISvg) => {
     const [localProps, restProps] = splitProps(props, [

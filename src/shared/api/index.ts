@@ -1,4 +1,5 @@
 import { createClient } from "contentful";
+
 import type { IContentfulResourceFields, IPost } from "~/shared/types";
 import type { IAbout, IContentfulResource } from "~/shared/types";
 

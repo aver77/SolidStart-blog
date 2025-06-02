@@ -1,6 +1,8 @@
-import { PostCard, IPostCard } from "./postCard";
 import { Component, splitProps } from "solid-js";
+
 import cx from "classnames";
+
+import { IPostCard, PostCard } from "./postCard";
 
 const UsualPostCard: Component<IPostCard> = (props) => {
     const [localProps, restProps] = splitProps(props, ["wrapperClass"]);

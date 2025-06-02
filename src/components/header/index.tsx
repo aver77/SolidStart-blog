@@ -1,14 +1,13 @@
 import { Show } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 
-import ThemeSun from "~/shared/assets/svg/components/themeSun";
+import CodeWars from "~/shared/assets/svg/components/codewars";
 import GitHub from "~/shared/assets/svg/components/gitHub";
 import LinkedIn from "~/shared/assets/svg/components/linkedIn";
-import CodeWars from "~/shared/assets/svg/components/codewars";
-
-import { toggleTheme } from "~/shared/providers/withTheme";
 import ThemeMoon from "~/shared/assets/svg/components/themeMoon";
+import ThemeSun from "~/shared/assets/svg/components/themeSun";
 import { useTheme } from "~/shared/hooks/useTheme";
+import { toggleTheme } from "~/shared/providers/withTheme";
 
 const Header = () => {
     const navigate = useNavigate();

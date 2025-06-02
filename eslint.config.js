@@ -2,6 +2,7 @@ import { defineConfig } from "eslint/config";
 import solid from "eslint-plugin-solid";
 import tsParser from "@typescript-eslint/parser";
 import stylistic from "@stylistic/eslint-plugin";
+import simpleImportSort from "eslint-plugin-simple-import-sort";
 
 /**
  * TODO:
@@ -18,7 +19,8 @@ export default defineConfig([
         files: ["src/**/*.js", "src/**/*.ts", "src/**/*.tsx"],
         plugins: {
             solid,
-            "@stylistic": stylistic
+            "@stylistic": stylistic,
+            "simple-import-sort": simpleImportSort
         },
         languageOptions: {
             parser: tsParser,
@@ -30,6 +32,24 @@ export default defineConfig([
             }
         },
         rules: {
+            /** Import sort */
+            'simple-import-sort/imports': ['error', {
+                groups: [
+                    // 1. Imports from solid-js
+                    ['^solid-js', '^@solidjs'],
+                    // 2. Rest external libs
+                    ['^\\w','^@\\w'],
+                    // 3. Absolute project imports (~/) and relative import
+                    ['^~/', '^\\.'],
+                    // 4. type-импорты (группируются по префиксу `type:`)
+                    ['^type:'],
+                    // 5. Media-files (images, fonts etc.)
+                    ['\\.(png|jpe?g|gif|svg|webp|avif|mp4|mp3|woff2?|eot|ttf|otf)$'],
+                    // 6. Styles
+                    ['\\.css$', '\\.scss$', '\\.sass$', '\\.less$'],
+                ],
+            }],
+
             /** Codestyle: */
             "@stylistic/max-len": [
                 "error",

@@ -1,4 +1,5 @@
 import { createSignal, onCleanup, onMount } from "solid-js";
+
 import { checkIsLightTheme } from "~/shared/providers/withTheme";
 
 export const useTheme = (isInitialLightTheme: boolean) => {

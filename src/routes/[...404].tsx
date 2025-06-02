@@ -1,8 +1,9 @@
 import { Title } from "@solidjs/meta";
+import { useNavigate } from "@solidjs/router";
 import { HttpStatusCode } from "@solidjs/start";
+
 import DocumentSad from "~/shared/assets/svg/components/documentSad";
 import Button from "~/shared/ui/button";
-import { useNavigate } from "@solidjs/router";
 
 export default function NotFound() {
     const navigate = useNavigate();
