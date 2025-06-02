@@ -1,37 +1,37 @@
 .base {
-    @apply cursor-pointer;
-    @apply rounded-[var(--radius-md)];
-    @apply border border-solid border-[var(--color-lightestGray)];
-    @apply transition duration-300;
+  @apply cursor-pointer;
+  @apply rounded-[var(--radius-md)];
+  @apply border border-solid border-[var(--color-lightestGray)];
+  @apply transition duration-300;
 }
 
 :global(.light) .base {
-    @apply border-[var(--color-warmBrown)];
+  @apply border-[var(--color-warmBrown)];
 }
 
 .base:hover:not(.selected),
 .base:active:not(.selected),
 .base:focus:not(.selected) {
-    @apply text-[var(--color-black)];
-    @apply bg-[var(--color-lightestGray)];
+  @apply text-[var(--color-black)];
+  @apply bg-[var(--color-lightestGray)];
 }
 
 :global(.light) .base:hover:not(.selected),
 :global(.light) .base:active:not(.selected),
 :global(.light) .base:focus:not(.selected) {
-    @apply text-[var(--color-warmGold)];
-    @apply border-[var(--color-warmGold)];
-    @apply bg-[var(--color-warmDWhite)];
+  @apply text-[var(--color-warmGold)];
+  @apply border-[var(--color-warmGold)];
+  @apply bg-[var(--color-warmDWhite)];
 }
 
 span.selected {
-    @apply bg-[var(--color-gold)];
-    @apply border-[var(--color-gray)];
-    @apply text-[var(--color-gray)];
+  @apply bg-[var(--color-gold)];
+  @apply border-[var(--color-gray)];
+  @apply text-[var(--color-gray)];
 }
 
 :global(.light) span.selected {
-    @apply bg-[var(--color-warmGold)];
-    @apply border-[var(--color-warmGold)];
-    @apply text-[var(--color-white)];
+  @apply bg-[var(--color-warmGold)];
+  @apply border-[var(--color-warmGold)];
+  @apply text-[var(--color-white)];
 }

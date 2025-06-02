@@ -15,7 +15,7 @@ export const useTheme = (isInitialLightTheme: boolean) => {
 
         observer.observe(document.documentElement, {
             attributes: true,
-            attributeFilter: ["class"]
+            attributeFilter: ["class"],
         });
 
         onCleanup(() => observer.disconnect());

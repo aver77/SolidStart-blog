@@ -17,14 +17,14 @@ const BlogPostModule = () => {
         queryKey: ["post", blogPostId],
         queryFn: () => fetchBlogPost(blogPostId!),
         staleTime: 1000 * 60 * 120,
-        ssr: true
+        ssr: true,
     }));
 
     const about = createQuery(() => ({
         queryKey: ["about"],
         queryFn: fetchAbout,
         staleTime: 1000 * 60 * 120,
-        ssr: true
+        ssr: true,
     }));
 
     const getDot = () => <div class="h-full mx-offset3x">&bull;</div>;
@@ -66,21 +66,16 @@ const BlogPostModule = () => {
                 <div class="flex items-center text-lightGray light:text-warmBrown">
                     {getDot()}
                     <span>
-                        {new Date(
-                            post?.data?.sys?.createdAt!
-                        ).toLocaleDateString("en-US", {
+                        {new Date(post?.data?.sys?.createdAt!).toLocaleDateString("en-US", {
                             month: "short",
                             day: "2-digit",
-                            year: "numeric"
+                            year: "numeric",
                         })}
                     </span>
                     {getDot()}
                     <span class="flex items-center gap-offset2x light:text-warmBrown">
                         <Book />
-                        <span>
-                            {getReadingTime(post?.data?.fields?.text!)} min.
-                            read
-                        </span>
+                        <span>{getReadingTime(post?.data?.fields?.text!)} min. read</span>
                     </span>
                 </div>
             </div>

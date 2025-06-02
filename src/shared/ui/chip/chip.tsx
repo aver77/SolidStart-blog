@@ -11,8 +11,7 @@ const Chip: Component<IChip> = (props) => {
     const [localProps, restProps] = splitProps(props, ["text", "class"]);
 
     return (
-        <span class={cx(classes.chip, localProps.class)}
-            {...restProps}>
+        <span class={cx(classes.chip, localProps.class)} {...restProps}>
             {localProps.text}
         </span>
     );

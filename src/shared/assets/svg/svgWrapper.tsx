@@ -15,7 +15,7 @@ const SvgWrapper: Component<ISvg & { children: JSX.Element }> = (props) => {
         "viewBox",
         "class",
         "style",
-        "children"
+        "children",
     ]);
 
     return (

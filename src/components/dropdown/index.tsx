@@ -41,7 +41,7 @@ const Dropdown: Component<IDropdown> = (props) => {
         const newItems = [...props.items];
         newItems[index] = {
             ...newItems[index],
-            selected: !newItems[index].selected
+            selected: !newItems[index].selected,
         };
 
         props.onChangeItems(newItems);
@@ -53,7 +53,7 @@ const Dropdown: Component<IDropdown> = (props) => {
                 <div
                     class={cx(
                         "z-2 rounded-md w-[500px] max-h-[200px] flex flex-wrap overflow-y-auto bg-gray light:bg-warmDWhite p-offset5x gap-offset5x shadow-lg",
-                        props.wrapperClass
+                        props.wrapperClass,
                     )}
                 >
                     <Index each={props.items}>

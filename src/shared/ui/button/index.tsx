@@ -5,7 +5,7 @@ import classes from "./button.module.css";
 
 export enum ButtonTypes {
     FILLED = "FILLED",
-    OUTLINED = "OUTLINED"
+    OUTLINED = "OUTLINED",
 }
 
 interface IButton extends JSX.HTMLAttributes<HTMLButtonElement> {
@@ -18,7 +18,7 @@ const Index: Component<IButton> = (props) => {
         "children",
         "type",
         "disabled",
-        "class"
+        "class",
     ]);
 
     const typeClass = ButtonTypes.FILLED
@@ -31,7 +31,7 @@ const Index: Component<IButton> = (props) => {
                 classes.btnShared,
                 localProps.disabled && classes.disabled,
                 typeClass,
-                localProps.class
+                localProps.class,
             )}
             {...restProps}
         >

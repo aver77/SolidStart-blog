@@ -7,7 +7,7 @@ const DocumentSad = (props: ISvg) => {
         "width",
         "height",
         "fill",
-        "viewBox"
+        "viewBox",
     ]);
 
     return (

@@ -1,15 +1,15 @@
 .chip {
-    @apply rounded-full;
-    @apply bg-[var(--color-gray)];
-    @apply py-[var(--spacing-offset2x)] px-[var(--spacing-offset3x)];
-    @apply text-[var(--text-sm)];
-    @apply whitespace-nowrap;
-    @apply overflow-hidden;
-    @apply text-ellipsis;
-    @apply transition duration-300;
+  @apply rounded-full;
+  @apply bg-[var(--color-gray)];
+  @apply py-[var(--spacing-offset2x)] px-[var(--spacing-offset3x)];
+  @apply text-[var(--text-sm)];
+  @apply whitespace-nowrap;
+  @apply overflow-hidden;
+  @apply text-ellipsis;
+  @apply transition duration-300;
 }
 
 :global(.light) .chip {
-    @apply text-[var(--color-warmBrown)];
-    @apply bg-[var(--color-warmDWhite)];
+  @apply text-[var(--color-warmBrown)];
+  @apply bg-[var(--color-warmDWhite)];
 }

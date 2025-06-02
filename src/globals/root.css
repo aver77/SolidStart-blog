@@ -4,88 +4,88 @@
 @custom-variant light (&:where(.light, .light *));
 
 @theme {
-    --color-*: initial;
-    --color-black: #080808;
-    --color-dark: #111;
-    --color-gray: #232323;
-    --color-warmBrown: #774e34;
-    --color-warmGray: #d4c0a8;
-    --color-lightGray: #999a9d;
-    --color-lightestGray: #d0d0d0;
-    --color-gold: gold;
-    --color-warmGold: #f7a816;
-    --color-white: #ebecf3;
-    --color-warmWhite: #f3e6cf;
-    --color-warmDWhite: #dac8b0;
-    --color-disabled: #ebebe4;
+  --color-*: initial;
+  --color-black: #080808;
+  --color-dark: #111;
+  --color-gray: #232323;
+  --color-warmBrown: #774e34;
+  --color-warmGray: #d4c0a8;
+  --color-lightGray: #999a9d;
+  --color-lightestGray: #d0d0d0;
+  --color-gold: gold;
+  --color-warmGold: #f7a816;
+  --color-white: #ebecf3;
+  --color-warmWhite: #f3e6cf;
+  --color-warmDWhite: #dac8b0;
+  --color-disabled: #ebebe4;
 
-    --font-*: initial;
-    --font-base: "Montserrat";
-    --font-curve: "Birthstone";
+  --font-*: initial;
+  --font-base: "Montserrat";
+  --font-curve: "Birthstone";
 
-    --spacing-offsetx: 4px;
-    --spacing-offset2x: 8px;
-    --spacing-offset3x: 12px;
-    --spacing-offset4x: 16px;
-    --spacing-offset5x: 20px;
-    --spacing-offset6x: 24px;
-    --spacing-offset7x: 28px;
-    --spacing-offset8x: 32px;
-    --spacing-offset9x: 36px;
-    --spacing-offset10x: 40px;
-    --spacing-headerHeight: 80px;
-    --spacing-footerHeight: 60px;
-    --spacing-highest: 96px;
+  --spacing-offsetx: 4px;
+  --spacing-offset2x: 8px;
+  --spacing-offset3x: 12px;
+  --spacing-offset4x: 16px;
+  --spacing-offset5x: 20px;
+  --spacing-offset6x: 24px;
+  --spacing-offset7x: 28px;
+  --spacing-offset8x: 32px;
+  --spacing-offset9x: 36px;
+  --spacing-offset10x: 40px;
+  --spacing-headerHeight: 80px;
+  --spacing-footerHeight: 60px;
+  --spacing-highest: 96px;
 
-    --text-*: initial;
-    --text-xs: 14px;
-    --text-sm: 16px;
-    --text-base: 18px;
-    --text-lg: 20px;
-    --text-xl: 24px;
-    --text-2xl: 28px;
-    --text-3xl: 32px;
-    --text-4xl: 36px;
-    --text-5xl: 40px;
-    --text-6xl: 44px;
-    --text-7xl: 48px;
-    --text-max: 52px;
+  --text-*: initial;
+  --text-xs: 14px;
+  --text-sm: 16px;
+  --text-base: 18px;
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --text-2xl: 28px;
+  --text-3xl: 32px;
+  --text-4xl: 36px;
+  --text-5xl: 40px;
+  --text-6xl: 44px;
+  --text-7xl: 48px;
+  --text-max: 52px;
 
-    --breakpoint-*: initial;
-    --breakpoint-ipadLg: 1000px;
-    --breakpoint-ipadSm: 700px;
-    --breakpoint-phones: 500px;
+  --breakpoint-*: initial;
+  --breakpoint-ipadLg: 1000px;
+  --breakpoint-ipadSm: 700px;
+  --breakpoint-phones: 500px;
 
-    --radius-*: initial;
-    --radius-base: 6px;
-    --radius-md: 8px;
+  --radius-*: initial;
+  --radius-base: 6px;
+  --radius-md: 8px;
 }
 
 html {
-    @apply bg-dark;
-    @apply text-white;
-    @apply font-base;
-    @apply text-lg;
+  @apply bg-dark;
+  @apply text-white;
+  @apply font-base;
+  @apply text-lg;
 
-    @variant light {
-        @apply bg-warmWhite;
-        @apply text-warmBrown;
-    }
+  @variant light {
+    @apply bg-warmWhite;
+    @apply text-warmBrown;
+  }
 }
 
 *::selection {
-    @apply bg-gold;
+  @apply bg-gold;
 }
 
 * {
-    @apply leading-[1.2];
+  @apply leading-[1.2];
 }
 
 .main-layout {
-    @apply px-offset8x;
+  @apply px-offset8x;
 }
 
 .main-container {
-    @apply max-w-[1150px];
-    @apply mx-auto;
+  @apply max-w-[1150px];
+  @apply mx-auto;
 }

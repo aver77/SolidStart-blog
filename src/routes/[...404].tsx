@@ -15,19 +15,14 @@ export default function NotFound() {
                 <div>
                     <DocumentSad />
                 </div>
-                <h3 class="text-2xl font-bold mt-offset8x">
-                    Hmmm, that didn't work
-                </h3>
+                <h3 class="text-2xl font-bold mt-offset8x">Hmmm, that didn't work</h3>
                 <div class="mt-offset2x">
                     <span>
-                        It seems like that page doesn't exist, but I don't want
-                        to lose you!
+                        It seems like that page doesn't exist, but I don't want to lose you!
                     </span>
                 </div>
                 <div class="mt-offset8x">
-                    <Button onClick={() => navigate("/")}>
-                        ← Back to Homepage
-                    </Button>
+                    <Button onClick={() => navigate("/")}>← Back to Homepage</Button>
                 </div>
             </div>
         </div>

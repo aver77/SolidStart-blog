@@ -5,7 +5,7 @@ const AVERAGE_WORDS_PER_MINUTE = 100;
 
 export const getReadingTime = (
     text: string | Document,
-    wordsPerMinute = AVERAGE_WORDS_PER_MINUTE
+    wordsPerMinute = AVERAGE_WORDS_PER_MINUTE,
 ): number => {
     if (typeof text !== "string") {
         text = documentToPlainTextString(text);

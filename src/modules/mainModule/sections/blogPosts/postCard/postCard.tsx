@@ -39,7 +39,7 @@ export const PostCard: Component<IPostCardWithSubtitleClass> = (_props) => {
             <h2
                 class={cx(
                     "my-offset3x text-ellipsis overflow-hidden",
-                    props.subtitleClass
+                    props.subtitleClass,
                 )}
             >
                 {post.subTitle}

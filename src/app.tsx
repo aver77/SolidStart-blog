@@ -7,9 +7,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/solid-query";
 const queryClient = new QueryClient({
     defaultOptions: {
         queries: {
-            experimental_prefetchInRender: true
-        }
-    }
+            experimental_prefetchInRender: true,
+        },
+    },
 });
 
 import WithTheme from "~/shared/providers/withTheme";
@@ -28,9 +28,7 @@ export default function App() {
                             <WithTheme>
                                 <Header />
                                 <main class="main-container">
-                                    <Suspense
-                                        fallback={<div class="h-screen" />}
-                                    >
+                                    <Suspense fallback={<div class="h-screen" />}>
                                         {props.children}
                                     </Suspense>
                                 </main>

@@ -17,7 +17,7 @@ const Input: Component<IInput> = (props) => {
         "value",
         "handleChange",
         "wrapperClass",
-        "class"
+        "class",
     ]);
 
     return (

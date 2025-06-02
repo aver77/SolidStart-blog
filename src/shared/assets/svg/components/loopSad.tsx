@@ -6,7 +6,7 @@ const LoopSad = (props: ISvg) => {
     const [localProps, restProps] = splitProps(props, [
         "width",
         "height",
-        "fill"
+        "fill",
     ]);
 
     return (

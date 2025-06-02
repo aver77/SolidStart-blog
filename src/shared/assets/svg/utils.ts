@@ -2,7 +2,7 @@ export const getColorClass = (
     colorProperty: "fill" | "stroke",
     baseColor: string | undefined,
     customDarkThemeColor?: string,
-    customLightThemeColor?: string
+    customLightThemeColor?: string,
 ) => {
     if (baseColor) {
         return `${colorProperty}-${baseColor}`;

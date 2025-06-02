@@ -4,7 +4,7 @@ import cx from "classnames";
 export enum LineAligns {
     LEFT = "left",
     RIGHT = "right",
-    CENTER = "center"
+    CENTER = "center",
 }
 
 interface ILineWithContent {
@@ -27,19 +27,20 @@ const Line: Component<ILine> = (_props) => {
     /** Necessary when children is used multiple times */
     const child = children(() => props.children);
 
-    const line =
-        <div
-            class={cx(
-                props.className,
-                "border-solid border-lightGray light:border-warmBrown w-full"
-            )}
-            style={{
-                ...props.color
-                    ? { "border-color": props.color }
-                    : {},
-                "border-bottom-width": `${props.stroke || 1}px`
-            }}
-        />;
+    const line = 
+    <div
+        class={cx(
+            props.className,
+            "border-solid border-lightGray light:border-warmBrown w-full",
+        )}
+        style={{
+            ...props.color
+                ? { "border-color": props.color }
+                : {},
+            "border-bottom-width": `${props.stroke || 1}px`,
+        }}
+    />
+  ;
 
     const getContent = () => {
         switch (props.align) {
@@ -73,10 +74,7 @@ const Line: Component<ILine> = (_props) => {
     };
 
     return (
-        <Show
-            when={child()}
-            fallback={line}
-        >
+        <Show when={child()} fallback={line}>
             <div class="flex flex-nowrap gap-offset3x items-center duration-300">
                 {getContent()}
             </div>

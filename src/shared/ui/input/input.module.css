@@ -1,53 +1,53 @@
 .container {
-    @apply w-full;
-    @apply relative;
+  @apply w-full;
+  @apply relative;
 }
 
 .input {
-    outline: none;
+  outline: none;
 
-    @apply w-full;
-    @apply bg-[var(--color-gray)];
-    @apply pl-[calc(var(--spacing-offset10x)+var(--spacing-offset5x))];
-    @apply pr-[calc(var(--spacing-offset10x)+var(--spacing-offset3x))];
-    @apply py-[var(--spacing-offset3x)];
-    @apply rounded-[var(--spacing-offset5x)];
-    @apply border-1;
-    @apply border-[var(--color-black)];
-    @apply transition duration-300;
+  @apply w-full;
+  @apply bg-[var(--color-gray)];
+  @apply pl-[calc(var(--spacing-offset10x)+var(--spacing-offset5x))];
+  @apply pr-[calc(var(--spacing-offset10x)+var(--spacing-offset3x))];
+  @apply py-[var(--spacing-offset3x)];
+  @apply rounded-[var(--spacing-offset5x)];
+  @apply border-1;
+  @apply border-[var(--color-black)];
+  @apply transition duration-300;
 }
 
 :global(.light) .input {
-    @apply border-[var(--color-warmDWhite)];
-    @apply bg-[var(--color-warmDWhite)];
+  @apply border-[var(--color-warmDWhite)];
+  @apply bg-[var(--color-warmDWhite)];
 }
 
 .input:focus,
 .input:hover,
 .input:active {
-    @apply border-[var(--color-lightGray)];
+  @apply border-[var(--color-lightGray)];
 }
 
 :global(.light) .input:focus,
 :global(.light) .input:hover,
 :global(.light) .input:active {
-    @apply border-[var(--color-warmBrown)];
+  @apply border-[var(--color-warmBrown)];
 }
 
 .loop {
-    @apply absolute;
-    @apply top-[50%];
-    @apply transform-[translate(0,-50%)];
-    @apply left-[var(--spacing-offset5x)];
-    @apply cursor-pointer;
+  @apply absolute;
+  @apply top-[50%];
+  @apply transform-[translate(0,-50%)];
+  @apply left-[var(--spacing-offset5x)];
+  @apply cursor-pointer;
 }
 
 .cancel {
-    @apply absolute;
-    @apply top-px;
-    @apply right-px;
-    @apply top-[50%];
-    @apply transform-[translate(0,-50%)];
-    @apply right-[var(--spacing-offset3x)];
-    @apply cursor-pointer;
+  @apply absolute;
+  @apply top-px;
+  @apply right-px;
+  @apply top-[50%];
+  @apply transform-[translate(0,-50%)];
+  @apply right-[var(--spacing-offset3x)];
+  @apply cursor-pointer;
 }

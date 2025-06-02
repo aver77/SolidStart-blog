@@ -23,10 +23,10 @@ export const fetchPosts = async (page: number) => {
         .getEntries({
             content_type: "post",
             skip: page * POSTS_LIMIT, // how much posts we skip from the start
-            limit: POSTS_LIMIT // how many posts max fetch
+            limit: POSTS_LIMIT, // how many posts max fetch
         })
         .catch(() => ({
-            items: []
+            items: [],
         }))) as IContentfulResource<IPost>;
 
     return posts?.items;
@@ -42,7 +42,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                 ? undefined
                 : allPages.length,
         staleTime: 1000 * 60 * 60,
-        ssr: true
+        ssr: true,
     }));
     const posts = createMemo(() => infinitePostsQuery.data?.pages.flat() ?? []);
 
@@ -51,9 +51,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
         return posts()?.filter((post) => {
             const { title, subTitle, minutesRead } = post.fields;
 
-            const targetStr = (title + subTitle + minutesRead)
-                .trim()
-                .toLowerCase();
+            const targetStr = (title + subTitle + minutesRead).trim().toLowerCase();
             const searchStr = searchValue().trim().toLowerCase();
 
             return targetStr.includes(searchStr);
@@ -61,11 +59,11 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
     });
 
     const allPostsTags = [
-        // eslint-disable-next-line solid/reactivity
-        ...new Set(posts()?.flatMap((post) => post.fields.tags))
+    // eslint-disable-next-line solid/reactivity
+        ...new Set(posts()?.flatMap((post) => post.fields.tags)),
     ];
     const [filterByTagsValues, setFilterByTagsValues] = createSignal(
-        allPostsTags.map((tag) => ({ name: tag, selected: false }))
+        allPostsTags.map((tag) => ({ name: tag, selected: false })),
     );
 
     const searchedAndFilteredPosts = createMemo(() => {
@@ -89,14 +87,13 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
         return searchedAndFilteredPosts()?.slice(0, headingPostsAmount);
     });
     const usualPosts = createMemo(() =>
-        searchedAndFilteredPosts()?.slice(headingPostsAmount)
+        searchedAndFilteredPosts()?.slice(headingPostsAmount),
     );
 
     return (
         <div class="p-highest">
             <Line>
-                <h2 class="text-max font-black"
-                    ref={props.postsRef}>
+                <h2 class="text-max font-black" ref={props.postsRef}>
                     <DottedText>Posts</DottedText>
                 </h2>
             </Line>
@@ -111,7 +108,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                     class={cx(
                         "mt-offset8x min-h-[400px]",
                         !searchedAndFilteredPosts().length &&
-                        "flex flex-col justify-center items-center"
+                        "flex flex-col justify-center items-center",
                     )}
                 >
                     <InfiniteScroll
@@ -125,17 +122,14 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                                 </div>
                                 <h3 class="text-2xl font-bold mt-offset8x">
                                     No Results in{" "}
-                                    <span class="text-gold light:text-warmGold">
-                                        Posts
-                                    </span>
+                                    <span class="text-gold light:text-warmGold">Posts</span>
                                 </h3>
                                 <p class="mt-offset2x text-center">
                                     No Results for the term{" "}
                                     <span class="text-gold light:text-warmGold">
                                         "{searchValue()}"
                                     </span>
-                                    . You can try another search term similar to
-                                    this one.
+                                    . You can try another search term similar to this one.
                                 </p>
                             </div>
                         </Show>
@@ -145,16 +139,22 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                                     {(post, index) => {
                                         return (
                                             <>
-                                                <Show when={!index()}
-                                                    fallback={<PostCard
-                                                        {...post.fields}
-                                                        id={post.sys.id}
-                                                    />}><div class="row-span-2 flex items-center">
+                                                <Show
+                                                    when={!index()}
+                                                    fallback={
+                                                        <PostCard
+                                                            {...post.fields}
+                                                            id={post.sys.id}
+                                                        />
+                                                    }
+                                                >
+                                                    <div class="row-span-2 flex items-center">
                                                         <HeadingPostCard
                                                             {...post.fields}
                                                             id={post.sys.id}
                                                         />
-                                                    </div></Show>
+                                                    </div>
+                                                </Show>
                                             </>
                                         );
                                     }}
@@ -163,12 +163,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                             <div class="grid grid-cols-3 gap-y-offset8x gap-x-offset4x">
                                 <For each={usualPosts()}>
                                     {(post) => {
-                                        return (
-                                            <PostCard
-                                                {...post.fields}
-                                                id={post.sys.id}
-                                            />
-                                        );
+                                        return <PostCard {...post.fields} id={post.sys.id} />;
                                     }}
                                 </For>
                             </div>

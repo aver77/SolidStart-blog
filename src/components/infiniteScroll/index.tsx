@@ -29,8 +29,8 @@ const InfiniteScroll = (props: InfiniteScrollProps) => {
             },
             {
                 rootMargin: props.options?.rootMargin ?? DEFAULT_ROOT_MARGIN,
-                threshold: props.options?.threshold ?? DEFAULT_THRESHOLD
-            }
+                threshold: props.options?.threshold ?? DEFAULT_THRESHOLD,
+            },
         );
 
         if (ref) {
@@ -47,7 +47,9 @@ const InfiniteScroll = (props: InfiniteScrollProps) => {
     return (
         <>
             {props.children}
-            <Show when={props.hasMore}><div ref={ref} /></Show>
+            <Show when={props.hasMore}>
+                <div ref={ref} />
+            </Show>
         </>
     );
 };

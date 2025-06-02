@@ -8,10 +8,7 @@ const UsualPostCard: Component<IPostCard> = (props) => {
     return (
         <PostCard
             {...restProps}
-            wrapperClass={cx(
-                localProps.wrapperClass,
-                "min-w-[200px] min-h-[300px]"
-            )}
+            wrapperClass={cx(localProps.wrapperClass, "min-w-[200px] min-h-[300px]")}
             subtitleClass={"whitespace-nowrap"}
         />
     );

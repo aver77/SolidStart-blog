@@ -18,7 +18,7 @@ const About: Component<IAbout> = (props) => {
         queryKey: ["about"],
         queryFn: fetchAbout,
         staleTime: 1000 * 60 * 120,
-        ssr: true
+        ssr: true,
     }));
 
     const getTitle = () => {
@@ -65,7 +65,7 @@ const About: Component<IAbout> = (props) => {
                         <Button
                             onClick={() =>
                                 props.postsRef().scrollIntoView({
-                                    behavior: "smooth"
+                                    behavior: "smooth",
                                 })
                             }
                         >
@@ -73,18 +73,22 @@ const About: Component<IAbout> = (props) => {
                         </Button>
                     </div>
                 </div>
-                <Show when={!isLightTheme() && about?.data?.avatar}><img
-                    width={"290px"}
-                    height={"290px"}
-                    src={about.data?.avatar.fields.file.url}
-                    alt={about.data?.avatar.fields.file.fileName}
-                /></Show>
-                <Show when={isLightTheme() && about?.data?.lightAvatar}><img
-                    width={"290px"}
-                    height={"290px"}
-                    src={about.data?.lightAvatar?.fields.file.url}
-                    alt={about.data?.lightAvatar?.fields.file.fileName}
-                /></Show>
+                <Show when={!isLightTheme() && about?.data?.avatar}>
+                    <img
+                        width={"290px"}
+                        height={"290px"}
+                        src={about.data?.avatar.fields.file.url}
+                        alt={about.data?.avatar.fields.file.fileName}
+                    />
+                </Show>
+                <Show when={isLightTheme() && about?.data?.lightAvatar}>
+                    <img
+                        width={"290px"}
+                        height={"290px"}
+                        src={about.data?.lightAvatar?.fields.file.url}
+                        alt={about.data?.lightAvatar?.fields.file.fileName}
+                    />
+                </Show>
             </div>
             <DotsGrid />
         </section>
