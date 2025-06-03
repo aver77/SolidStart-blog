@@ -5,16 +5,6 @@ import stylistic from "@stylistic/eslint-plugin";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import css from "@eslint/css";
 
-/**
- * TODO:
- * 1. Вначале - правильно линтить ts - чтобы все было строго и тд ✅
- * 2. Линтить solid (контролировать чтобы пропсы не деструктурировались,
- * чтобы реактивность сохранялась и тд) ✅
- * 3. Линтить codestyle ✅
- * 4. Линтить import-order ✅
- * 5. Линтить css ✅
- */
-
 export default defineConfig([
     globalIgnores([
         "node_modules/**/*",
