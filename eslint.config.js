@@ -1,8 +1,9 @@
-import { defineConfig } from "eslint/config";
+import { defineConfig, globalIgnores } from "eslint/config";
 import solid from "eslint-plugin-solid";
 import tsParser from "@typescript-eslint/parser";
 import stylistic from "@stylistic/eslint-plugin";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
+import css from "@eslint/css";
 
 /**
  * TODO:
@@ -11,16 +12,42 @@ import simpleImportSort from "eslint-plugin-simple-import-sort";
  * чтобы реактивность сохранялась и тд) ✅
  * 3. Линтить codestyle ✅
  * 4. Линтить import-order ✅
- * 5. Линтить css
+ * 5. Линтить css ✅
  */
 
 export default defineConfig([
+    globalIgnores([
+        "node_modules/**/*",
+        ".vinxi/**/*",
+        ".output/**/*",
+        ".husky/**/*"
+    ]),
     {
-        files: ["src/**/*.js", "src/**/*.ts", "src/**/*.tsx"],
+        files: ["src/**/*.css"],
+        ignores: ["src/**/root.css"],
+        language: "css/css",
+        plugins: {
+            css
+        },
+        rules: {
+            /** CSS */
+            "css/no-duplicate-imports": "error",
+            "css/no-empty-blocks": "error",
+            /** Safe measure for display: black; cccolor: white and so on */
+            "css/no-invalid-properties": "error",
+            /** Use only widely available CSS features */
+            "css/use-baseline": ["warn", {
+                available: "widely"
+            }]
+        }
+    },
+    {
+        files: ["src/**/*.{ts,tsx,js,jsx}"],
         plugins: {
             solid,
             "@stylistic": stylistic,
-            "simple-import-sort": simpleImportSort
+            "simple-import-sort": simpleImportSort,
+            css
         },
         languageOptions: {
             parser: tsParser,

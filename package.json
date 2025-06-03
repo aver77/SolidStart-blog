@@ -6,8 +6,8 @@
     "build": "vinxi build",
     "start": "vinxi start",
     "version": "vinxi version",
-    "lint": "npx eslint 'src/**/*.{ts,tsx,js,jsx}' --config eslint.config.js",
-    "lint-fix": "npx eslint --fix 'src/**/*.{ts,tsx,js,jsx}' --config eslint.config.js",
+    "lint": "npx eslint --config eslint.config.js",
+    "lint-fix": "npx eslint --fix --config eslint.config.js",
     "tslint": "tsc -p tsconfig.json",
     "check": "npm run lint && npm run tslint",
     "prepare": "husky"
@@ -33,6 +33,7 @@
   },
   "devDependencies": {
     "@contentful/rich-text-types": "17.0.0",
+    "@eslint/css": "0.8.1",
     "@stylistic/eslint-plugin": "4.4.0",
     "@typescript-eslint/parser": "8.33.0",
     "classnames": "2.5.1",
