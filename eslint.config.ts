@@ -1,9 +1,12 @@
-import { defineConfig, globalIgnores } from "eslint/config";
+import {defineConfig, globalIgnores} from "eslint/config";
 import solid from "eslint-plugin-solid";
+// @ts-ignore
 import tsParser from "@typescript-eslint/parser";
 import stylistic from "@stylistic/eslint-plugin";
-import simpleImportSort from "eslint-plugin-simple-import-sort";
+import * as simpleImportSort from "eslint-plugin-simple-import-sort";
 import css from "@eslint/css";
+
+import type { ESLint } from "eslint";
 
 export default defineConfig([
     globalIgnores([
@@ -34,7 +37,7 @@ export default defineConfig([
     {
         files: ["src/**/*.{ts,tsx,js,jsx}"],
         plugins: {
-            solid,
+            "solid": solid as unknown as ESLint.Plugin,
             "@stylistic": stylistic,
             "simple-import-sort": simpleImportSort
         },

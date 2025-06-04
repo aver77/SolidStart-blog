@@ -6,8 +6,8 @@
     "build": "vinxi build",
     "start": "vinxi start",
     "version": "vinxi version",
-    "lint": "npx eslint --config eslint.config.js",
-    "lint-fix": "npx eslint --fix --config eslint.config.js",
+    "lint": "npx eslint --config eslint.config.ts",
+    "lint-fix": "npx eslint --fix --config eslint.config.ts",
     "tslint": "tsc -p tsconfig.json",
     "check": "npm run lint && npm run tslint",
     "prepare": "husky"
