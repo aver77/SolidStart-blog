@@ -36,8 +36,7 @@ export default defineConfig([
         plugins: {
             solid,
             "@stylistic": stylistic,
-            "simple-import-sort": simpleImportSort,
-            css
+            "simple-import-sort": simpleImportSort
         },
         languageOptions: {
             parser: tsParser,
