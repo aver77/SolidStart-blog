@@ -3,7 +3,8 @@ import solid from "eslint-plugin-solid";
 // @ts-ignore
 import tsParser from "@typescript-eslint/parser";
 import stylistic from "@stylistic/eslint-plugin";
-import * as simpleImportSort from "eslint-plugin-simple-import-sort";
+// @ts-ignore
+import simpleImportSort from "eslint-plugin-simple-import-sort";
 import css from "@eslint/css";
 
 import type { ESLint } from "eslint";
