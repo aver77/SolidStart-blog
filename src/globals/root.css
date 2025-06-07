@@ -51,14 +51,27 @@
   --text-7xl: 48px;
   --text-max: 52px;
 
-  --breakpoint-*: initial;
-  --breakpoint-ipadLg: 1000px;
-  --breakpoint-ipadSm: 700px;
-  --breakpoint-phones: 500px;
-
   --radius-*: initial;
   --radius-base: 6px;
   --radius-md: 8px;
+}
+
+@custom-variant ipadLg {
+  @media screen and (max-width: 1000px) {
+    @slot
+  }
+}
+
+@custom-variant ipadSm {
+  @media screen and (max-width: 700px) {
+    @slot
+  }
+}
+
+@custom-variant phones {
+  @media screen and (max-width: 500px), (max-height: 500px) {
+    @slot
+  }
 }
 
 html {

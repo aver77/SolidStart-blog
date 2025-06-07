@@ -53,8 +53,26 @@ const About: Component<IAbout> = (props) => {
         );
     };
 
+    const getAvatar = (isLight?: boolean) => {
+        const avatarType = isLight ? "lightAvatar" : "avatar";
+        const avatarClass = "w-full h-full";
+
+
+        if (!about?.data?.[avatarType]) {
+            return <div class={avatarClass} />;
+        }
+
+        return (
+            <img
+                class={avatarClass}
+                src={about.data?.[avatarType].fields.file.url}
+                alt={about.data?.[avatarType].fields.file.fileName}
+            />
+        )
+    }
+
     return (
-        <section class="relative p-highest">
+        <section class="relative p-highest ipadLg:px-offset9x">
             <div class="relative z-2 flex gap-offset8x">
                 <div class="flex flex-col gap-offset8x duration-300">
                     <div>
@@ -74,22 +92,11 @@ const About: Component<IAbout> = (props) => {
                         </Button>
                     </div>
                 </div>
-                <Show when={!isLightTheme() && about?.data?.avatar}>
-                    <img
-                        width={"290px"}
-                        height={"290px"}
-                        src={about.data?.avatar.fields.file.url}
-                        alt={about.data?.avatar.fields.file.fileName}
-                    />
-                </Show>
-                <Show when={isLightTheme() && about?.data?.lightAvatar}>
-                    <img
-                        width={"290px"}
-                        height={"290px"}
-                        src={about.data?.lightAvatar?.fields.file.url}
-                        alt={about.data?.lightAvatar?.fields.file.fileName}
-                    />
-                </Show>
+                <div class="h-[290px] min-h-[290px] max-h-[290px] w-[290px] min-w-[290px] max-w-[290px] ipadSm:hidden">
+                    <Show when={!isLightTheme()} fallback={getAvatar(true)}>
+                        {getAvatar()}
+                    </Show>
+                </div>
             </div>
             <DotsGrid />
         </section>

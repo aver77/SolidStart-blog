@@ -91,7 +91,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
     );
 
     return (
-        <div class="p-highest">
+        <div class="p-highest ipadLg:px-offset9x">
             <Line>
                 <h2 class="text-max font-black" ref={props.postsRef}>
                     <DottedText>Posts</DottedText>
