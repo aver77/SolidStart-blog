@@ -54,7 +54,9 @@ const About: Component<IAbout> = (props) => {
     };
 
     const getAvatar = (isLight?: boolean) => {
-        const avatarType = isLight ? "lightAvatar" : "avatar";
+        const avatarType = isLight
+            ? "lightAvatar"
+            : "avatar";
         const avatarClass = "w-full h-full";
 
 
@@ -68,8 +70,8 @@ const About: Component<IAbout> = (props) => {
                 src={about.data?.[avatarType].fields.file.url}
                 alt={about.data?.[avatarType].fields.file.fileName}
             />
-        )
-    }
+        );
+    };
 
     return (
         <section class="relative p-highest ipadLg:px-offset9x">
