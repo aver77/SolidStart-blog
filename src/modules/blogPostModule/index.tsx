@@ -65,7 +65,10 @@ const BlogPostModule = () => {
                     />
                 </Show>
                 <span class="font-semibold">{about?.data?.name}</span>
-                <div class="text-lightGray flex items-center light:text-warmBrown">
+                <div class={`
+                  text-lightGray flex items-center
+                  light:text-warmBrown
+                `}>
                     {getDot()}
                     <span>
                         {new Date(post?.data?.sys?.createdAt!).toLocaleDateString("en-US", {
@@ -75,7 +78,10 @@ const BlogPostModule = () => {
                         })}
                     </span>
                     {getDot()}
-                    <span class="gap-offset2x flex items-center light:text-warmBrown">
+                    <span class={`
+                      gap-offset2x flex items-center
+                      light:text-warmBrown
+                    `}>
                         <Book />
                         <span>{getReadingTime(post?.data?.fields?.text!)} min. read</span>
                     </span>

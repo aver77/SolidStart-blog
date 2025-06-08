@@ -95,10 +95,11 @@ const About: Component<IAbout> = (props) => {
                     </div>
                 </div>
                 <div class={`
-                  ipadLg:h-[240px] ipadLg:min-h-[240px] ipadLg:max-h-[240px] ipadLg:w-[240px]
-                  ipadLg:min-w-[240px] ipadLg:max-w-[240px]
+                  ipadLg:h-[240px] ipadLg:min-h-[240px] ipadLg:max-h-[240px]
+                  ipadLg:w-[240px] ipadLg:min-w-[240px] ipadLg:max-w-[240px]
                   ipadSm:hidden
-                  h-[290px] max-h-[290px] min-h-[290px] w-[290px] max-w-[290px] min-w-[290px]
+                  h-[290px] max-h-[290px] min-h-[290px] w-[290px] max-w-[290px]
+                  min-w-[290px]
                 `}>
                     <Show when={!isLightTheme()} fallback={getAvatar(true)}>
                         {getAvatar()}

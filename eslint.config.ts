@@ -61,7 +61,6 @@ export default defineConfig([
             "better-tailwind/multiline": ["error", {
                 group: "newLine", // New line for new groups of classes
                 preferSingleLine: true, // Prefer a single line for different modifiers/variants like :hover, :active
-                printWidth: 100 // Max class line length
             }],
 
             /** Import sort */

@@ -55,8 +55,9 @@ const Dropdown: Component<IDropdown> = (props) => {
                 <div
                     class={cx(
                         `
-                          bg-gray p-offset5x gap-offset5x z-2 flex max-h-[200px] w-[500px] flex-wrap
-                          overflow-y-auto rounded-md shadow-lg
+                          bg-gray p-offset5x gap-offset5x z-2 flex max-h-[200px]
+                          w-[500px] flex-wrap overflow-y-auto rounded-md
+                          shadow-lg
                           light:bg-warmDWhite
                         `,
                         props.wrapperClass,

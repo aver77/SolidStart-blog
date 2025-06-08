@@ -116,7 +116,9 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                         hasMore={!!infinitePostsQuery.hasNextPage}
                     >
                         <Show when={!searchedAndFilteredPosts().length}>
-                            <div class="flex flex-col items-center justify-center">
+                            <div class={`
+                              flex flex-col items-center justify-center
+                            `}>
                                 <div>
                                     <LoopSad />
                                 </div>
@@ -135,8 +137,8 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                         </Show>
                         <Show when={searchedAndFilteredPosts().length}>
                             <div class={`
-                              gap-y-offset8x gap-x-offset4x mb-offset8x grid grid-cols-[2fr_1fr]
-                              grid-rows-[repeat(2,1fr)]
+                              gap-y-offset8x gap-x-offset4x mb-offset8x grid
+                              grid-cols-[2fr_1fr] grid-rows-[repeat(2,1fr)]
                             `}>
                                 <For each={headingPosts()}>
                                     {(post, index) => {
@@ -151,7 +153,10 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                                                         />
                                                     }
                                                 >
-                                                    <div class="row-span-2 flex items-center">
+                                                    <div class={`
+                                                      row-span-2 flex
+                                                      items-center
+                                                    `}>
                                                         <HeadingPostCard
                                                             {...post.fields}
                                                             id={post.sys.id}
@@ -163,7 +168,9 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                                     }}
                                 </For>
                             </div>
-                            <div class="gap-y-offset8x gap-x-offset4x grid grid-cols-3">
+                            <div class={`
+                              gap-y-offset8x gap-x-offset4x grid grid-cols-3
+                            `}>
                                 <For each={usualPosts()}>
                                     {(post) => {
                                         return <PostCard {...post.fields} id={post.sys.id} />;

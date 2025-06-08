@@ -46,7 +46,10 @@ export const PostCard: Component<IPostCardWithSubtitleClass> = (_props) => {
             >
                 {post.subTitle}
             </h2>
-            <span class="gap-offset2x text-lightGray flex items-center text-xs light:text-warmBrown">
+            <span class={`
+              gap-offset2x text-lightGray flex items-center text-xs
+              light:text-warmBrown
+            `}>
                 <Book />
                 <span>{getReadingTime(post.text)} min. read</span>
             </span>

@@ -15,23 +15,28 @@ const Header = () => {
 
     return (
         <header class={`
-          h-headerHeight px-offset8x sticky top-0 z-10 flex justify-between bg-black
+          h-headerHeight px-offset8x sticky top-0 z-10 flex justify-between
+          bg-black
           light:bg-warmWhite
         `}>
             <div class="gap-offset8x flex justify-between">
-                <div class="flex h-full cursor-pointer items-center justify-center">
+                <div class={`
+                  flex h-full cursor-pointer items-center justify-center
+                `}>
                     <div
                         onClick={() => navigate("/")}
                         class={`
-                          bg-gray font-curve flex size-[40px] items-center justify-center rounded-md
-                          text-2xl duration-300
+                          bg-gray font-curve flex size-[40px] items-center
+                          justify-center rounded-md text-2xl duration-300
                           light:bg-warmBrown light:text-white
                         `}
                     >
                         NW
                     </div>
                 </div>
-                <div class="gap-offset2x flex cursor-pointer items-center justify-center">
+                <div class={`
+                  gap-offset2x flex cursor-pointer items-center justify-center
+                `}>
                     <GitHub />
                     <LinkedIn />
                     <CodeWars />

@@ -10,8 +10,9 @@ export default function NotFound() {
 
     return (
         <div class={`
-          flex h-[calc(100vh-var(--spacing-headerHeight)-var(--spacing-footerHeight))] items-center
-          justify-center
+          flex
+          h-[calc(100vh-var(--spacing-headerHeight)-var(--spacing-footerHeight))]
+          items-center justify-center
         `}>
             <Title>Not Found</Title>
             <HttpStatusCode code={404} />
