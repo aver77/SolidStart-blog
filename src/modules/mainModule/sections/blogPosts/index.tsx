@@ -108,7 +108,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                     class={cx(
                         "mt-offset8x min-h-[400px]",
                         !searchedAndFilteredPosts().length &&
-                        "flex flex-col justify-center items-center",
+                        "flex flex-col items-center justify-center",
                     )}
                 >
                     <InfiniteScroll
@@ -116,11 +116,11 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                         hasMore={!!infinitePostsQuery.hasNextPage}
                     >
                         <Show when={!searchedAndFilteredPosts().length}>
-                            <div class="flex flex-col justify-center items-center">
+                            <div class="flex flex-col items-center justify-center">
                                 <div>
                                     <LoopSad />
                                 </div>
-                                <h3 class="text-2xl font-bold mt-offset8x">
+                                <h3 class="mt-offset8x text-2xl font-bold">
                                     No Results in{" "}
                                     <span class="text-gold light:text-warmGold">Posts</span>
                                 </h3>
@@ -134,7 +134,10 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                             </div>
                         </Show>
                         <Show when={searchedAndFilteredPosts().length}>
-                            <div class="grid grid-cols-[2fr_1fr] grid-rows-[repeat(2,1fr)] gap-y-offset8x gap-x-offset4x mb-offset8x">
+                            <div class={`
+                              gap-y-offset8x gap-x-offset4x mb-offset8x grid grid-cols-[2fr_1fr]
+                              grid-rows-[repeat(2,1fr)]
+                            `}>
                                 <For each={headingPosts()}>
                                     {(post, index) => {
                                         return (
@@ -160,7 +163,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                                     }}
                                 </For>
                             </div>
-                            <div class="grid grid-cols-3 gap-y-offset8x gap-x-offset4x">
+                            <div class="gap-y-offset8x gap-x-offset4x grid grid-cols-3">
                                 <For each={usualPosts()}>
                                     {(post) => {
                                         return <PostCard {...post.fields} id={post.sys.id} />;

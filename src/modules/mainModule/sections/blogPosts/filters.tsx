@@ -17,14 +17,14 @@ const Filters: Component<IFilters> = (props) => {
     const [filterDropdownOpened, setFilterDropdownOpened] = createSignal(false);
 
     return (
-        <div class="flex mt-offset6x gap-offset6x items-center">
+        <div class="mt-offset6x gap-offset6x flex items-center">
             <Input value={props.searchValue} handleChange={props.setSearchValue} />
             <div ref={dropdownContainerRef} class="relative">
                 <button
                     onClick={() => {
                         setFilterDropdownOpened((prev) => !prev);
                     }}
-                    class="flex items-center gap-offsetx cursor-pointer"
+                    class="gap-offsetx flex cursor-pointer items-center"
                 >
                     <FilterIcon />
                     Filter

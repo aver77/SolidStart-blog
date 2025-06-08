@@ -29,23 +29,23 @@ const BlogPostModule = () => {
         ssr: true,
     }));
 
-    const getDot = () => <div class="h-full mx-offset3x">&bull;</div>;
+    const getDot = () => <div class="mx-offset3x h-full">&bull;</div>;
 
     return (
         <div class="px-highest">
             <Show when={post?.data?.fields?.image}>
                 <div class="aspect-[16/9]">
                     <img
-                        class="w-full h-full rounded-b-md"
+                        class="h-full w-full rounded-b-md"
                         src={post.data?.fields.image.fields.file.url}
                         alt={post.data?.fields.image.fields.file.fileName}
                     />
                 </div>
             </Show>
-            <div class="flex justify-center my-offset9x text-5xl font-bold">
+            <div class="my-offset9x flex justify-center text-5xl font-bold">
                 <h1>{post?.data?.fields?.title}</h1>
             </div>
-            <div class="flex justify-center items-center mb-offset9x">
+            <div class="mb-offset9x flex items-center justify-center">
                 <Show when={!isLightTheme() && about?.data?.avatar}>
                     <img
                         width={"48px"}
@@ -65,7 +65,7 @@ const BlogPostModule = () => {
                     />
                 </Show>
                 <span class="font-semibold">{about?.data?.name}</span>
-                <div class="flex items-center text-lightGray light:text-warmBrown">
+                <div class="text-lightGray flex items-center light:text-warmBrown">
                     {getDot()}
                     <span>
                         {new Date(post?.data?.sys?.createdAt!).toLocaleDateString("en-US", {
@@ -75,7 +75,7 @@ const BlogPostModule = () => {
                         })}
                     </span>
                     {getDot()}
-                    <span class="flex items-center gap-offset2x light:text-warmBrown">
+                    <span class="gap-offset2x flex items-center light:text-warmBrown">
                         <Book />
                         <span>{getReadingTime(post?.data?.fields?.text!)} min. read</span>
                     </span>
@@ -83,7 +83,7 @@ const BlogPostModule = () => {
             </div>
             {post?.data?.fields?.subTitle}
             <div innerHTML={documentToHtmlString(post?.data?.fields?.text!)} />
-            <div class="flex flex-wrap justify-center gap-offset2x my-offset9x">
+            <div class="gap-offset2x my-offset9x flex flex-wrap justify-center">
                 <For each={post?.data?.fields?.tags}>
                     {(tag) => <Chip text={tag} />}
                 </For>

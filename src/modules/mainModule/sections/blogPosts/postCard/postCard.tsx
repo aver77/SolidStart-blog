@@ -28,25 +28,25 @@ export const PostCard: Component<IPostCardWithSubtitleClass> = (_props) => {
             <Show when={post.image}>
                 <div class="aspect-[16/9]">
                     <img
-                        class="w-full h-full rounded-md"
+                        class="h-full w-full rounded-md"
                         src={post.image.fields.file.url}
                         alt={post.image.fields.file.fileName}
                     />
                 </div>
             </Show>
-            <div class="flex flex-wrap gap-offset2x my-offset4x">
+            <div class="gap-offset2x my-offset4x flex flex-wrap">
                 <For each={post.tags}>{(tag) => <Chip text={tag} />}</For>
             </div>
-            <h1 class="font-bold text-xl">{post.title}</h1>
+            <h1 class="text-xl font-bold">{post.title}</h1>
             <h2
                 class={cx(
-                    "my-offset3x text-ellipsis overflow-hidden",
+                    "my-offset3x overflow-hidden text-ellipsis",
                     props.subtitleClass,
                 )}
             >
                 {post.subTitle}
             </h2>
-            <span class="flex items-center gap-offset2x text-xs text-lightGray light:text-warmBrown">
+            <span class="gap-offset2x text-lightGray flex items-center text-xs light:text-warmBrown">
                 <Book />
                 <span>{getReadingTime(post.text)} min. read</span>
             </span>

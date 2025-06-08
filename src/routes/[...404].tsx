@@ -9,14 +9,17 @@ export default function NotFound() {
     const navigate = useNavigate();
 
     return (
-        <div class="h-[calc(100vh-var(--spacing-headerHeight)-var(--spacing-footerHeight))] flex items-center justify-center">
+        <div class={`
+          flex h-[calc(100vh-var(--spacing-headerHeight)-var(--spacing-footerHeight))] items-center
+          justify-center
+        `}>
             <Title>Not Found</Title>
             <HttpStatusCode code={404} />
             <div>
                 <div>
                     <DocumentSad />
                 </div>
-                <h3 class="text-2xl font-bold mt-offset8x">Hmmm, that didn't work</h3>
+                <h3 class="mt-offset8x text-2xl font-bold">Hmmm, that didn't work</h3>
                 <div class="mt-offset2x">
                     <span>
                         It seems like that page doesn't exist, but I don't want to lose you!

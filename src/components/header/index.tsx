@@ -14,23 +14,30 @@ const Header = () => {
     const { isLightTheme } = useTheme(false);
 
     return (
-        <header class="h-headerHeight px-offset8x flex justify-between bg-black light:bg-warmWhite sticky top-0 z-10">
-            <div class="flex justify-between gap-offset8x">
-                <div class="h-full flex justify-center items-center cursor-pointer">
+        <header class={`
+          h-headerHeight px-offset8x sticky top-0 z-10 flex justify-between bg-black
+          light:bg-warmWhite
+        `}>
+            <div class="gap-offset8x flex justify-between">
+                <div class="flex h-full cursor-pointer items-center justify-center">
                     <div
                         onClick={() => navigate("/")}
-                        class="bg-gray light:bg-warmBrown light:text-white size-[40px] font-curve text-2xl rounded-md flex justify-center items-center duration-300"
+                        class={`
+                          bg-gray font-curve flex size-[40px] items-center justify-center rounded-md
+                          text-2xl duration-300
+                          light:bg-warmBrown light:text-white
+                        `}
                     >
                         NW
                     </div>
                 </div>
-                <div class="flex justify-center items-center gap-offset2x cursor-pointer">
+                <div class="gap-offset2x flex cursor-pointer items-center justify-center">
                     <GitHub />
                     <LinkedIn />
                     <CodeWars />
                 </div>
             </div>
-            <div class="flex justify-center items-center cursor-pointer">
+            <div class="flex cursor-pointer items-center justify-center">
                 <Show
                     when={isLightTheme()}
                     fallback={<ThemeSun onClick={toggleTheme} />}

@@ -26,7 +26,13 @@ const SvgWrapper: Component<ISvg & { children: JSX.Element }> = (props) => {
             viewBox={localProps.viewBox || "0 0 1024 1024"}
             class={
                 localProps.class ??
-                "fill-white light:fill-warmBrown hover:fill-gold focus:fill-gold active:fill-gold cursor-pointer duration-300"
+                `
+                  light:fill-warmBrown
+                  hover:fill-gold
+                  focus:fill-gold
+                  active:fill-gold
+                  cursor-pointer fill-white duration-300
+                `
             }
             style={localProps.style}
             xmlns="http://www.w3.org/2000/svg"

@@ -54,7 +54,11 @@ const Dropdown: Component<IDropdown> = (props) => {
             <Show when={props.opened}>
                 <div
                     class={cx(
-                        "z-2 rounded-md w-[500px] max-h-[200px] flex flex-wrap overflow-y-auto bg-gray light:bg-warmDWhite p-offset5x gap-offset5x shadow-lg",
+                        `
+                          bg-gray p-offset5x gap-offset5x z-2 flex max-h-[200px] w-[500px] flex-wrap
+                          overflow-y-auto rounded-md shadow-lg
+                          light:bg-warmDWhite
+                        `,
                         props.wrapperClass,
                     )}
                 >

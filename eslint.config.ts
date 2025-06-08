@@ -6,6 +6,8 @@ import stylistic from "@stylistic/eslint-plugin";
 // @ts-ignore
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import css from "@eslint/css";
+// @ts-ignore
+import betterTailwind from "eslint-plugin-better-tailwindcss";
 
 import type { ESLint } from "eslint";
 
@@ -40,7 +42,8 @@ export default defineConfig([
         plugins: {
             "solid": solid as unknown as ESLint.Plugin,
             "@stylistic": stylistic,
-            "simple-import-sort": simpleImportSort
+            "simple-import-sort": simpleImportSort,
+            "better-tailwind": betterTailwind
         },
         languageOptions: {
             parser: tsParser,
@@ -52,6 +55,15 @@ export default defineConfig([
             }
         },
         rules: {
+            /** Tailwind */
+            "better-tailwind/sort-classes": "error",
+            "better-tailwind/no-unnecessary-whitespace": "error",
+            "better-tailwind/multiline": ["error", {
+                group: "newLine", // New line for new groups of classes
+                preferSingleLine: true, // Prefer a single line for different modifiers/variants like :hover, :active
+                printWidth: 100 // Max class line length
+            }],
+
             /** Import sort */
             'simple-import-sort/imports': ['error', {
                 groups: [

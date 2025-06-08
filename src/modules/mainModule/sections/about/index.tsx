@@ -74,9 +74,9 @@ const About: Component<IAbout> = (props) => {
     };
 
     return (
-        <section class="relative p-highest ipadLg:px-offset9x">
-            <div class="relative z-2 flex gap-offset8x">
-                <div class="flex flex-col gap-offset8x duration-300">
+        <section class="p-highest relative ipadLg:px-offset9x">
+            <div class="gap-offset8x relative z-2 flex">
+                <div class="gap-offset8x flex flex-col duration-300">
                     <div>
                         {getTitle()}
                         {getSubTitle()}
@@ -94,7 +94,12 @@ const About: Component<IAbout> = (props) => {
                         </Button>
                     </div>
                 </div>
-                <div class="h-[290px] min-h-[290px] max-h-[290px] w-[290px] min-w-[290px] max-w-[290px] ipadSm:hidden">
+                <div class={`
+                  ipadLg:h-[240px] ipadLg:min-h-[240px] ipadLg:max-h-[240px] ipadLg:w-[240px]
+                  ipadLg:min-w-[240px] ipadLg:max-w-[240px]
+                  ipadSm:hidden
+                  h-[290px] max-h-[290px] min-h-[290px] w-[290px] max-w-[290px] min-w-[290px]
+                `}>
                     <Show when={!isLightTheme()} fallback={getAvatar(true)}>
                         {getAvatar()}
                     </Show>

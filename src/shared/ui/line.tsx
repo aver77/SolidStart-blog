@@ -32,7 +32,7 @@ const Line: Component<ILine> = (_props) => {
     <div
         class={cx(
             props.className,
-            "border-solid border-lightGray light:border-warmBrown w-full",
+            "border-lightGray w-full border-solid light:border-warmBrown",
         )}
         style={{
             ...props.color
@@ -76,7 +76,7 @@ const Line: Component<ILine> = (_props) => {
 
     return (
         <Show when={child()} fallback={line}>
-            <div class="flex flex-nowrap gap-offset3x items-center duration-300">
+            <div class="gap-offset3x flex flex-nowrap items-center duration-300">
                 {getContent()}
             </div>
         </Show>
