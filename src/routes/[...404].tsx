@@ -13,6 +13,7 @@ export default function NotFound() {
           flex
           h-[calc(100vh-var(--spacing-headerHeight)-var(--spacing-footerHeight))]
           items-center justify-center
+          px-highest ipadLg:px-offset8x ipadSm:px-offset3x
         `}>
             <Title>Not Found</Title>
             <HttpStatusCode code={404} />
@@ -20,13 +21,13 @@ export default function NotFound() {
                 <div>
                     <DocumentSad />
                 </div>
-                <h3 class="mt-offset8x text-2cxl font-bold">Hmmm, that didn't work</h3>
+                <h3 class="mt-offset8x phones:mt-offset6x text-2cxl font-bold">Hmmm, that didn't work</h3>
                 <div class="mt-offset2x">
                     <span>
                         It seems like that page doesn't exist, but I don't want to lose you!
                     </span>
                 </div>
-                <div class="mt-offset8x">
+                <div class="mt-offset8x phones:mt-offset6x">
                     <Button onClick={() => navigate("/")}>← Back to Homepage</Button>
                 </div>
             </div>
