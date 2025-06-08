@@ -46,7 +46,13 @@
   @apply absolute;
   @apply top-px;
   @apply right-px;
-  @apply top-[50%];
+
+  /* For increasing svg click area */
+  @apply p-[var(--spacing-offset5x)];
+  @apply -m-[var(--spacing-offset5x)];
+  @apply inline-block;
+  @apply top-[calc(50%+var(--spacing-offset5x))];
+
   @apply transform-[translate(0,-50%)];
   @apply right-[var(--spacing-offset3x)];
   @apply cursor-pointer;
