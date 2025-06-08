@@ -18,8 +18,9 @@ const Header = () => {
           h-headerHeight px-offset8x sticky top-0 z-10 flex justify-between
           bg-black
           light:bg-warmWhite
+          ipadSm:px-offset3x
         `}>
-            <div class="gap-offset8x flex justify-between">
+            <div class="gap-offset8x ipadSm:gap-offset6x flex justify-between">
                 <div class={`
                   flex h-full cursor-pointer items-center justify-center
                 `}>
@@ -27,7 +28,7 @@ const Header = () => {
                         onClick={() => navigate("/")}
                         class={`
                           bg-gray font-curve flex size-[40px] items-center
-                          justify-center rounded-md text-2xl duration-300
+                          justify-center rounded-md text-2cxl duration-300
                           light:bg-warmBrown light:text-white
                         `}
                     >

@@ -9,6 +9,7 @@ import Book from "~/shared/assets/svg/components/book";
 import { useTheme } from "~/shared/hooks/useTheme";
 import Chip from "~/shared/ui/chip/chip";
 import { getReadingTime } from "~/shared/utils/getReadingTime";
+import {getContentfulAvatar} from "~/shared/utils/getContentfulAvatar";
 
 const BlogPostModule = () => {
     const { isLightTheme } = useTheme(false);
@@ -29,10 +30,10 @@ const BlogPostModule = () => {
         ssr: true,
     }));
 
-    const getDot = () => <div class="mx-offset3x h-full">&bull;</div>;
+    const getDot = (extraClass?: string) => <div class={`mx-offset3x h-full ${extraClass}`}>&bull;</div>;
 
     return (
-        <div class="px-highest">
+        <div class="px-highest ipadLg:px-offset8x ipadSm:px-offset3x">
             <Show when={post?.data?.fields?.image}>
                 <div class="aspect-[16/9]">
                     <img
@@ -42,34 +43,23 @@ const BlogPostModule = () => {
                     />
                 </div>
             </Show>
-            <div class="my-offset9x flex justify-center text-5xl font-bold">
+            <div class="my-offset9x flex justify-center text-5cxl font-bold ipadSm:text-5cxl ipadSm:my-offset6x phones:text-2cxl phones:my-offset4x">
                 <h1>{post?.data?.fields?.title}</h1>
             </div>
-            <div class="mb-offset9x flex items-center justify-center">
-                <Show when={!isLightTheme() && about?.data?.avatar}>
-                    <img
-                        width={"48px"}
-                        height={"48px"}
-                        class="mr-offset3x"
-                        src={about.data?.avatar.fields.file.url}
-                        alt={about.data?.avatar.fields.file.fileName}
-                    />
-                </Show>
-                <Show when={isLightTheme() && about?.data?.lightAvatar}>
-                    <img
-                        width={"48px"}
-                        height={"48px"}
-                        class="mr-offset3x"
-                        src={about.data?.lightAvatar?.fields.file.url}
-                        alt={about.data?.lightAvatar?.fields.file.fileName}
-                    />
-                </Show>
-                <span class="font-semibold">{about?.data?.name}</span>
+            <div class="mb-offset9x phones:mb-offset8x flex items-center justify-center ipadSm:flex-col ipadSm:gap-offset4x">
+                <div class="flex gap-offset3x items-center">
+                    <div class="h-[48px] min-h-[48px] max-h-[48px] w-[48px] min-w-[48px] max-w-[48px]">
+                        <Show when={!isLightTheme()} fallback={getContentfulAvatar(about?.data, true)}>
+                            {getContentfulAvatar(about?.data)}
+                        </Show>
+                    </div>
+                    <span class="font-semibold">{about?.data?.name}</span>
+                </div>
                 <div class={`
-                  text-lightGray flex items-center
+                  text-lightGray flex items-center ipadSm:text-csm
                   light:text-warmBrown
                 `}>
-                    {getDot()}
+                    {getDot("ipadSm:hidden")}
                     <span>
                         {new Date(post?.data?.sys?.createdAt!).toLocaleDateString("en-US", {
                             month: "short",
@@ -89,7 +79,7 @@ const BlogPostModule = () => {
             </div>
             {post?.data?.fields?.subTitle}
             <div innerHTML={documentToHtmlString(post?.data?.fields?.text!)} />
-            <div class="gap-offset2x my-offset9x flex flex-wrap justify-center">
+            <div class="gap-offset2x my-offset9x phones:my-offset8x phones:mb-offset3x flex flex-wrap justify-center">
                 <For each={post?.data?.fields?.tags}>
                     {(tag) => <Chip text={tag} />}
                 </For>

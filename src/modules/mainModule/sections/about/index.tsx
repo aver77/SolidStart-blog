@@ -8,6 +8,8 @@ import { useTheme } from "~/shared/hooks/useTheme";
 import Button from "~/shared/ui/button";
 import DottedText from "~/shared/ui/dottedText";
 
+import { getContentfulAvatar } from "~/shared/utils/getContentfulAvatar";
+
 interface IAbout {
     postsRef: () => HTMLElement;
 }
@@ -30,7 +32,7 @@ const About: Component<IAbout> = (props) => {
         }
 
         return (
-            <h1 class="text-max font-black">
+            <h1 class="text-max font-black ipadLg:text-5cxl">
                 <DottedText>{title}</DottedText>
             </h1>
         );
@@ -44,7 +46,7 @@ const About: Component<IAbout> = (props) => {
         const profession = splittedSubTitle.splice(-2);
 
         return (
-            <p class="text-3xl font-black duration-300">
+            <p class="text-3cxl ipadLg:text-cxl font-black duration-300">
                 <span>{splittedSubTitle.join(sep) + sep}</span>
                 <span class="text-gold light:text-warmGold">
                     {profession.join(sep)}
@@ -74,9 +76,9 @@ const About: Component<IAbout> = (props) => {
     };
 
     return (
-        <section class="p-highest relative ipadLg:px-offset9x">
+        <section class="p-highest relative ipadLg:px-offset8x ipadSm:px-offset3x">
             <div class="gap-offset8x relative z-2 flex">
-                <div class="gap-offset8x flex flex-col duration-300">
+                <div class="gap-offset8x ipadLg:gap-offset6x flex flex-col duration-300">
                     <div>
                         {getTitle()}
                         {getSubTitle()}
@@ -101,8 +103,8 @@ const About: Component<IAbout> = (props) => {
                   h-[290px] max-h-[290px] min-h-[290px] w-[290px] max-w-[290px]
                   min-w-[290px]
                 `}>
-                    <Show when={!isLightTheme()} fallback={getAvatar(true)}>
-                        {getAvatar()}
+                    <Show when={!isLightTheme()} fallback={getContentfulAvatar(about?.data, true)}>
+                        {getContentfulAvatar(about?.data)}
                     </Show>
                 </div>
             </div>

@@ -17,7 +17,7 @@ const Filters: Component<IFilters> = (props) => {
     const [filterDropdownOpened, setFilterDropdownOpened] = createSignal(false);
 
     return (
-        <div class="mt-offset6x gap-offset6x flex items-center">
+        <div class="mt-offset6x gap-offset6x flex items-center phones:gap-offset3x">
             <Input value={props.searchValue} handleChange={props.setSearchValue} />
             <div ref={dropdownContainerRef} class="relative">
                 <button
@@ -27,7 +27,7 @@ const Filters: Component<IFilters> = (props) => {
                     class="gap-offsetx flex cursor-pointer items-center"
                 >
                     <FilterIcon />
-                    Filter
+                    <span class="phones:hidden">Filter</span>
                 </button>
                 <Dropdown
                     dropdownContainerRef={() => dropdownContainerRef!}
@@ -35,7 +35,7 @@ const Filters: Component<IFilters> = (props) => {
                     onChangeItems={props.setFiltersValue}
                     opened={filterDropdownOpened()}
                     setOpened={setFilterDropdownOpened}
-                    wrapperClass={"absolute right-0 top-[56px]"}
+                    wrapperClass={"absolute right-[0px] top-[56px] ipadSm:w-fit ipadSm:p-offset4x ipadSm:gap-offset3x"}
                 />
             </div>
         </div>

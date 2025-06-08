@@ -20,7 +20,7 @@ export default function NotFound() {
                 <div>
                     <DocumentSad />
                 </div>
-                <h3 class="mt-offset8x text-2xl font-bold">Hmmm, that didn't work</h3>
+                <h3 class="mt-offset8x text-2cxl font-bold">Hmmm, that didn't work</h3>
                 <div class="mt-offset2x">
                     <span>
                         It seems like that page doesn't exist, but I don't want to lose you!

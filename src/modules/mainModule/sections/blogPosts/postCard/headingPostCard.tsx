@@ -12,7 +12,7 @@ const HeadingPostCard: Component<IPostCard> = (props) => {
     return (
         <PostCard
             {...restProps}
-            wrapperClass={cx(localProps.wrapperClass, "min-w-[400px]")}
+            wrapperClass={cx(localProps.wrapperClass, "min-w-[400px] ipadLg:min-w-[300px] phones:min-w-auto")}
             subtitleClass={classes.headingSubtitleClass}
         />
     );

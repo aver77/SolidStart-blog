@@ -12,6 +12,8 @@ const UsualPostCard: Component<IPostCard> = (props) => {
             {...restProps}
             wrapperClass={cx(localProps.wrapperClass, `
               min-h-[300px] min-w-[200px]
+              ipadLg:min-w-[250px]
+              phones:min-w-auto
             `)}
             subtitleClass={"whitespace-nowrap"}
         />

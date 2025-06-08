@@ -37,11 +37,14 @@ export interface IPost {
     tags: string[];
 }
 
-export interface IAbout {
+export interface IAvatars {
+    avatar: IContentfulResourceFields<IContentfulMetadata>;
+    lightAvatar?: IContentfulResourceFields<IContentfulMetadata>;
+}
+
+export interface IAbout extends IAvatars {
     title: string;
     subTitle: string;
     aboutText: string;
-    avatar: IContentfulResourceFields<IContentfulMetadata>;
-    lightAvatar?: IContentfulResourceFields<IContentfulMetadata>;
     name: string;
 }

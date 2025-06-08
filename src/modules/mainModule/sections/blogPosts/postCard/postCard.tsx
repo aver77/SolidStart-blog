@@ -34,20 +34,20 @@ export const PostCard: Component<IPostCardWithSubtitleClass> = (_props) => {
                     />
                 </div>
             </Show>
-            <div class="gap-offset2x my-offset4x flex flex-wrap">
+            <div class="gap-offset2x my-offset4x ipadSm:my-offset3x flex flex-wrap">
                 <For each={post.tags}>{(tag) => <Chip text={tag} />}</For>
             </div>
-            <h1 class="text-xl font-bold">{post.title}</h1>
+            <h1 class="text-cxl font-bold">{post.title}</h1>
             <h2
                 class={cx(
-                    "my-offset3x overflow-hidden text-ellipsis",
+                    "my-offset3x ipadSm:my-offset2x overflow-hidden text-ellipsis",
                     props.subtitleClass,
                 )}
             >
                 {post.subTitle}
             </h2>
             <span class={`
-              gap-offset2x text-lightGray flex items-center text-xs
+              gap-offset2x text-lightGray flex items-center text-cxs
               light:text-warmBrown
             `}>
                 <Book />

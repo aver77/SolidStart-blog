@@ -3,17 +3,10 @@
 .btnShared {
   @apply cursor-pointer;
   @apply px-[var(--spacing-offset4x)] py-[var(--spacing-offset3x)];
-  @apply text-[var(--text-base)];
+  @apply text-[var(--text-cbase)];
   @apply rounded-[var(--radius-base)];
   @apply border border-solid;
   transition: background-size 0.3s ease;
-}
-
-@media screen and (max-width: 500px), (max-height: 500px) {
-  .btnShared {
-    @apply px-[var(--spacing-offset3x)] py-[var(--spacing-offset2x)];
-    @apply text-[var(--text-sm)];
-  }
 }
 
 .disabled {

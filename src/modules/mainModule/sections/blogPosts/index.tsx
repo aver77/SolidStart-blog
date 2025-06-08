@@ -91,9 +91,9 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
     );
 
     return (
-        <div class="p-highest ipadLg:px-offset9x">
+        <div class="p-highest ipadLg:px-offset8x ipadSm:px-offset3x">
             <Line>
-                <h2 class="text-max font-black" ref={props.postsRef}>
+                <h2 class="text-max font-black ipadLg:text-5cxl" ref={props.postsRef}>
                     <DottedText>Posts</DottedText>
                 </h2>
             </Line>
@@ -122,7 +122,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                                 <div>
                                     <LoopSad />
                                 </div>
-                                <h3 class="mt-offset8x text-2xl font-bold">
+                                <h3 class="mt-offset8x text-2cxl font-bold">
                                     No Results in{" "}
                                     <span class="text-gold light:text-warmGold">Posts</span>
                                 </h3>
@@ -139,6 +139,8 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                             <div class={`
                               gap-y-offset8x gap-x-offset4x mb-offset8x grid
                               grid-cols-[2fr_1fr] grid-rows-[repeat(2,1fr)]
+                              ipadSm:grid-cols-2 ipadSm:grid-rows-2
+                              phones:grid-cols-1
                             `}>
                                 <For each={headingPosts()}>
                                     {(post, index) => {
@@ -156,6 +158,8 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                                                     <div class={`
                                                       row-span-2 flex
                                                       items-center
+                                                      ipadSm:col-span-2 ipadSm:row-start-1
+                                                      phones:col-span-1
                                                     `}>
                                                         <HeadingPostCard
                                                             {...post.fields}
@@ -170,6 +174,8 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                             </div>
                             <div class={`
                               gap-y-offset8x gap-x-offset4x grid grid-cols-3
+                              ipadLg:grid-cols-2
+                              phones:grid-cols-1
                             `}>
                                 <For each={usualPosts()}>
                                     {(post) => {

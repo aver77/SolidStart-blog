@@ -23,6 +23,7 @@
   --font-base: "Montserrat";
   --font-curve: "Birthstone";
 
+  --spacing-*: initial;
   --spacing-offsetx: 4px;
   --spacing-offset2x: 8px;
   --spacing-offset3x: 12px;
@@ -38,17 +39,17 @@
   --spacing-highest: 96px;
 
   --text-*: initial;
-  --text-xs: 14px;
-  --text-sm: 16px;
-  --text-base: 18px;
-  --text-lg: 20px;
-  --text-xl: 24px;
-  --text-2xl: 28px;
-  --text-3xl: 32px;
-  --text-4xl: 36px;
-  --text-5xl: 40px;
-  --text-6xl: 44px;
-  --text-7xl: 48px;
+  --text-cxs: 14px;
+  --text-csm: 16px;
+  --text-cbase: 18px;
+  --text-clg: 20px;
+  --text-cxl: 24px;
+  --text-2cxl: 28px;
+  --text-3cxl: 32px;
+  --text-4cxl: 36px;
+  --text-5cxl: 40px;
+  --text-6cxl: 44px;
+  --text-7cxl: 48px;
   --text-max: 52px;
 
   --radius-*: initial;
@@ -78,7 +79,8 @@ html {
   @apply bg-dark;
   @apply text-white;
   @apply font-base;
-  @apply text-lg;
+  @apply text-clg;
+  @apply ipadLg:text-cbase;
 
   @variant light {
     @apply bg-warmWhite;
