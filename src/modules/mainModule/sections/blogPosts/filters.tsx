@@ -17,7 +17,10 @@ const Filters: Component<IFilters> = (props) => {
     const [filterDropdownOpened, setFilterDropdownOpened] = createSignal(false);
 
     return (
-        <div class="mt-offset6x gap-offset6x flex items-center phones:gap-offset3x">
+        <div class={`
+          mt-offset6x gap-offset6x flex items-center
+          phones:gap-offset3x
+        `}>
             <Input value={props.searchValue} handleChange={props.setSearchValue} />
             <div ref={dropdownContainerRef} class="relative">
                 <button

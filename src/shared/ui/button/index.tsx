@@ -26,7 +26,7 @@ const Index: Component<IButton> = (props) => {
         ? classes.filled
         : classes.unfilled;
 
-    const mediaClass = "ipadLg:!px-offset3x ipadLg:!py-offset2x ipadLg:!text-csm"
+    const mediaClass = "ipadLg:!px-offset3x ipadLg:!py-offset2x ipadLg:!text-csm";
 
     return (
         <button

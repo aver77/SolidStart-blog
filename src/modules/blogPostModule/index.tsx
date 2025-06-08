@@ -8,8 +8,8 @@ import { fetchAbout, fetchBlogPost } from "~/shared/api";
 import Book from "~/shared/assets/svg/components/book";
 import { useTheme } from "~/shared/hooks/useTheme";
 import Chip from "~/shared/ui/chip/chip";
+import { getContentfulAvatar } from "~/shared/utils/getContentfulAvatar";
 import { getReadingTime } from "~/shared/utils/getReadingTime";
-import {getContentfulAvatar} from "~/shared/utils/getContentfulAvatar";
 
 const BlogPostModule = () => {
     const { isLightTheme } = useTheme(false);
@@ -30,7 +30,8 @@ const BlogPostModule = () => {
         ssr: true,
     }));
 
-    const getDot = (extraClass?: string) => <div class={`mx-offset3x h-full ${extraClass}`}>&bull;</div>;
+    const getDot = (extraClass?: string) => <div class={`mx-offset3x h-full ${extraClass}
+    `}>&bull;</div>;
 
     return (
         <div class="px-highest ipadLg:px-offset8x ipadSm:px-offset3x">
@@ -43,20 +44,35 @@ const BlogPostModule = () => {
                     />
                 </div>
             </Show>
-            <div class="my-offset9x flex justify-center text-5cxl font-bold ipadSm:text-5cxl ipadSm:my-offset6x phones:text-2cxl phones:my-offset4x">
+            <div class={`
+              my-offset9x text-5cxl flex justify-center font-bold
+              ipadSm:text-5cxl ipadSm:my-offset6x
+              phones:text-2cxl phones:my-offset4x
+            `}>
                 <h1>{post?.data?.fields?.title}</h1>
             </div>
-            <div class="mb-offset9x phones:mb-offset8x flex items-center justify-center ipadSm:flex-col ipadSm:gap-offset4x">
-                <div class="flex gap-offset3x items-center">
-                    <div class="h-[48px] min-h-[48px] max-h-[48px] w-[48px] min-w-[48px] max-w-[48px]">
-                        <Show when={!isLightTheme()} fallback={getContentfulAvatar(about?.data, true)}>
+            <div class={`
+              mb-offset9x flex items-center justify-center
+              phones:mb-offset8x
+              ipadSm:flex-col ipadSm:gap-offset4x
+            `}>
+                <div class="gap-offset3x flex items-center">
+                    <div class={`
+                      h-[48px] max-h-[48px] min-h-[48px] w-[48px] max-w-[48px]
+                      min-w-[48px]
+                    `}>
+                        <Show
+                            when={!isLightTheme()}
+                            fallback={getContentfulAvatar(about?.data, true)}
+                        >
                             {getContentfulAvatar(about?.data)}
                         </Show>
                     </div>
                     <span class="font-semibold">{about?.data?.name}</span>
                 </div>
                 <div class={`
-                  text-lightGray flex items-center ipadSm:text-csm
+                  text-lightGray flex items-center
+                  ipadSm:text-csm
                   light:text-warmBrown
                 `}>
                     {getDot("ipadSm:hidden")}
@@ -79,7 +95,10 @@ const BlogPostModule = () => {
             </div>
             {post?.data?.fields?.subTitle}
             <div innerHTML={documentToHtmlString(post?.data?.fields?.text!)} />
-            <div class="gap-offset2x my-offset9x phones:my-offset8x phones:mb-offset3x flex flex-wrap justify-center">
+            <div class={`
+              gap-offset2x my-offset9x flex flex-wrap justify-center
+              phones:my-offset8x phones:mb-offset3x
+            `}>
                 <For each={post?.data?.fields?.tags}>
                     {(tag) => <Chip text={tag} />}
                 </For>

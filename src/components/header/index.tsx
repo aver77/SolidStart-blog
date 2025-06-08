@@ -20,15 +20,15 @@ const Header = () => {
           light:bg-warmWhite
           ipadSm:px-offset3x
         `}>
-            <div class="gap-offset8x ipadSm:gap-offset6x flex justify-between">
+            <div class="gap-offset8x flex justify-between ipadSm:gap-offset6x">
                 <div class={`
                   flex h-full cursor-pointer items-center justify-center
                 `}>
                     <div
                         onClick={() => navigate("/")}
                         class={`
-                          bg-gray font-curve flex size-[40px] items-center
-                          justify-center rounded-md text-2cxl duration-300
+                          bg-gray font-curve text-2cxl flex size-[40px]
+                          items-center justify-center rounded-md duration-300
                           light:bg-warmBrown light:text-white
                         `}
                     >

@@ -156,10 +156,11 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                                                     }
                                                 >
                                                     <div class={`
+                                                      ipadSm:col-span-2
+                                                      ipadSm:row-start-1
+                                                      phones:col-span-1
                                                       row-span-2 flex
                                                       items-center
-                                                      ipadSm:col-span-2 ipadSm:row-start-1
-                                                      phones:col-span-1
                                                     `}>
                                                         <HeadingPostCard
                                                             {...post.fields}

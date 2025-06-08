@@ -11,7 +11,7 @@ export interface IChip extends JSX.HTMLAttributes<HTMLSpanElement> {
 const Chip: Component<IChip> = (props) => {
     const [localProps, restProps] = splitProps(props, ["text", "class"]);
 
-    const mediaClass = "phones:!text-csm phones:!py-offsetx phones:!py-offset2x"
+    const mediaClass = "phones:!text-csm phones:!py-offsetx phones:!py-offset2x";
 
     return (
         <span class={cx(classes.chip, localProps.class, mediaClass)} {...restProps}>

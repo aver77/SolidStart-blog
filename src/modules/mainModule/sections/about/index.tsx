@@ -7,7 +7,6 @@ import { fetchAbout } from "~/shared/api";
 import { useTheme } from "~/shared/hooks/useTheme";
 import Button from "~/shared/ui/button";
 import DottedText from "~/shared/ui/dottedText";
-
 import { getContentfulAvatar } from "~/shared/utils/getContentfulAvatar";
 
 interface IAbout {
@@ -46,7 +45,7 @@ const About: Component<IAbout> = (props) => {
         const profession = splittedSubTitle.splice(-2);
 
         return (
-            <p class="text-3cxl ipadLg:text-cxl font-black duration-300">
+            <p class="text-3cxl font-black duration-300 ipadLg:text-cxl">
                 <span>{splittedSubTitle.join(sep) + sep}</span>
                 <span class="text-gold light:text-warmGold">
                     {profession.join(sep)}
@@ -76,9 +75,16 @@ const About: Component<IAbout> = (props) => {
     };
 
     return (
-        <section class="p-highest relative ipadLg:px-offset8x ipadSm:px-offset3x">
+        <section class={`
+          p-highest relative
+          ipadLg:px-offset8x
+          ipadSm:px-offset3x
+        `}>
             <div class="gap-offset8x relative z-2 flex">
-                <div class="gap-offset8x ipadLg:gap-offset6x flex flex-col duration-300">
+                <div class={`
+                  gap-offset8x flex flex-col duration-300
+                  ipadLg:gap-offset6x
+                `}>
                     <div>
                         {getTitle()}
                         {getSubTitle()}
