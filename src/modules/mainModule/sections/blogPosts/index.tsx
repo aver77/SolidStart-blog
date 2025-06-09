@@ -121,7 +121,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                     </Show>
                     <Show when={isFilterSelected}>
                         <Show when={searchValue()}>
-                            and{" "}
+                            {" "}and{" "}
                         </Show>
                         <span class="text-gold light:text-warmGold">
                             filters: {selectedFiltersStr}
