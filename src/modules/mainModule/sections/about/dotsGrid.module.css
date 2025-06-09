@@ -6,6 +6,7 @@
   @apply right-[96px];
   @apply grid;
   @apply grid-cols-[repeat(25,1fr)];
+  @apply overflow-hidden;
 }
 
 .dot-wrapper {
@@ -13,10 +14,33 @@
   @apply cursor-crosshair;
   @apply h-fit;
   @apply transition duration-300;
+  @apply rounded-[var(--radius-md)];
 }
 
-.dot-wrapper:focus:hover:active {
-  @apply bg-[var(--color-lightGray)];
+.dot-wrapper:focus,
+.dot-wrapper:hover,
+.dot-wrapper:active {
+  @apply bg-[var(--color-gray)];
+}
+
+.dot-wrapper:focus .dot,
+.dot-wrapper:hover .dot,
+.dot-wrapper:active .dot {
+  @apply bg-[linear-gradient(180deg,var(--color-dark),var(--color-gold))];
+  @apply opacity-100;
+}
+
+:global(.light) .dot-wrapper:focus,
+:global(.light) .dot-wrapper:hover,
+:global(.light) .dot-wrapper:active {
+  @apply bg-[var(--color-warmDWhite)];
+}
+
+:global(.light) .dot-wrapper:focus .dot,
+:global(.light) .dot-wrapper:hover .dot,
+:global(.light) .dot-wrapper:active .dot {
+  @apply bg-[linear-gradient(180deg,var(--color-warmDWhite),var(--color-gold))];
+  @apply opacity-100;
 }
 
 .dot {
@@ -27,7 +51,9 @@
   @apply bg-[linear-gradient(180deg,var(--color-dark),var(--color-white))];
 }
 
-.dot:focus:hover:active {
+:global(.light) .dot {
+  @apply bg-[linear-gradient(180deg,var(--color-warmDWhite),var(--color-warmWhite))];
   @apply opacity-100;
-  @apply bg-[linear-gradient(180deg,var(--color-dark),var(--color-gold))];
 }
+
+

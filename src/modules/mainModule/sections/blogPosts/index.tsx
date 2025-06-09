@@ -91,7 +91,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
     );
 
     return (
-        <div class="p-highest ipadLg:px-offset8x ipadSm:px-offset3x">
+        <div class="p-highest ipadLg:p-offset8x ipadSm:px-offset3x">
             <Line>
                 <h2 class="text-max font-black ipadLg:text-5cxl" ref={props.postsRef}>
                     <DottedText>Posts</DottedText>
@@ -106,7 +106,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                 />
                 <div
                     class={cx(
-                        "mt-offset8x min-h-[400px]",
+                        "mt-offset8x min-h-[400px] phones:mt-offset6x",
                         !searchedAndFilteredPosts().length &&
                         "flex flex-col items-center justify-center",
                     )}

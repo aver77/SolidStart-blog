@@ -19,7 +19,7 @@ const Filters: Component<IFilters> = (props) => {
     return (
         <div class={`
           mt-offset6x gap-offset6x flex items-center
-          phones:gap-offset3x
+          phones:gap-offset3x phones:mt-offset4x
         `}>
             <Input value={props.searchValue} handleChange={props.setSearchValue} />
             <div ref={dropdownContainerRef} class="relative">

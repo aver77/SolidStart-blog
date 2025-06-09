@@ -1,12 +1,15 @@
 import { For } from "solid-js";
 
 import classes from "./dotsGrid.module.css";
+import cx from "classnames";
 
 const dotsData = Array(500).fill(undefined);
 
 const Dots = () => {
+    const mediaClass = "ipadLg:!right-offset8x ipadSm:!left-offset3x";
+
     return (
-        <div class={classes["dots"]}>
+        <div class={cx(classes["dots"], mediaClass)}>
             <For each={dotsData}>
                 {(_) => {
                     return (
