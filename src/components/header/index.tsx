@@ -38,9 +38,15 @@ const Header = () => {
                 <div class={`
                   gap-offset2x flex cursor-pointer items-center justify-center
                 `}>
-                    <GitHub />
-                    <LinkedIn />
-                    <CodeWars />
+                    <a href="https://github.com/aver77" target="_blank" rel="noreferrer noopener">
+                        <GitHub />
+                    </a>
+                    <a href="https://www.linkedin.com/in/nikita-averochkin/" target="_blank" rel="noreferrer noopener">
+                        <LinkedIn />
+                    </a>
+                    <a href="https://www.codewars.com/users/aver77" target="_blank" rel="noreferrer noopener">
+                        <CodeWars />
+                    </a>
                 </div>
             </div>
             <div class="flex cursor-pointer items-center justify-center">
