@@ -79,9 +79,9 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
             .map((tag) => tag.name);
 
         return searchedPosts()?.filter((post) => {
-            const tags = post.fields.tags;
+            const postTags = post.fields.tags;
 
-            return tags.some((tag) => selectedTags.includes(tag));
+            return selectedTags.every((selectedTag) => postTags.includes(selectedTag));
         });
     });
 
@@ -92,6 +92,46 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
     const usualPosts = createMemo(() =>
         searchedAndFilteredPosts()?.slice(headingPostsAmount),
     );
+
+    const getNoPostsJsx = () => {
+        const isFilterSelected = filterByTagsValues().some(f => f.selected);
+        const selectedFiltersStr = filterByTagsValues().reduce((acc, currV) => {
+            if (currV.selected) {
+                acc = acc + currV.name + ", ";
+            }
+
+            return acc;
+        }, "").slice(0, -2);
+
+        return (
+            <div class={"flex flex-col items-center justify-center"}>
+                <div>
+                    <LoopSad />
+                </div>
+                <h3 class="mt-offset8x text-2cxl font-bold">
+                    No Results in{" "}
+                    <span class="text-gold light:text-warmGold">Posts</span>
+                </h3>
+                <p class="mt-offset2x text-center">
+                    No Results for the{" "}
+                    <Show when={searchValue()}>
+                        <span class="text-gold light:text-warmGold">
+                            term "{searchValue()}"
+                        </span>
+                    </Show>
+                    <Show when={isFilterSelected}>
+                        <Show when={searchValue()}>
+                            and{" "}
+                        </Show>
+                        <span class="text-gold light:text-warmGold">
+                            filters: {selectedFiltersStr}
+                        </span>
+                    </Show>
+                    . You can try another search term similar to this one.
+                </p>
+            </div>
+        );
+    };
 
     return (
         <div class="p-highest ipadLg:p-offset8x ipadSm:px-offset3x">
@@ -118,27 +158,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                         onLoadMore={infinitePostsQuery.fetchNextPage}
                         hasMore={!!infinitePostsQuery.hasNextPage}
                     >
-                        <Show when={!searchedAndFilteredPosts().length}>
-                            <div class={`
-                              flex flex-col items-center justify-center
-                            `}>
-                                <div>
-                                    <LoopSad />
-                                </div>
-                                <h3 class="mt-offset8x text-2cxl font-bold">
-                                    No Results in{" "}
-                                    <span class="text-gold light:text-warmGold">Posts</span>
-                                </h3>
-                                <p class="mt-offset2x text-center">
-                                    No Results for the term{" "}
-                                    <span class="text-gold light:text-warmGold">
-                                        "{searchValue()}"
-                                    </span>
-                                    . You can try another search term similar to this one.
-                                </p>
-                            </div>
-                        </Show>
-                        <Show when={searchedAndFilteredPosts().length}>
+                        <Show when={searchedAndFilteredPosts().length} fallback={getNoPostsJsx()}>
                             <div class={`
                               gap-y-offset8x gap-x-offset4x mb-offset8x grid
                               grid-cols-[2fr_1fr] grid-rows-[repeat(2,1fr)]
@@ -188,22 +208,6 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                                 </For>
                             </div>
                         </Show>
-                        {/* <Show when={infinitePostsQuery.isFetching}>*/}
-                        {/*    <div class="grid grid-cols-3 gap-y-offset8x gap-x-offset4x">*/}
-                        {/*        <For each={Array(3).fill(undefined)}>*/}
-                        {/*            {(_, index) => {*/}
-                        {/*                return (*/}
-                        {/*                    <PostCard*/}
-                        {/*                        title={"Beautoful"}*/}
-                        {/*                        subTitle={"Beautoful"}*/}
-                        {/*                        text={"Beautoful"}*/}
-                        {/*                        minutesRead={"5"}*/}
-                        {/*                    />*/}
-                        {/*                );*/}
-                        {/*            }}*/}
-                        {/*        </For>*/}
-                        {/*    </div>*/}
-                        {/* </Show>*/}
                     </InfiniteScroll>
                 </div>
             </div>
