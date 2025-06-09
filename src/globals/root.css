@@ -75,6 +75,20 @@
   }
 }
 
+@custom-variant hfa {
+  @media (hover: hover) and (pointer: fine) {
+    &:hover {
+      @slot;
+    }
+  }
+  &:focus {
+    @slot;
+  }
+  &:active {
+     @slot;
+  }
+}
+
 html {
   @apply bg-dark;
   @apply text-white;
