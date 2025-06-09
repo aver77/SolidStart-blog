@@ -15,8 +15,8 @@ const Header = () => {
 
     return (
         <header class={`
-          h-headerHeight px-offset8x sticky top-[0px] z-10 flex justify-between
-          bg-dark
+          h-headerHeight px-offset8x bg-dark sticky top-[0px] z-10 flex
+          justify-between
           light:bg-warmWhite
           ipadSm:px-offset3x
         `}>
