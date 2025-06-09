@@ -34,11 +34,7 @@ const BlogPostModule = () => {
     `}>&bull;</div>;
 
     return (
-        <div class={`
-          px-highest duration-300
-          ipadLg:px-offset8x
-          ipadSm:px-offset3x
-        `}>
+        <div class="px-highest ipadLg:px-offset8x ipadSm:px-offset3x">
             <Show when={post?.data?.fields?.image}>
                 <div class="aspect-[16/9]">
                     <img
