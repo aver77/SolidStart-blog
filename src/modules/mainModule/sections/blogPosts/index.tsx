@@ -149,7 +149,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                 />
                 <div
                     class={cx(
-                        "mt-offset8x min-h-[400px] phones:mt-offset6x",
+                        "min-h-[400px]",
                         !searchedAndFilteredPosts().length &&
                         "flex flex-col items-center justify-center",
                     )}
