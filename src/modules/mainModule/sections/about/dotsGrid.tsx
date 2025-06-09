@@ -1,7 +1,8 @@
 import { For } from "solid-js";
 
-import classes from "./dotsGrid.module.css";
 import cx from "classnames";
+
+import classes from "./dotsGrid.module.css";
 
 const dotsData = Array(500).fill(undefined);
 
