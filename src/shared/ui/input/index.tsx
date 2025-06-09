@@ -28,6 +28,7 @@ const Input: Component<IInput> = (props) => {
             <input
                 {...restProps}
                 class={cx(classes.input, localProps.class)}
+                placeholder={"Search..."}
                 value={localProps.value}
                 onInput={(e) => localProps.handleChange(e.target.value)}
             />
