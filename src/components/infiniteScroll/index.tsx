@@ -1,5 +1,7 @@
 import { createEffect, JSX, onCleanup, Show } from "solid-js";
 
+import Spinner from "~/shared/ui/spinner";
+
 type InfiniteScrollProps = {
     onLoadMore: () => void;
     hasMore: boolean;
@@ -21,8 +23,6 @@ const InfiniteScroll = (props: InfiniteScrollProps) => {
 
         const observer = new IntersectionObserver(
             ([entry]) => {
-                console.log(entry);
-
                 if (entry.isIntersecting) {
                     props.onLoadMore();
                 }
@@ -48,7 +48,10 @@ const InfiniteScroll = (props: InfiniteScrollProps) => {
         <>
             {props.children}
             <Show when={props.hasMore}>
-                <div ref={ref} />
+                <div ref={ref}
+                    class={"mt-offset8x flex items-center justify-center"}>
+                    <Spinner size={"40px"} />
+                </div>
             </Show>
         </>
     );
