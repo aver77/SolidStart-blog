@@ -81,10 +81,7 @@ const About: Component<IAbout> = (props) => {
           ipadSm:px-offset3x
         `}>
             <div class="gap-offset8x relative z-2 flex">
-                <div class={`
-                  gap-offset8x flex flex-col duration-300
-                  ipadLg:gap-offset6x
-                `}>
+                <div class={"gap-offset8x flex flex-col duration-300"}>
                     <div>
                         {getTitle()}
                         {getSubTitle()}

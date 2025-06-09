@@ -14,7 +14,7 @@ interface IButton extends JSX.HTMLAttributes<HTMLButtonElement> {
     type?: ButtonTypes;
     disabled?: boolean;
 }
-const Index: Component<IButton> = (props) => {
+const Button: Component<IButton> = (props) => {
     const [localProps, restProps] = splitProps(props, [
         "children",
         "type",
@@ -44,4 +44,4 @@ const Index: Component<IButton> = (props) => {
     );
 };
 
-export default Index;
+export default Button;

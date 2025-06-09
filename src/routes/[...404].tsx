@@ -12,7 +12,7 @@ export default function NotFound() {
         <div class={`
           px-highest flex
           h-[calc(100vh-var(--spacing-headerHeight)-var(--spacing-footerHeight))]
-          items-center justify-center
+          items-center justify-center duration-300
           ipadLg:px-offset8x
           ipadSm:px-offset3x
         `}>
