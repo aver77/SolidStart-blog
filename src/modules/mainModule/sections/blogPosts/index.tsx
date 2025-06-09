@@ -12,7 +12,7 @@ import Line from "~/shared/ui/line";
 import Filters from "./filters";
 import { HeadingPostCard, PostCard } from "./postCard";
 
-const POSTS_LIMIT = 3;
+const POSTS_LIMIT = 10;
 
 interface IBlogPosts {
     postsRef: (el: HTMLHeadingElement) => void;
