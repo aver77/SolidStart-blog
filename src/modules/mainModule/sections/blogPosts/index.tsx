@@ -94,7 +94,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
     );
 
     const getNoPostsJsx = () => {
-        const isFilterSelected = filterByTagsValues().some(f => f.selected);
+        const isFilterSelected = filterByTagsValues().some((f) => f.selected);
         const selectedFiltersStr = filterByTagsValues().reduce((acc, currV) => {
             if (currV.selected) {
                 acc = acc + currV.name + ", ";
