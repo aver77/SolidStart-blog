@@ -19,7 +19,8 @@ const Layout: Component<ILayout> = (props) => {
             <Meta name="description" content={props.description} />
             <Meta name="keywords" content={props.keywords} />
             <Meta property="og:type" content="website" />
-            <Meta property="og:title" content="NW Blog | Everything about Frontend, technologies, IT trends and guides" />
+            <Meta property="og:title" content={props.title} />
+            <Meta property="og:site_name" content="Personal blog of Senior Frontend Developer Nikita" />
             <Meta property="og:url" content={BASE_HOST} />
             <Meta
                 property="og:description"
@@ -30,6 +31,7 @@ const Layout: Component<ILayout> = (props) => {
                 }
             />
             <Meta property="og:image" content={`${BASE_HOST}/blogImage.png`} />
+            <Meta property="twitter:card" content="summary_large_image" />
             {props.children}
             {getJsonLD()}
         </>
