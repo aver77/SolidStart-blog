@@ -1,5 +1,6 @@
 import type { Component, JSX } from "solid-js";
-import { Title, Meta } from "@solidjs/meta";
+import { Meta, Title } from "@solidjs/meta";
+
 import { getJsonLD } from "~/shared/utils/getJsonLD";
 
 interface ILayout {

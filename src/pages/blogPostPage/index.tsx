@@ -20,7 +20,7 @@ const BlogPage = () => {
                 "GraphQL,Postman,Swagger,Node,Express,MongoDB,Docker,Docker-Compose,Microservices,Micro-frontends"
             }
         >
-                <BlogPostModule />
+            <BlogPostModule />
         </Layout>
     );
 };
