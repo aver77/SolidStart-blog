@@ -29,7 +29,7 @@ const Layout: Component<ILayout> = (props) => {
                     "libraries, approaches and tools in the IT world. Follow the trends that are not distinguished from the industry."
                 }
             />
-            <Meta property="og:image" content={`${BASE_HOST}/public/assets/blogImage.png`} />
+            <Meta property="og:image" content={`${BASE_HOST}/blogImage.png`} />
             {props.children}
             {getJsonLD()}
         </>
