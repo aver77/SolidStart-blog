@@ -3,6 +3,8 @@ import { createClient } from "contentful";
 import type { IContentfulResourceFields, IPost } from "~/shared/types";
 import type { IAbout, IContentfulResource } from "~/shared/types";
 
+export const BASE_HOST = process.env.BASE_HOST! || import.meta.env.VITE_BASE_HOST!;
+
 export const getClient = () => {
     return createClient({
         space: process.env.SPACE! || import.meta.env.VITE_SPACE!,

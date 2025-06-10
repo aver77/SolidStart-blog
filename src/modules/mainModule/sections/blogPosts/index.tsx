@@ -44,6 +44,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
         staleTime: 1000 * 60 * 60,
         ssr: true,
     }));
+
     const posts = createMemo(() => infinitePostsQuery.data?.pages.flat().sort(
         (postA, postB) =>
             new Date(postB?.sys?.createdAt).getTime() - new Date(postA?.sys?.createdAt).getTime()

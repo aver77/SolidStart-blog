@@ -9,6 +9,7 @@ import Book from "~/shared/assets/svg/components/book";
 import { useTheme } from "~/shared/hooks/useTheme";
 import Chip from "~/shared/ui/chip/chip";
 import { getContentfulAvatar } from "~/shared/utils/getContentfulAvatar";
+import { getJsonLD } from "~/shared/utils/getJsonLD";
 import { getReadingTime } from "~/shared/utils/getReadingTime";
 
 const BlogPostModule = () => {
@@ -34,80 +35,92 @@ const BlogPostModule = () => {
     `}>&bull;</div>;
 
     return (
-        <div class={`
-          px-highest duration-300
-          ipadLg:px-offset8x
-          ipadSm:px-offset3x
-        `}>
-            <Show when={post?.data?.fields?.image}>
-                <div class="aspect-[16/9]">
-                    <img
-                        class="h-full w-full rounded-b-md"
-                        src={post.data?.fields.image.fields.file.url}
-                        alt={post.data?.fields.image.fields.file.fileName}
-                    />
-                </div>
-            </Show>
+        <>
             <div class={`
-              my-offset9x text-5cxl flex justify-center font-bold
-              ipadSm:text-5cxl ipadSm:my-offset6x
-              phones:text-2cxl phones:my-offset4x
+              px-highest duration-300
+              ipadLg:px-offset8x
+              ipadSm:px-offset3x
             `}>
-                <h1>{post?.data?.fields?.title}</h1>
-            </div>
-            <div class={`
-              mb-offset9x flex items-center justify-center
-              phones:mb-offset8x
-              ipadSm:flex-col ipadSm:gap-offset4x
-            `}>
-                <div class="gap-offset3x flex items-center">
-                    <div class={`
-                      h-[48px] max-h-[48px] min-h-[48px] w-[48px] max-w-[48px]
-                      min-w-[48px]
-                    `}>
-                        <Show
-                            when={!isLightTheme()}
-                            fallback={getContentfulAvatar(about?.data, true)}
-                        >
-                            {getContentfulAvatar(about?.data)}
-                        </Show>
+                <Show when={post?.data?.fields?.image}>
+                    <div class="aspect-[16/9]">
+                        <img
+                            class="h-full w-full rounded-b-md"
+                            src={post.data?.fields.image.fields.file.url}
+                            alt={post.data?.fields.image.fields.file.fileName}
+                        />
                     </div>
-                    <span class="font-semibold">{about?.data?.name}</span>
+                </Show>
+                <div class={`
+                  my-offset9x text-5cxl flex justify-center font-bold
+                  ipadSm:text-5cxl ipadSm:my-offset6x
+                  phones:text-2cxl phones:my-offset4x
+                `}>
+                    <h1>{post?.data?.fields?.title}</h1>
                 </div>
                 <div class={`
-                  text-lightGray flex items-center
-                  ipadSm:text-csm
-                  light:text-warmBrown
+                  mb-offset9x flex items-center justify-center
+                  phones:mb-offset8x
+                  ipadSm:flex-col ipadSm:gap-offset4x
                 `}>
-                    {getDot("ipadSm:hidden")}
-                    <span>
-                        {new Date(post?.data?.sys?.createdAt!).toLocaleDateString("en-US", {
-                            month: "short",
-                            day: "2-digit",
-                            year: "numeric",
-                        })}
-                    </span>
-                    {getDot()}
-                    <span class={`
-                      gap-offset2x flex items-center
+                    <div class="gap-offset3x flex items-center">
+                        <div class={`
+                          h-[48px] max-h-[48px] min-h-[48px] w-[48px]
+                          max-w-[48px] min-w-[48px]
+                        `}>
+                            <Show
+                                when={!isLightTheme()}
+                                fallback={getContentfulAvatar(about?.data, true)}
+                            >
+                                {getContentfulAvatar(about?.data)}
+                            </Show>
+                        </div>
+                        <span class="font-semibold">{about?.data?.name}</span>
+                    </div>
+                    <div class={`
+                      text-lightGray flex items-center
+                      ipadSm:text-csm
                       light:text-warmBrown
                     `}>
-                        <Book />
-                        <span>{getReadingTime(post?.data?.fields?.text!)} min. read</span>
-                    </span>
+                        {getDot("ipadSm:hidden")}
+                        <span>
+                            {new Date(post?.data?.sys?.createdAt!).toLocaleDateString("en-US", {
+                                month: "short",
+                                day: "2-digit",
+                                year: "numeric",
+                            })}
+                        </span>
+                        {getDot()}
+                        <span class={`
+                          gap-offset2x flex items-center
+                          light:text-warmBrown
+                        `}>
+                            <Book />
+                            <span>{getReadingTime(post?.data?.fields?.text!)} min. read</span>
+                        </span>
+                    </div>
+                </div>
+                {post?.data?.fields?.subTitle}
+                <div innerHTML={documentToHtmlString(post?.data?.fields?.text!)} />
+                <div class={`
+                  gap-offset2x my-offset9x flex flex-wrap justify-center
+                  phones:my-offset8x phones:mb-offset3x
+                `}>
+                    <For each={post?.data?.fields?.tags}>
+                        {(tag) => <Chip text={tag} />}
+                    </For>
                 </div>
             </div>
-            {post?.data?.fields?.subTitle}
-            <div innerHTML={documentToHtmlString(post?.data?.fields?.text!)} />
-            <div class={`
-              gap-offset2x my-offset9x flex flex-wrap justify-center
-              phones:my-offset8x phones:mb-offset3x
-            `}>
-                <For each={post?.data?.fields?.tags}>
-                    {(tag) => <Chip text={tag} />}
-                </For>
-            </div>
-        </div>
+            {getJsonLD({
+                "@type": "BlogPosting",
+                headline: post?.data?.fields?.title,
+                datePublished: post?.data?.sys?.createdAt?.slice(0, 10),
+                dateModified: post?.data?.sys?.updatedAt?.slice(0, 10),
+                publisher: {
+                    "@id": "NW"
+                },
+                image: post.data?.fields?.image?.fields?.file?.url
+            })}
+        </>
     );
 };
 

@@ -1,7 +1,7 @@
 import type { Component, JSX } from "solid-js";
 import { Meta, Title } from "@solidjs/meta";
 
-import { getJsonLD } from "~/shared/utils/getJsonLD";
+import { BASE_HOST } from "~/shared/api";
 
 interface ILayout {
     title: string;
@@ -9,8 +9,6 @@ interface ILayout {
     keywords: string;
     children: JSX.Element;
 }
-
-const BASE_HOST = process.env.BASE_HOST! || import.meta.env.VITE_BASE_HOST!;
 
 const Layout: Component<ILayout> = (props) => {
     return (
@@ -33,7 +31,6 @@ const Layout: Component<ILayout> = (props) => {
             <Meta property="og:image" content={`${BASE_HOST}/blogImage.png`} />
             <Meta property="twitter:card" content="summary_large_image" />
             {props.children}
-            {getJsonLD()}
         </>
     );
 };
