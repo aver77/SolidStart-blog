@@ -123,15 +123,20 @@ html {
   @apply mx-auto;
 }
 
-h1, h2, h3, h4, h5, h6 {
+.contentful-text h1,
+.contentful-text h2,
+.contentful-text h3,
+.contentful-text h4,
+.contentful-text h5,
+.contentful-text h6 {
   @apply font-bold;
   @apply text-cxl;
 }
 
-h2 {
-  @apply text-2cxl;
+.contentful-text h1 {
+  @apply text-3cxl;
 }
 
-h1 {
-  @apply text-3cxl;
+.contentful-text h2 {
+  @apply text-2cxl;
 }

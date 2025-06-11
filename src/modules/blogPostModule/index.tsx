@@ -1,7 +1,6 @@
 import { For, Show } from "solid-js";
 import { useLocation } from "@solidjs/router";
 
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import { createQuery } from "@tanstack/solid-query";
 
 import { BASE_QUERY_PARAMS, fetchAbout, fetchBlogPost } from "~/shared/api";
@@ -11,6 +10,7 @@ import { WithJsonLd } from "~/shared/providers/withJsonLd";
 import Chip from "~/shared/ui/chip/chip";
 import { getContentfulAvatar } from "~/shared/utils/getContentfulAvatar";
 import { getReadingTime } from "~/shared/utils/getReadingTime";
+import ContentfulText from "~/modules/blogPostModule/contentfulText";
 
 const BlogPostModule = () => {
     const { isLightTheme } = useTheme(false);
@@ -111,10 +111,7 @@ const BlogPostModule = () => {
                         </span>
                     </div>
                 </div>
-                <div
-                    class="gap-offset8x flex flex-col phones:gap-offset6x"
-                    innerHTML={documentToHtmlString(post?.data?.fields?.text!)}
-                />
+                <ContentfulText text={post?.data?.fields?.text!} />
                 <div class={`
                   gap-offset2x my-offset9x flex flex-wrap justify-center
                   phones:my-offset8x phones:mb-offset3x
