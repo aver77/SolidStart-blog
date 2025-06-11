@@ -106,6 +106,10 @@ html {
   @apply bg-gold;
 }
 
+.light *::selection {
+  @apply bg-warmGold;
+}
+
 * {
   @apply leading-[1.2];
 }
