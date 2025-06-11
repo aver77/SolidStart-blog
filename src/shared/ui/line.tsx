@@ -25,7 +25,7 @@ type ILine = { stroke?: number; color?: string; className?: string } & (
 
 const Line: Component<ILine> = (_props) => {
     const props = mergeProps({ align: LineAligns.LEFT }, _props);
-    /** Necessary when children is used multiple times */
+    /** Necessary for Solid when children is used multiple times */
     const child = children(() => props.children);
 
     const line = 

@@ -8,7 +8,7 @@ import { useTheme } from "~/shared/hooks/useTheme";
 import Button from "~/shared/ui/button";
 import DottedText from "~/shared/ui/dottedText";
 import { getContentfulAvatar } from "~/shared/utils/getContentfulAvatar";
-import { WithJsonLd } from "~/shared/utils/jsonLd";
+import { WithJsonLd } from "~/shared/providers/withJsonLd";
 
 interface IAbout {
     postsRef: () => HTMLElement;

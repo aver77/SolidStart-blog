@@ -10,7 +10,7 @@ import { useTheme } from "~/shared/hooks/useTheme";
 import Chip from "~/shared/ui/chip/chip";
 import { getContentfulAvatar } from "~/shared/utils/getContentfulAvatar";
 import { getReadingTime } from "~/shared/utils/getReadingTime";
-import { WithJsonLd } from "~/shared/utils/jsonLd";
+import { WithJsonLd } from "~/shared/providers/withJsonLd";
 
 const BlogPostModule = () => {
     const { isLightTheme } = useTheme(false);
