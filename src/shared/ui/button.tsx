@@ -28,11 +28,12 @@ const Button: Component<IButton> = (props) => {
                 `
                   px-offset4x py-offset3x text-cbase rounded-base cursor-pointer
                   border border-solid transition-[background-size] duration-300
-                  ease-in-out [background-size:0_100%]
+                  ease-in-out
                   ipadLg:!px-offset3x ipadLg:!py-offset2x ipadLg:!text-csm
+                  [background-size:0_100%]
                 `,
                 localProps.disabled && "bg-disabled border-disabled",
-                type() !== ButtonTypes.FILLED
+                type() === ButtonTypes.FILLED
                     ? `
                       border-gold text-dark bg-gold from-dark to-dark
                       bg-linear-to-r bg-no-repeat
@@ -45,8 +46,8 @@ const Button: Component<IButton> = (props) => {
                       border-gold text-gold bg-dark from-gold to-gold
                       bg-linear-to-r bg-no-repeat
                       hfa:[background-size:100%_100%] hfa:text-dark
-                      light:border-warmBrown light:text-warmBrown light:bg-warmWhite
-                      light:from-warmGold light:to-warmGold
+                      light:border-warmBrown light:text-warmBrown
+                      light:bg-warmWhite light:from-warmGold light:to-warmGold
                       light:hfa:text-white light:hfa:border-warmGold
                     `,
                 localProps.class,
