@@ -40,7 +40,7 @@ export const PostCardBase: Component<IPostCardWithSubtitleClass> = (_props) => {
             `}>
                 <For each={post.tags}>{(tag) => <Chip text={tag} />}</For>
             </div>
-            <h1 class="text-cxl font-bold line-clamp-2">{post.title}</h1>
+            <h1 class="text-cxl line-clamp-2 font-bold">{post.title}</h1>
             <h2
                 class={
                     `
