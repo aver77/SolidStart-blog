@@ -15,7 +15,7 @@ const UsualPostCard: Component<IPostCard> = (props) => {
               phones:min-w-auto
               min-h-[300px] min-w-[200px]
             `)}
-            subtitleClass={"whitespace-nowrap"}
+            subtitleClass={"line-clamp-2"}
         />
     );
 };
