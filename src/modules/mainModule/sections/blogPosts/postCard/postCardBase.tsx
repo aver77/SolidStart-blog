@@ -1,6 +1,8 @@
 import { type Component, For, Show, splitProps } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 
+import cx from "classnames";
+
 import BookSvg from "~/shared/assets/svg/components/book";
 import type { IPost } from "~/shared/types";
 import Chip from "~/shared/ui/chip/chip";
@@ -20,7 +22,7 @@ export const PostCardBase: Component<IPostCardWithSubtitleClass> = (_props) => {
 
     return (
         <div
-            class={`cursor-pointer duration-300 ${props.wrapperClass}`}
+            class={cx("cursor-pointer duration-300", props.wrapperClass)}
             onClick={() => navigate(`/blog-post/${post.id}`)}
         >
             <Show when={post.image}>

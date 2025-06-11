@@ -1,5 +1,7 @@
 import { Component, splitProps } from "solid-js";
 
+import cx from "classnames";
+
 import { IPostCard, PostCardBase } from "./postCardBase";
 
 const HeadingPostCard: Component<IPostCard> = (props) => {
@@ -8,12 +10,11 @@ const HeadingPostCard: Component<IPostCard> = (props) => {
     return (
         <PostCardBase
             {...restProps}
-            wrapperClass={`
-              ${localProps.wrapperClass} 
+            wrapperClass={cx(localProps.wrapperClass, `
               ipadLg:min-w-[300px]
               phones:min-w-auto
               min-w-[400px]
-            `}
+            `)}
             subtitleClass={"line-clamp-3"}
         />
     );
