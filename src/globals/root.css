@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import "globalClasses.css";
+
 @import url("https://fonts.googleapis.com/css2?family=Birthstone&family=Montserrat:wght@300;400;700;900&display=swap");
 
 @custom-variant light (&:where(.light, .light *));
@@ -112,31 +114,4 @@ html {
 
 * {
   @apply leading-[1.2];
-}
-
-.main-layout {
-  @apply px-offset8x;
-}
-
-.main-container {
-  @apply max-w-[1150px];
-  @apply mx-auto;
-}
-
-.contentful-text h1,
-.contentful-text h2,
-.contentful-text h3,
-.contentful-text h4,
-.contentful-text h5,
-.contentful-text h6 {
-  @apply font-bold;
-  @apply text-cxl;
-}
-
-.contentful-text h1 {
-  @apply text-3cxl;
-}
-
-.contentful-text h2 {
-  @apply text-2cxl;
 }
