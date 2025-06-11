@@ -9,6 +9,12 @@ import ThemeSun from "~/shared/assets/svg/components/themeSun";
 import { useTheme } from "~/shared/hooks/useTheme";
 import { toggleTheme } from "~/shared/providers/withTheme";
 
+enum SocialLinks {
+    GIT_HUB = "https://github.com/aver77",
+    LINKEDIN = "https://www.linkedin.com/in/nikita-averochkin/",
+    CODE_WARS = "https://www.codewars.com/users/aver77"
+}
+
 const Header = () => {
     const navigate = useNavigate();
     const { isLightTheme } = useTheme(false);
@@ -38,13 +44,13 @@ const Header = () => {
                 <div class={`
                   gap-offset2x flex cursor-pointer items-center justify-center
                 `}>
-                    <a href="https://github.com/aver77" target="_blank" rel="noreferrer noopener">
+                    <a href={SocialLinks.GIT_HUB} target="_blank" rel="noreferrer noopener">
                         <GitHub />
                     </a>
-                    <a href="https://www.linkedin.com/in/nikita-averochkin/" target="_blank" rel="noreferrer noopener">
+                    <a href={SocialLinks.LINKEDIN} target="_blank" rel="noreferrer noopener">
                         <LinkedIn />
                     </a>
-                    <a href="https://www.codewars.com/users/aver77" target="_blank" rel="noreferrer noopener">
+                    <a href={SocialLinks.CODE_WARS} target="_blank" rel="noreferrer noopener">
                         <CodeWars />
                     </a>
                 </div>

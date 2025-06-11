@@ -10,6 +10,7 @@ interface ILayout {
     children: JSX.Element;
 }
 
+/** Core component to wrap all the product pages */
 const Layout: Component<ILayout> = (props) => {
     return (
         <>

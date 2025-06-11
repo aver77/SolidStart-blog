@@ -3,12 +3,12 @@ import { Component, Show } from "solid-js";
 import { createQuery } from "@tanstack/solid-query";
 
 import DotsGrid from "~/modules/mainModule/sections/about/dotsGrid";
-import { BASE_HOST, fetchAbout } from "~/shared/api";
+import { BASE_HOST, BASE_QUERY_PARAMS, fetchAbout } from "~/shared/api";
 import { useTheme } from "~/shared/hooks/useTheme";
 import Button from "~/shared/ui/button";
 import DottedText from "~/shared/ui/dottedText";
 import { getContentfulAvatar } from "~/shared/utils/getContentfulAvatar";
-import { getJsonLD } from "~/shared/utils/getJsonLD";
+import { WithJsonLd } from "~/shared/utils/jsonLd";
 
 interface IAbout {
     postsRef: () => HTMLElement;
@@ -18,10 +18,9 @@ const About: Component<IAbout> = (props) => {
     const { isLightTheme } = useTheme(false);
 
     const about = createQuery(() => ({
+        ...BASE_QUERY_PARAMS,
         queryKey: ["about"],
         queryFn: fetchAbout,
-        staleTime: 1000 * 60 * 120,
-        ssr: true,
     }));
 
     const getTitle = () => {
@@ -55,28 +54,15 @@ const About: Component<IAbout> = (props) => {
         );
     };
 
-    const getAvatar = (isLight?: boolean) => {
-        const avatarType = isLight
-            ? "lightAvatar"
-            : "avatar";
-        const avatarClass = "w-full h-full";
-
-
-        if (!about?.data?.[avatarType]) {
-            return <div class={avatarClass} />;
-        }
-
-        return (
-            <img
-                class={avatarClass}
-                src={about.data?.[avatarType].fields.file.url}
-                alt={about.data?.[avatarType].fields.file.fileName}
-            />
-        );
+    const mainJsonLd = {
+        "@type": "Blog",
+        name: about?.data?.title,
+        description: about?.data?.aboutText,
+        url: BASE_HOST
     };
 
     return (
-        <>
+        <WithJsonLd extraJsonLd={mainJsonLd}>
             <section class={`
               p-highest relative
               ipadLg:px-offset8x
@@ -118,13 +104,7 @@ const About: Component<IAbout> = (props) => {
                 </div>
                 <DotsGrid />
             </section>
-            {getJsonLD({
-                "@type": "Blog",
-                name: about?.data?.title,
-                description: about?.data?.aboutText,
-                url: BASE_HOST
-            })}
-        </>
+        </WithJsonLd>
     );
 };
 

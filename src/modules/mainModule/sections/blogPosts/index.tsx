@@ -4,67 +4,51 @@ import cx from "classnames";
 import { createInfiniteQuery } from "@tanstack/solid-query";
 
 import InfiniteScroll from "~/components/infiniteScroll";
-import { getClient } from "~/shared/api";
+import { BASE_QUERY_PARAMS, fetchPosts } from "~/shared/api";
 import LoopSad from "~/shared/assets/svg/components/loopSad";
-import type { IContentfulResource, IPost } from "~/shared/types";
 import DottedText from "~/shared/ui/dottedText";
 import Line from "~/shared/ui/line";
+import { checkStringsMatch } from "~/shared/utils/checkStringsMatch";
 import Filters from "./filters";
 import { HeadingPostCard, PostCard } from "./postCard";
 
-const POSTS_LIMIT = 10;
+const DEFAULT_POSTS_LIMIT = 10;
 
 interface IBlogPosts {
     postsRef: (el: HTMLHeadingElement) => void;
 }
 
-export const fetchPosts = async (page: number) => {
-    const posts = (await getClient()
-        .getEntries({
-            content_type: "post",
-            skip: page * POSTS_LIMIT, // how much posts we skip from the start
-            limit: POSTS_LIMIT, // how many posts max fetch
-        })
-        .catch(() => ({
-            items: [],
-        }))) as IContentfulResource<IPost>;
-
-    return posts?.items;
-};
-
 const BlogPosts: Component<IBlogPosts> = (props) => {
     const infinitePostsQuery = createInfiniteQuery(() => ({
+        ...BASE_QUERY_PARAMS,
         queryKey: ["posts"],
-        queryFn: ({ pageParam = 0 }) => fetchPosts(pageParam),
+        queryFn: ({ pageParam = 0 }) => fetchPosts(pageParam, DEFAULT_POSTS_LIMIT),
         initialPageParam: 0,
         getNextPageParam: (lastPage, allPages) =>
-            lastPage.length < POSTS_LIMIT
+            lastPage.length < DEFAULT_POSTS_LIMIT
                 ? undefined
                 : allPages.length,
-        staleTime: 1000 * 60 * 60,
-        ssr: true,
     }));
 
-    const posts = createMemo(() => infinitePostsQuery.data?.pages.flat().sort(
+    /** 1. Sorting fetched posts by created date */
+    const sortedPosts = createMemo(() => infinitePostsQuery.data?.pages.flat().sort(
         (postA, postB) =>
             new Date(postB?.sys?.createdAt).getTime() - new Date(postA?.sys?.createdAt).getTime()
     ) ?? []);
 
     const [searchValue, setSearchValue] = createSignal("");
+    /** 2. Posts searched by filter input value */
     const searchedPosts = createMemo(() => {
-        return posts()?.filter((post) => {
+        return sortedPosts()?.filter((post) => {
             const { title, subTitle, minutesRead } = post.fields;
 
-            const targetStr = (title + subTitle + minutesRead).trim().toLowerCase();
-            const searchStr = searchValue().trim().toLowerCase();
-
-            return targetStr.includes(searchStr);
+            return checkStringsMatch(title + subTitle + minutesRead, searchValue());
         });
     });
 
     const allPostsTags = [
     // eslint-disable-next-line solid/reactivity
-        ...new Set(posts()?.flatMap((post) => post.fields.tags)),
+        ...new Set(sortedPosts()?.flatMap((post) => post.fields.tags)),
     ];
     const [filterByTagsValues, setFilterByTagsValues] = createSignal(
         allPostsTags.map((tag) => ({ name: tag, selected: false })),

@@ -2,6 +2,7 @@ import { Component, Index, type JSX, onCleanup, onMount, Show } from "solid-js";
 
 import cx from "classnames";
 
+import { useClickAway } from "~/shared/hooks/useClickAway";
 import OutlinedChip from "~/shared/ui/chip/outlinedChip";
 
 export interface IDropdownItem {
@@ -19,25 +20,11 @@ interface IDropdown extends JSX.HTMLAttributes<HTMLDivElement> {
 }
 
 const Dropdown: Component<IDropdown> = (props) => {
-    onMount(() => {
-        const clickAwayListener = (event: MouseEvent | TouchEvent) => {
-            if (
-                !props.opened ||
-                !props ||
-                props.dropdownContainerRef().contains(event.target as Node)
-            ) {
-                return;
-            }
-
-            props.setOpened(false);
-        };
-
-        document.addEventListener("mousedown", clickAwayListener);
-
-        onCleanup(() => {
-            document.removeEventListener("mousedown", clickAwayListener);
-        });
-    });
+    useClickAway(
+        () => props.dropdownContainerRef(),
+        () => props.setOpened,
+        () => props.opened
+    );
 
     const onChipClick = (index: number) => {
         const newItems = [...props.items];

@@ -4,13 +4,13 @@ import { useLocation } from "@solidjs/router";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import { createQuery } from "@tanstack/solid-query";
 
-import { fetchAbout, fetchBlogPost } from "~/shared/api";
-import Book from "~/shared/assets/svg/components/book";
+import { BASE_QUERY_PARAMS, fetchAbout, fetchBlogPost } from "~/shared/api";
+import BookSvg from "~/shared/assets/svg/components/book";
 import { useTheme } from "~/shared/hooks/useTheme";
 import Chip from "~/shared/ui/chip/chip";
 import { getContentfulAvatar } from "~/shared/utils/getContentfulAvatar";
-import { getJsonLD } from "~/shared/utils/getJsonLD";
 import { getReadingTime } from "~/shared/utils/getReadingTime";
+import { WithJsonLd } from "~/shared/utils/jsonLd";
 
 const BlogPostModule = () => {
     const { isLightTheme } = useTheme(false);
@@ -18,38 +18,50 @@ const BlogPostModule = () => {
     const blogPostId = location.pathname.split("/").at(-1);
 
     const post = createQuery(() => ({
+        ...BASE_QUERY_PARAMS,
         queryKey: ["post", blogPostId],
         queryFn: () => fetchBlogPost(blogPostId!),
-        staleTime: 1000 * 60 * 120,
-        ssr: true,
     }));
 
     const about = createQuery(() => ({
+        ...BASE_QUERY_PARAMS,
         queryKey: ["about"],
         queryFn: fetchAbout,
-        staleTime: 1000 * 60 * 120,
-        ssr: true,
     }));
 
-    const getDot = (extraClass?: string) => <div class={`mx-offset3x h-full ${extraClass}
-    `}>&bull;</div>;
+    const getDot = (extraClass?: string) => {
+        return (
+            <div class={`mx-offset3x h-full ${extraClass}`}>&bull;</div>
+        );
+    };
+
+    const blogPostJsonLd = {
+        "@type": "BlogPosting",
+        headline: post?.data?.fields?.title,
+        datePublished: post?.data?.sys?.createdAt?.slice(0, 10),
+        dateModified: post?.data?.sys?.updatedAt?.slice(0, 10),
+        publisher: {
+            "@id": "NW"
+        },
+        image: post.data?.fields?.image?.fields?.file?.url
+    };
 
     return (
-        <>
+        <WithJsonLd extraJsonLd={blogPostJsonLd}>
             <div class={`
               px-highest duration-300
               ipadLg:px-offset8x
               ipadSm:px-offset3x
             `}>
-                <Show when={post?.data?.fields?.image}>
-                    <div class="aspect-[16/9]">
+                <div class="aspect-[16/9]">
+                    <Show when={post?.data?.fields?.image}>
                         <img
                             class="h-full w-full rounded-b-md"
                             src={post.data?.fields.image.fields.file.url}
                             alt={post.data?.fields.image.fields.file.fileName}
                         />
-                    </div>
-                </Show>
+                    </Show>
+                </div>
                 <div class={`
                   my-offset9x text-5cxl flex justify-center font-bold
                   ipadSm:text-5cxl ipadSm:my-offset6x
@@ -94,7 +106,7 @@ const BlogPostModule = () => {
                           gap-offset2x flex items-center
                           light:text-warmBrown
                         `}>
-                            <Book />
+                            <BookSvg />
                             <span>{getReadingTime(post?.data?.fields?.text!)} min. read</span>
                         </span>
                     </div>
@@ -110,17 +122,7 @@ const BlogPostModule = () => {
                     </For>
                 </div>
             </div>
-            {getJsonLD({
-                "@type": "BlogPosting",
-                headline: post?.data?.fields?.title,
-                datePublished: post?.data?.sys?.createdAt?.slice(0, 10),
-                dateModified: post?.data?.sys?.updatedAt?.slice(0, 10),
-                publisher: {
-                    "@id": "NW"
-                },
-                image: post.data?.fields?.image?.fields?.file?.url
-            })}
-        </>
+        </WithJsonLd>
     );
 };
 

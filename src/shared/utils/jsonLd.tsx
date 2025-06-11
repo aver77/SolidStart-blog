@@ -23,7 +23,7 @@ const JSON_LD_BASE: JsonLd = {
     }
 };
 
-export const getJsonLD = (extraJsonLd?: JsonLd): JSX.Element => {
+const getJsonLd = (extraJsonLd?: JsonLd): JSX.Element => {
     return (
         <script type="application/ld+json">
             {JSON.stringify({
@@ -31,5 +31,19 @@ export const getJsonLD = (extraJsonLd?: JsonLd): JSX.Element => {
                 ...extraJsonLd || {}
             })}
         </script>
+    );
+};
+
+interface IWithJsonLd {
+    children: JSX.Element;
+    extraJsonLd?: JsonLd;
+}
+
+export const WithJsonLd = (props: IWithJsonLd) => {
+    return (
+        <>
+            {props.children}
+            {getJsonLd(props.extraJsonLd)}
+        </>
     );
 };
