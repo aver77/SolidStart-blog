@@ -1,8 +1,6 @@
 import { type Component, For, Show, splitProps } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 
-import cx from "classnames";
-
 import Book from "~/shared/assets/svg/components/book";
 import type { IPost } from "~/shared/types";
 import Chip from "~/shared/ui/chip/chip";
@@ -16,13 +14,13 @@ interface IPostCardWithSubtitleClass extends IPostCard {
     subtitleClass?: string;
 }
 
-export const PostCard: Component<IPostCardWithSubtitleClass> = (_props) => {
+export const PostCardBase: Component<IPostCardWithSubtitleClass> = (_props) => {
     const [props, post] = splitProps(_props, ["wrapperClass", "subtitleClass"]);
     const navigate = useNavigate();
 
     return (
         <div
-            class={cx("cursor-pointer duration-300", props.wrapperClass)}
+            class={`cursor-pointer duration-300 ${props.wrapperClass}`}
             onClick={() => navigate(`/blog-post/${post.id}`)}
         >
             <Show when={post.image}>
@@ -42,13 +40,13 @@ export const PostCard: Component<IPostCardWithSubtitleClass> = (_props) => {
             </div>
             <h1 class="text-cxl font-bold">{post.title}</h1>
             <h2
-                class={cx(
+                class={
                     `
                       my-offset3x overflow-hidden text-ellipsis
                       ipadSm:my-offset2x
-                    `,
-                    props.subtitleClass,
-                )}
+                      ${props.subtitleClass}
+                    `
+                }
             >
                 {post.subTitle}
             </h2>

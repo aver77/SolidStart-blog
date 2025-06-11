@@ -1,7 +1,5 @@
 import { children, type Component, type JSX, mergeProps, Show } from "solid-js";
 
-import cx from "classnames";
-
 export enum LineAligns {
     LEFT = "left",
     RIGHT = "right",
@@ -30,10 +28,12 @@ const Line: Component<ILine> = (_props) => {
 
     const line = 
     <div
-        class={cx(
-            props.className,
-            "border-lightGray w-full border-solid light:border-warmBrown",
-        )}
+        class={
+            `${props.className}
+              border-lightGray w-full border-solid
+              light:border-warmBrown
+            `
+        }
         style={{
             ...props.color
                 ? { "border-color": props.color }
