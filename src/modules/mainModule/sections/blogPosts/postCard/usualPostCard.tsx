@@ -2,13 +2,13 @@ import { Component, splitProps } from "solid-js";
 
 import cx from "classnames";
 
-import { IPostCard, PostCard } from "./postCard";
+import { IPostCard, PostCardBase } from "./postCardBase";
 
 const UsualPostCard: Component<IPostCard> = (props) => {
     const [localProps, restProps] = splitProps(props, ["wrapperClass"]);
 
     return (
-        <PostCard
+        <PostCardBase
             {...restProps}
             wrapperClass={cx(localProps.wrapperClass, `
               ipadLg:min-w-[250px]

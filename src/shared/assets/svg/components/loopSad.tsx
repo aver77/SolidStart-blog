@@ -17,7 +17,7 @@ const LoopSad = (props: ISvg) => {
             height={localProps.height || "120px"}
             viewBox="0 0 32 32"
         >
-            <g id="search_x2C__magnifier_x2C__magnifying_x2C__emoji_x2C__No_results">
+            <g>
                 <g>
                     <g>
                         <path

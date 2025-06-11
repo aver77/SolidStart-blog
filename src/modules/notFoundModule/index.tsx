@@ -1,6 +1,6 @@
 import { useNavigate } from "@solidjs/router";
 
-import DocumentSad from "~/shared/assets/svg/components/documentSad";
+import DocumentSadSvg from "~/shared/assets/svg/components/documentSad";
 import Button from "~/shared/ui/button";
 
 const NotFoundModule = () => {
@@ -16,7 +16,7 @@ const NotFoundModule = () => {
         `}>
             <div>
                 <div>
-                    <DocumentSad />
+                    <DocumentSadSvg />
                 </div>
                 <h3 class="mt-offset8x text-2cxl font-bold phones:mt-offset6x">Hmmm, that didn't work</h3>
                 <div class="mt-offset2x">

@@ -1,12 +1,21 @@
+/** Warning! Styles for tailwind should be fully hardcoded */
 export const getColorClass = (
     colorProperty: "fill" | "stroke",
-    baseColor: string | undefined,
-    customDarkThemeColor?: string,
-    customLightThemeColor?: string,
+    otherClass: string = "",
+    customClass: {
+        darkClass?: string;
+        lightClass?: string;
+    } = {}
 ) => {
-    if (baseColor) {
-        return `${colorProperty}-${baseColor}`;
+    let finalClass = "";
+
+    if (colorProperty === "fill") {
+        finalClass = `${customClass?.darkClass || "fill-white"} ${customClass.lightClass || "light:fill-warmBrown"}`;
+    } else {
+        finalClass = `${customClass.darkClass || "stroke-white"} ${customClass.lightClass || "light:stroke-warmBrown"}`;
     }
 
-    return `${colorProperty}-${customDarkThemeColor ?? "white"} light:${colorProperty}-${customLightThemeColor ?? "warmBrown"}`;
+    finalClass += otherClass;
+
+    return finalClass;
 };

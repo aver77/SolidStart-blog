@@ -3,6 +3,7 @@ import { Component, createMemo, createSignal, For, Show } from "solid-js";
 import cx from "classnames";
 import { createInfiniteQuery } from "@tanstack/solid-query";
 
+import type { IDropdownItem } from "~/components/dropdown";
 import InfiniteScroll from "~/components/infiniteScroll";
 import { BASE_QUERY_PARAMS, fetchPosts } from "~/shared/api";
 import LoopSad from "~/shared/assets/svg/components/loopSad";
@@ -13,6 +14,7 @@ import Filters from "./filters";
 import { HeadingPostCard, PostCard } from "./postCard";
 
 const DEFAULT_POSTS_LIMIT = 10;
+const DEFAULT_HEADING_POSTS_AMOUNT = 3;
 
 interface IBlogPosts {
     postsRef: (el: HTMLHeadingElement) => void;
@@ -46,20 +48,27 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
         });
     });
 
-    const allPostsTags = [
-    // eslint-disable-next-line solid/reactivity
-        ...new Set(sortedPosts()?.flatMap((post) => post.fields.tags)),
-    ];
-    const [filterByTagsValues, setFilterByTagsValues] = createSignal(
-        allPostsTags.map((tag) => ({ name: tag, selected: false })),
-    );
+    /** 3. Get list of all posts tags. Create list of them. By default - non of them selected. */
+    const getInitialTagFilters = (): IDropdownItem[] => {
+        const allPostsTags = [
+            ...new Set(sortedPosts()?.flatMap((post) => post.fields.tags))
+        ];
 
-    const searchedAndFilteredPosts = createMemo(() => {
-        if (!filterByTagsValues().some((tag) => tag.selected)) {
+        return allPostsTags.map((tag) => ({ name: tag, selected: false }));
+    };
+    const [tagFilters, setTagFilters] =
+        createSignal(getInitialTagFilters());
+
+    const checkTagFiltersSelected = () => tagFilters().some((f) => f.selected);
+
+    /** 4. Filter posts depend on tagFilters */
+    const calculatedPosts = createMemo(() => {
+        if (!checkTagFiltersSelected()) {
             return searchedPosts();
         }
 
-        const selectedTags = filterByTagsValues()
+        /** List of selected tag names */
+        const selectedTags: string[] = tagFilters()
             .filter((tag) => tag.selected)
             .map((tag) => tag.name);
 
@@ -70,23 +79,18 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
         });
     });
 
-    const headingPostsAmount = 3;
     const headingPosts = createMemo(() => {
-        return searchedAndFilteredPosts()?.slice(0, headingPostsAmount);
+        return calculatedPosts()?.slice(0, DEFAULT_HEADING_POSTS_AMOUNT);
     });
     const usualPosts = createMemo(() =>
-        searchedAndFilteredPosts()?.slice(headingPostsAmount),
+        calculatedPosts()?.slice(DEFAULT_HEADING_POSTS_AMOUNT),
     );
 
     const getNoPostsJsx = () => {
-        const isFilterSelected = filterByTagsValues().some((f) => f.selected);
-        const selectedFiltersStr = filterByTagsValues().reduce((acc, currV) => {
-            if (currV.selected) {
-                acc = acc + currV.name + ", ";
-            }
-
-            return acc;
-        }, "").slice(0, -2);
+        const selectedFiltersStr = tagFilters()
+            .filter((tag) => tag.selected)
+            .map((tag) => tag.name)
+            .join(", ");
 
         return (
             <div class={"flex flex-col items-center justify-center"}>
@@ -94,8 +98,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                     <LoopSad />
                 </div>
                 <h3 class="mt-offset8x text-2cxl font-bold">
-                    No Results in{" "}
-                    <span class="text-gold light:text-warmGold">Posts</span>
+                    No Results in <span class="text-gold light:text-warmGold">Posts</span>
                 </h3>
                 <p class="mt-offset2x text-center">
                     No Results for the{" "}
@@ -104,10 +107,10 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                             term "{searchValue()}"
                         </span>
                     </Show>
-                    <Show when={isFilterSelected}>
-                        <Show when={searchValue()}>
-                            {" "}and{" "}
-                        </Show>
+                    <Show when={searchValue() && checkTagFiltersSelected()}>
+                        {" "}and{" "}
+                    </Show>
+                    <Show when={checkTagFiltersSelected()}>
                         <span class="text-gold light:text-warmGold">
                             filters: {selectedFiltersStr}
                         </span>
@@ -129,13 +132,13 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                 <Filters
                     searchValue={searchValue()}
                     setSearchValue={setSearchValue}
-                    filtersValue={filterByTagsValues()}
-                    setFiltersValue={setFilterByTagsValues}
+                    filtersValue={tagFilters()}
+                    setFiltersValue={setTagFilters}
                 />
                 <div
                     class={cx(
                         "min-h-[400px]",
-                        !searchedAndFilteredPosts().length &&
+                        !calculatedPosts().length &&
                         "flex flex-col items-center justify-center",
                     )}
                 >
@@ -143,7 +146,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                         onLoadMore={infinitePostsQuery.fetchNextPage}
                         hasMore={!!infinitePostsQuery.hasNextPage}
                     >
-                        <Show when={searchedAndFilteredPosts().length} fallback={getNoPostsJsx()}>
+                        <Show when={calculatedPosts().length} fallback={getNoPostsJsx()}>
                             <div class={`
                               gap-y-offset8x gap-x-offset4x mb-offset8x grid
                               grid-cols-[2fr_1fr] grid-rows-[repeat(2,1fr)]
@@ -153,30 +156,27 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
                                 <For each={headingPosts()}>
                                     {(post, index) => {
                                         return (
-                                            <>
-                                                <Show
-                                                    when={!index()}
-                                                    fallback={
-                                                        <PostCard
-                                                            {...post.fields}
-                                                            id={post.sys.id}
-                                                        />
-                                                    }
-                                                >
-                                                    <div class={`
-                                                      ipadSm:col-span-2
-                                                      ipadSm:row-start-1
-                                                      phones:col-span-1
-                                                      row-span-2 flex
-                                                      items-center
-                                                    `}>
-                                                        <HeadingPostCard
-                                                            {...post.fields}
-                                                            id={post.sys.id}
-                                                        />
-                                                    </div>
-                                                </Show>
-                                            </>
+                                            <Show
+                                                when={!index()}
+                                                fallback={
+                                                    <PostCard
+                                                        {...post.fields}
+                                                        id={post.sys.id}
+                                                    />
+                                                }
+                                            >
+                                                <div class={`
+                                                  ipadSm:col-span-2
+                                                  ipadSm:row-start-1
+                                                  phones:col-span-1
+                                                  row-span-2 flex items-center
+                                                `}>
+                                                    <HeadingPostCard
+                                                        {...post.fields}
+                                                        id={post.sys.id}
+                                                    />
+                                                </div>
+                                            </Show>
                                         );
                                     }}
                                 </For>

@@ -1,6 +1,6 @@
 import { type Component, type JSX, splitProps } from "solid-js";
 
-import cn from "classnames";
+import cx from "classnames";
 
 import classes from "./button.module.css";
 
@@ -30,7 +30,7 @@ const Button: Component<IButton> = (props) => {
 
     return (
         <button
-            class={cn(
+            class={cx(
                 classes.btnShared,
                 mediaClass,
                 localProps.disabled && classes.disabled,
