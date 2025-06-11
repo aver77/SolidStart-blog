@@ -2,8 +2,6 @@ import { type Component, type JSX, splitProps } from "solid-js";
 
 import cx from "classnames";
 
-import classes from "./chip.module.css";
-
 export interface IChip extends JSX.HTMLAttributes<HTMLSpanElement> {
     text: string;
 }
@@ -11,10 +9,14 @@ export interface IChip extends JSX.HTMLAttributes<HTMLSpanElement> {
 const Chip: Component<IChip> = (props) => {
     const [localProps, restProps] = splitProps(props, ["text", "class"]);
 
-    const mediaClass = "phones:!text-csm phones:!py-offsetx phones:!py-offset2x";
-
     return (
-        <span class={cx(classes.chip, localProps.class, mediaClass)} {...restProps}>
+        <span class={cx(`
+          bg-gray py-offset2x px-offset3x text-csm overflow-hidden rounded-full
+          text-ellipsis whitespace-nowrap transition duration-300
+          light:text-warmBrown light:bg-warmDWhite
+          phones:!text-csm phones:!py-offsetx phones:!py-offset2x
+        `, localProps.class)}
+        {...restProps}>
             {localProps.text}
         </span>
     );
