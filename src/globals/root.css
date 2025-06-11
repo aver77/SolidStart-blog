@@ -122,3 +122,16 @@ html {
   @apply max-w-[1150px];
   @apply mx-auto;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  @apply font-bold;
+  @apply text-cxl;
+}
+
+h2 {
+  @apply text-2cxl;
+}
+
+h1 {
+  @apply text-3cxl;
+}

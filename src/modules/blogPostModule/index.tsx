@@ -111,8 +111,10 @@ const BlogPostModule = () => {
                         </span>
                     </div>
                 </div>
-                {post?.data?.fields?.subTitle}
-                <div innerHTML={documentToHtmlString(post?.data?.fields?.text!)} />
+                <div
+                    class="gap-offset8x flex flex-col phones:gap-offset6x"
+                    innerHTML={documentToHtmlString(post?.data?.fields?.text!)}
+                />
                 <div class={`
                   gap-offset2x my-offset9x flex flex-wrap justify-center
                   phones:my-offset8x phones:mb-offset3x
