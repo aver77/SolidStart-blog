@@ -20,6 +20,7 @@ interface IDropdown extends JSX.HTMLAttributes<HTMLDivElement> {
 }
 
 const Dropdown: Component<IDropdown> = (props) => {
+    /** Otherwise Solid will lose reactivity */
     useClickAway(
         () => props.dropdownContainerRef(),
         () => props.setOpened,
