@@ -5,10 +5,10 @@ import { createQuery } from "@tanstack/solid-query";
 import DotsGrid from "~/modules/mainModule/sections/about/dotsGrid";
 import { BASE_HOST, BASE_QUERY_PARAMS, fetchAbout } from "~/shared/api";
 import { useTheme } from "~/shared/hooks/useTheme";
+import { WithJsonLd } from "~/shared/providers/withJsonLd";
 import Button from "~/shared/ui/button";
 import DottedText from "~/shared/ui/dottedText";
 import { getContentfulAvatar } from "~/shared/utils/getContentfulAvatar";
-import { WithJsonLd } from "~/shared/providers/withJsonLd";
 
 interface IAbout {
     postsRef: () => HTMLElement;

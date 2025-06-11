@@ -7,10 +7,10 @@ import { createQuery } from "@tanstack/solid-query";
 import { BASE_QUERY_PARAMS, fetchAbout, fetchBlogPost } from "~/shared/api";
 import BookSvg from "~/shared/assets/svg/components/book";
 import { useTheme } from "~/shared/hooks/useTheme";
+import { WithJsonLd } from "~/shared/providers/withJsonLd";
 import Chip from "~/shared/ui/chip/chip";
 import { getContentfulAvatar } from "~/shared/utils/getContentfulAvatar";
 import { getReadingTime } from "~/shared/utils/getReadingTime";
-import { WithJsonLd } from "~/shared/providers/withJsonLd";
 
 const BlogPostModule = () => {
     const { isLightTheme } = useTheme(false);
