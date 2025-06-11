@@ -5,7 +5,6 @@ import tsParser from "@typescript-eslint/parser";
 import stylistic from "@stylistic/eslint-plugin";
 // @ts-ignore
 import simpleImportSort from "eslint-plugin-simple-import-sort";
-import css from "@eslint/css";
 // @ts-ignore
 import betterTailwind from "eslint-plugin-better-tailwindcss";
 
@@ -18,25 +17,6 @@ export default defineConfig([
         ".output/**/*",
         ".husky/**/*"
     ]),
-    {
-        files: ["src/**/*.css"],
-        ignores: ["src/**/root.css"],
-        language: "css/css",
-        plugins: {
-            css
-        },
-        rules: {
-            /** CSS */
-            "css/no-duplicate-imports": "error",
-            "css/no-empty-blocks": "error",
-            /** Safe measure for display: black; cccolor: white and so on */
-            "css/no-invalid-properties": "error",
-            /** Use only widely available CSS features */
-            "css/use-baseline": ["warn", {
-                available: "widely"
-            }]
-        }
-    },
     {
         files: ["src/**/*.{ts,tsx,js,jsx}"],
         plugins: {
