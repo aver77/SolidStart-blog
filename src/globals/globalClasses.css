@@ -20,3 +20,11 @@
 .contentful-text h2 {
     @apply text-2cxl;
 }
+
+.contentful-text code {
+    @apply bg-gray;
+
+    @variant light {
+        @apply bg-warmDWhite;
+    }
+}
