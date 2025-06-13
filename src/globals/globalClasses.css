@@ -38,3 +38,9 @@
     @apply list-decimal;
     @apply ml-offset6x;
 }
+
+.contentful-text a {
+    @apply underline;
+    @apply hfa:text-gold;
+    @apply light:hfa:text-warmGold;
+}
