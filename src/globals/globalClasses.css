@@ -29,6 +29,15 @@
     }
 }
 
+.contentful-text li {
+    @apply my-offset2x;
+}
+
+.contentful-text ol {
+    @apply list-decimal;
+    @apply ml-offset6x;
+}
+
 .contentful-text a {
     @apply underline;
     @apply hfa:text-gold;
