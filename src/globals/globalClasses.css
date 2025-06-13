@@ -29,16 +29,6 @@
     }
 }
 
-.contentful-text ul {
-    @apply list-disc;
-    @apply ml-offset6x;
-}
-
-.contentful-text ol {
-    @apply list-decimal;
-    @apply ml-offset6x;
-}
-
 .contentful-text a {
     @apply underline;
     @apply hfa:text-gold;
