@@ -6,7 +6,7 @@ import type { IAbout, IContentfulResource } from "~/shared/types";
 export const BASE_HOST = process.env.BASE_HOST! || import.meta.env.VITE_BASE_HOST!;
 
 export const BASE_QUERY_PARAMS = {
-    staleTime: 1000 * 60 * 120,
+    staleTime: 1000 * 60 * 5,
     ssr: true
 };
 
