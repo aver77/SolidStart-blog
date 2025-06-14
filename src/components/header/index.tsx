@@ -1,19 +1,11 @@
-import { Show } from "solid-js";
+import { For, Show } from "solid-js";
 import { useNavigate } from "@solidjs/router";
 
-import CodeWars from "~/shared/assets/svg/components/codewars";
-import GitHub from "~/shared/assets/svg/components/gitHub";
-import LinkedIn from "~/shared/assets/svg/components/linkedIn";
+import { SocialLinks } from "~/components/header/defaultValues";
 import ThemeMoon from "~/shared/assets/svg/components/themeMoon";
 import ThemeSun from "~/shared/assets/svg/components/themeSun";
 import { useTheme } from "~/shared/hooks/useTheme";
 import { toggleTheme } from "~/shared/providers/withTheme";
-
-enum SocialLinks {
-    GIT_HUB = "https://github.com/aver77",
-    LINKEDIN = "https://www.linkedin.com/in/nikita-averochkin/",
-    CODE_WARS = "https://www.codewars.com/users/aver77"
-}
 
 const Header = () => {
     const navigate = useNavigate();
@@ -44,15 +36,13 @@ const Header = () => {
                 <div class={`
                   gap-offset2x flex cursor-pointer items-center justify-center
                 `}>
-                    <a href={SocialLinks.GIT_HUB} target="_blank" rel="noreferrer noopener">
-                        <GitHub />
-                    </a>
-                    <a href={SocialLinks.LINKEDIN} target="_blank" rel="noreferrer noopener">
-                        <LinkedIn />
-                    </a>
-                    <a href={SocialLinks.CODE_WARS} target="_blank" rel="noreferrer noopener">
-                        <CodeWars />
-                    </a>
+                    <For each={SocialLinks}>
+                        {(socialItem) =>
+                            <a href={socialItem.link} target="_blank" rel="noreferrer noopener">
+                                {socialItem.icon}
+                            </a>
+                        }
+                    </For>
                 </div>
             </div>
             <div class="flex cursor-pointer items-center justify-center">

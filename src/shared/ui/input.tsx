@@ -44,7 +44,7 @@ const Input: Component<IInput> = (props) => {
             />
             <Show when={localProps.value.length > 0}>
                 <div class={`
-                  p-offset5x -m-offset5x top-[calc(50%+theme(spacing.offset5x))]
+                  p-offset4x -m-offset4x top-[calc(50%+theme(spacing.offset4x))]
                   right-offset3x absolute inline-block
                   transform-[translate(0,-50%)] cursor-pointer
                 `}
