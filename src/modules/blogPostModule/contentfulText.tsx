@@ -1,9 +1,9 @@
 import type { Component } from "solid-js";
+import { onMount } from "solid-js";
 
 import cx from "classnames";
 import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
 import type { Document } from "@contentful/rich-text-types";
-import {onMount} from "solid-js";
 
 interface IContentfulText {
     text: Document;
@@ -21,7 +21,7 @@ const ContentfulText: Component<IContentfulText> = (props) => {
                 link.setAttribute("rel", "noreferrer noopener");
             });
         }
-    })
+    });
 
     return (
         <div
