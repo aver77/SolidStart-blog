@@ -14,6 +14,7 @@ export const getContentfulAvatar = (data?: IAvatars, isLight?: boolean) => {
     return (
         <img
             class={avatarClass}
+            loading={"lazy"}
             src={data?.[avatarType].fields.file.url}
             alt={data?.[avatarType].fields.file.fileName}
         />
