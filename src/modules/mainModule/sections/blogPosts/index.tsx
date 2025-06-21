@@ -52,7 +52,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
     const getInitialTagFilters = (): IDropdownItem[] => {
         const allPostsTags = [
             ...new Set(sortedPosts()?.flatMap((post) => post.fields.tags))
-        ];
+        ].filter(Boolean);
 
         return allPostsTags.map((tag) => ({ name: tag, selected: false }));
     };
