@@ -1,4 +1,11 @@
-import {Component, createEffect, createMemo, createSignal, For, Show} from "solid-js";
+import {
+    Component,
+    createEffect,
+    createMemo,
+    createSignal,
+    For,
+    Show
+} from "solid-js";
 
 import cx from "classnames";
 import { createInfiniteQuery } from "@tanstack/solid-query";
