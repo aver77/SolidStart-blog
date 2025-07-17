@@ -1,4 +1,4 @@
-import { Component, createMemo, createSignal, For, Show } from "solid-js";
+import {Component, createEffect, createMemo, createSignal, For, Show} from "solid-js";
 
 import cx from "classnames";
 import { createInfiniteQuery } from "@tanstack/solid-query";
@@ -48,16 +48,17 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
         });
     });
 
+    const [tagFilters, setTagFilters] =
+        createSignal([] as IDropdownItem[]);
+
     /** 3. Get list of all posts tags. Create list of them. By default - non of them selected. */
-    const getInitialTagFilters = (): IDropdownItem[] => {
+    createEffect(() => {
         const allPostsTags = [
             ...new Set(sortedPosts()?.flatMap((post) => post.fields.tags))
         ].filter(Boolean);
 
-        return allPostsTags.map((tag) => ({ name: tag, selected: false }));
-    };
-    const [tagFilters, setTagFilters] =
-        createSignal(getInitialTagFilters());
+        setTagFilters(allPostsTags.map((tag) => ({ name: tag, selected: false })));
+    })
 
     const checkTagFiltersSelected = () => tagFilters().some((f) => f.selected);
 
