@@ -65,7 +65,7 @@ const BlogPosts: Component<IBlogPosts> = (props) => {
         ].filter(Boolean);
 
         setTagFilters(allPostsTags.map((tag) => ({ name: tag, selected: false })));
-    })
+    });
 
     const checkTagFiltersSelected = () => tagFilters().some((f) => f.selected);
 
