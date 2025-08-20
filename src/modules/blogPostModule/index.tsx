@@ -1,5 +1,5 @@
-import { For, Show } from "solid-js";
-import { useLocation } from "@solidjs/router";
+import { createEffect, For, Show } from "solid-js";
+import { useLocation, useNavigate } from "@solidjs/router";
 
 import { createQuery } from "@tanstack/solid-query";
 
@@ -14,6 +14,7 @@ import { getReadingTime } from "~/shared/utils/getReadingTime";
 
 const BlogPostModule = () => {
     const { isLightTheme } = useTheme(false);
+    const navigate = useNavigate();
     const location = useLocation();
     const blogPostId = location.pathname.split("/").at(-1);
 
@@ -29,10 +30,16 @@ const BlogPostModule = () => {
         queryFn: fetchAbout,
     }));
 
+    createEffect(() => {
+        const postTitle = post?.data?.fields?.title;
+
+        if (!postTitle) {
+            navigate("/404");
+        }
+    });
+
     const getDot = (extraClass?: string) => {
-        return (
-            <div class={`mx-offset3x h-full ${extraClass}`}>&bull;</div>
-        );
+        return <div class={`mx-offset3x h-full ${extraClass}`}>&bull;</div>;
     };
 
     const blogPostJsonLd = {
@@ -41,18 +48,20 @@ const BlogPostModule = () => {
         datePublished: post?.data?.sys?.createdAt?.slice(0, 10),
         dateModified: post?.data?.sys?.updatedAt?.slice(0, 10),
         publisher: {
-            "@id": "NW"
+            "@id": "NW",
         },
-        image: post.data?.fields?.image?.fields?.file?.url
+        image: post.data?.fields?.image?.fields?.file?.url,
     };
 
     return (
         <WithJsonLd extraJsonLd={blogPostJsonLd}>
-            <div class={`
-              px-highest duration-300
-              ipadLg:px-offset8x
-              ipadSm:px-offset3x
-            `}>
+            <div
+                class={`
+                  px-highest duration-300
+                  ipadLg:px-offset8x
+                  ipadSm:px-offset3x
+                `}
+            >
                 <div class="aspect-[16/9]">
                     <Show when={post?.data?.fields?.image}>
                         <img
@@ -62,23 +71,29 @@ const BlogPostModule = () => {
                         />
                     </Show>
                 </div>
-                <div class={`
-                  my-offset9x text-5cxl flex justify-center font-bold
-                  ipadSm:text-5cxl ipadSm:my-offset6x
-                  phones:text-2cxl phones:my-offset4x
-                `}>
+                <div
+                    class={`
+                      my-offset9x text-5cxl flex justify-center font-bold
+                      ipadSm:text-5cxl ipadSm:my-offset6x
+                      phones:text-2cxl phones:my-offset4x
+                    `}
+                >
                     <h1>{post?.data?.fields?.title}</h1>
                 </div>
-                <div class={`
-                  mb-offset9x flex items-center justify-center
-                  phones:mb-offset8x
-                  ipadSm:flex-col ipadSm:gap-offset4x
-                `}>
+                <div
+                    class={`
+                      mb-offset9x flex items-center justify-center
+                      phones:mb-offset8x
+                      ipadSm:flex-col ipadSm:gap-offset4x
+                    `}
+                >
                     <div class="gap-offset3x flex items-center">
-                        <div class={`
-                          h-[48px] max-h-[48px] min-h-[48px] w-[48px]
-                          max-w-[48px] min-w-[48px]
-                        `}>
+                        <div
+                            class={`
+                              h-[48px] max-h-[48px] min-h-[48px] w-[48px]
+                              max-w-[48px] min-w-[48px]
+                            `}
+                        >
                             <Show
                                 when={!isLightTheme()}
                                 fallback={getContentfulAvatar(about?.data, true)}
@@ -88,34 +103,43 @@ const BlogPostModule = () => {
                         </div>
                         <span class="font-semibold">{about?.data?.name}</span>
                     </div>
-                    <div class={`
-                      text-lightGray flex items-center
-                      ipadSm:text-csm
-                      light:text-warmBrown
-                    `}>
+                    <div
+                        class={`
+                          text-lightGray flex items-center
+                          ipadSm:text-csm
+                          light:text-warmBrown
+                        `}
+                    >
                         {getDot("ipadSm:hidden")}
                         <span>
-                            {new Date(post?.data?.sys?.createdAt!).toLocaleDateString("en-US", {
-                                month: "short",
-                                day: "2-digit",
-                                year: "numeric",
-                            })}
+                            {new Date(post?.data?.sys?.createdAt!).toLocaleDateString(
+                                "en-US",
+                                {
+                                    month: "short",
+                                    day: "2-digit",
+                                    year: "numeric",
+                                },
+                            )}
                         </span>
                         {getDot()}
-                        <span class={`
-                          gap-offset2x flex items-center
-                          light:text-warmBrown
-                        `}>
+                        <span
+                            class={`
+                              gap-offset2x flex items-center
+                              light:text-warmBrown
+                            `}
+                        >
                             <BookSvg />
                             <span>{getReadingTime(post?.data?.fields?.text!)} min. read</span>
                         </span>
                     </div>
                 </div>
                 <ContentfulText text={post?.data?.fields?.text!} />
-                <div class={`
-                  gap-offset2x my-offset9x flex flex-wrap justify-center
-                  phones:my-offset8x phones:mb-offset3x
-                `}>
+                <div
+                    class={`
+                      gap-offset2x my-offset9x flex flex-wrap justify-center
+                      phones:my-offset8x phones:mb-offset3x
+                    `}
+                >
                     <For each={post?.data?.fields?.tags}>
                         {(tag) => <Chip text={tag} />}
                     </For>
